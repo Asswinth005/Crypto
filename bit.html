@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin (BTC) | Crypto Groww - Advanced Cryptocurrency Trading</title>
+    <link rel="icon" type="assets/jpeg" href="assets/growwpark_logo.jpg">
+
+    <meta name="description" content="Bitcoin (BTC) trading with real-time prices, charts, and analysis on Crypto Groww">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9c7be5',
+                        secondary: '#b299ea',
+                        accent: '#7e5fdb',
+                        dark: '#1a1a2e',
+                        light: '#f8f9ff'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for price chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        body {
+            background: #f8f9ff;
+            color: #1a1a2e;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .dark body {
+            background: #0f0f1e;
+            color: #e5e5e5;
+        }
+        
+        /* Gradient backgrounds - USING PRIMARY COLOR THEME */
+        .gradient-bg {
+            background: linear-gradient(135deg, #9c7be5 0%, #7e5fdb 50%, #6a4bc9 100%);
+        }
+        
+        .primary-gradient {
+            background: linear-gradient(135deg, #9c7be5 0%, #7e5fdb 100%);
+        }
+        
+        .dark-gradient {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 50%, #0a0a14 100%);
+        }
+        
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(156, 123, 229, 0.15);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 15px 30px rgba(156, 123, 229, 0.25);
+        }
+        
+        /* Stats card styling */
+        .stats-card {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.1) 0%, rgba(126, 95, 219, 0.1) 100%);
+            border: 1px solid rgba(156, 123, 229, 0.2);
+        }
+        
+        /* Bitcoin section styling */
+        .bitcoin-section {
+            background: radial-gradient(circle at top right, rgba(156, 123, 229, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(126, 95, 219, 0.1) 0%, transparent 50%);
+        }
+        
+        .dark .bitcoin-section {
+            background: radial-gradient(circle at top right, rgba(156, 123, 229, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(126, 95, 219, 0.05) 0%, transparent 50%);
+        }
+        
+        /* Tab styling */
+        .tab-active {
+            background: #9c7be5;
+            color: white;
+        }
+        
+        /* Navigation styles - RIGHT SIDE NAVIGATION */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Consistent spacing between all nav items */
+        }
+
+        .nav-right-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+            font-weight: 500;
+            color: #1a1a2e;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            padding: 0.5rem 0;
+        }
+
+        .dark .nav-item {
+            color: #e5e5e5;
+        }
+
+        .nav-item:hover {
+            color: #9c7be5;
+        }
+
+        .nav-item.dropdown {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            min-width: 180px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .dark .dropdown-menu {
+            background: #1a1a2e;
+            border-color: #2d2d4d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        [dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .dark .dropdown-item {
+            color: #d1d5db;
+        }
+
+        .dropdown-item:hover {
+            background: #f3f4f6;
+            color: #9c7be5;
+            padding-left: 1.75rem;
+        }
+
+        [dir="rtl"] .dropdown-item:hover {
+            padding-left: 1.5rem;
+            padding-right: 1.75rem;
+        }
+
+        .dark .dropdown-item:hover {
+            background: #2d2d4d;
+        }
+
+        /* Auth buttons */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-login {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            color: #4b5563;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dark .btn-login {
+            border-color: #4b5563;
+            color: #d1d5db;
+        }
+
+        .btn-login:hover {
+            border-color: #9c7be5;
+            color: #9c7be5;
+        }
+
+        .btn-signup {
+            padding: 0.5rem 1.5rem;
+            background: #9c7be5;
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-signup:hover {
+            background: #b299ea;
+        }
+
+        /* Toggle buttons */
+        .toggle-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            color: #6b7280;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .dark .toggle-btn {
+            background: #2d2d4d;
+            color: #9ca3af;
+        }
+
+        .toggle-btn:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .dark .toggle-btn:hover {
+            background: #3d3d6d;
+            color: #e5e5e5;
+        }
+
+        .toggle-btn.active {
+            background: #b299ea;
+            color: white;
+        }
+        
+        /* Chart container - FIXED */
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            min-height: 300px; /* Add minimum height */
+        }
+
+        /* Ensure proper chart rendering */
+        #bitcoinChart {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Improve chart readability in dark mode */
+        .dark #bitcoinChart {
+            background-color: transparent;
+        }
+        
+        /* Price ticker */
+        .price-ticker {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        
+        .price-up {
+            color: #10b981;
+        }
+        
+        .price-down {
+            color: #ef4444;
+        }
+        
+        /* Bitcoin info card */
+        .bitcoin-info-card {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.05) 0%, rgba(126, 95, 219, 0.05) 100%);
+            border-left: 4px solid #9c7be5;
+        }
+        
+        .dark .bitcoin-info-card {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.1) 0%, rgba(126, 95, 219, 0.1) 100%);
+        }
+        
+        /* Bitcoin Icon Styling */
+        .bitcoin-icon-bg {
+            background: linear-gradient(135deg, #f7931a 0%, #ffab2e 100%);
+        }
+        
+        /* Footer social icons */
+        .footer-social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #374151;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #b299ea, #7e5fdb);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-social-icon:hover::before {
+            opacity: 1;
+        }
+        
+        .footer-social-icon i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(178, 153, 234, 0.3);
+        }
+        
+        /* Mobile Menu Styles */
+        #mobile-menu {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .dark #mobile-menu {
+            background: #1a1a2e;
+            border-color: #2d2d4d;
+        }
+
+        #mobile-menu.show {
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        /* Mobile menu items */
+        .mobile-menu-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            color: #4b5563;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+        }
+
+        .dark .mobile-menu-item {
+            color: #d1d5db;
+            border-bottom-color: #2d2d4d;
+        }
+
+        .mobile-menu-item:hover {
+            background-color: #f9fafb;
+            color: #9c7be5;
+            padding-left: 2rem;
+        }
+
+        .dark .mobile-menu-item:hover {
+            background-color: #2d2d4d;
+        }
+
+        [dir="rtl"] .mobile-menu-item:hover {
+            padding-left: 1.5rem;
+            padding-right: 2rem;
+        }
+
+        /* Mobile auth buttons */
+        .mobile-auth-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin: 0.25rem;
+            border: 1px solid transparent;
+        }
+
+        .mobile-auth-btn.login {
+            background: transparent;
+            border-color: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .dark .mobile-auth-btn.login {
+            border-color: #4b5563;
+            color: #d1d5db;
+        }
+
+        .mobile-auth-btn.login:hover {
+            background-color: #9c7be5;
+            color: white;
+            border-color: #9c7be5;
+        }
+
+        .mobile-auth-btn.signup {
+            background: #9c7be5;
+            color: white;
+        }
+
+        .mobile-auth-btn.signup:hover {
+            background: #b299ea;
+        }
+
+        /* Lock body scroll when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Mobile dropdown items */
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.75rem 2.5rem;
+            font-size: 0.95rem;
+            color: #6b7280;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f9fafb;
+        }
+
+        .dark .mobile-dropdown-item {
+            color: #9ca3af;
+            border-bottom-color: #2d2d4d;
+        }
+
+        .mobile-dropdown-item:hover {
+            color: #9c7be5;
+            background-color: #f9fafb;
+            padding-left: 3rem;
+        }
+
+        .dark .mobile-dropdown-item:hover {
+            background-color: #2d2d4d;
+        }
+
+        [dir="rtl"] .mobile-dropdown-item:hover {
+            padding-left: 2.5rem;
+            padding-right: 3rem;
+        }
+
+        /* Mobile dropdown content */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-dropdown-content.show {
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center cursor-pointer">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-coins text-white"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-dark dark:text-white">Crypto</span>
+                        <span class="text-xl font-bold text-primary">Groww</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center">
+                    <!-- Navigation Links on RIGHT side -->
+                    <div class="nav-links">
+                        <!-- Home Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span style="color: #9c7be5; font-weight: 600;">Home</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="index.html" style="color: #9c7be5; font-weight: 600;">
+                                    <i class="fas fa-home"></i>
+                                    Home 1
+                                </a>
+                                <a class="dropdown-item" href="home2.html">
+                                    <i class="fas fa-home"></i>
+                                    Home 2
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- About -->
+                        <a class="nav-item" href="about.html">
+                            About
+                        </a>
+                        
+                        <!-- Markets Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span>Markets</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="market.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Market Overview
+                                </a>
+                                <a class="dropdown-item" href="bit.html">
+                                    <i class="fab fa-bitcoin"></i>
+                                    Bitcoin
+                                </a>
+                                <a class="dropdown-item" href="ethereum.html">
+                                    <i class="fab fa-ethereum"></i>
+                                    Ethereum
+                                </a>
+                                <a class="dropdown-item" href="alt.html">
+                                    <i class="fas fa-gem"></i>
+                                    Altcoins
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Trade -->
+                        <a class="nav-item" href="trade.html">
+                            Trade
+                        </a>
+                        
+                        <!-- Blog -->
+                        <a class="nav-item" href="Blog.html">
+                            Blog
+                        </a>
+                        
+                        <!-- Earn -->
+                        <a class="nav-item" href="Earn.html">
+                            Earn
+                        </a>
+                        
+                        <!-- Contact -->
+                        <a class="nav-item" href="contact.html">
+                            Contact
+                        </a>
+                        
+                        <!-- Dashboard Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span>Dashboard</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="Admin.html">
+                                    <i class="fas fa-user-shield"></i>
+                                    Admin
+                                </a>
+                                <a class="dropdown-item" href="Client.html">
+                                    <i class="fas fa-user"></i>
+                                    Client
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Section: Toggle buttons and Auth buttons -->
+                    <div class="nav-right-section ml-6">
+                        <!-- Toggle buttons (Theme & RTL) -->
+                        <div class="toggle-buttons">
+                            <!-- Theme Toggle -->
+                            <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                            
+                            <!-- RTL Toggle -->
+                            <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
+                                ⇄
+                            </button>
+                        </div>
+                        
+                        <!-- Login/Signup buttons -->
+                        <div class="auth-buttons">
+                            <a class="btn-login" href="Login.html">
+                                Login
+                            </a>
+                            <a class="btn-signup" href="Signup.html">
+                                Sign Up
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle Button - ADDED HERE -->
+                <button id="mobile-toggle" class="xl:hidden w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="xl:hidden">
+                <!-- Home -->
+                <div class="mobile-dropdown">
+                    <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
+                        <span>Home</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <a class="mobile-dropdown-item" href="index.html">
+                            <i class="fas fa-home mr-2"></i>
+                            Home 1
+                        </a>
+                        <a class="mobile-dropdown-item" href="home2.html">
+                            <i class="fas fa-home mr-2"></i>
+                            Home 2
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- About -->
+                <a class="mobile-menu-item" href="about.html">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    About
+                </a>
+                
+                <!-- Markets - ACTIVE -->
+                <div class="mobile-dropdown">
+                    <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item" style="color: #9c7be5; font-weight: 600;">
+                        <span>Markets</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <a class="mobile-dropdown-item" href="market.html">
+                            <i class="fas fa-chart-bar mr-2"></i>
+                            Market Overview
+                        </a>
+                        <a class="mobile-dropdown-item" href="bit.html" style="color: #9c7be5; font-weight: 600;">
+                            <i class="fab fa-bitcoin mr-2"></i>
+                            Bitcoin
+                        </a>
+                        <a class="mobile-dropdown-item" href="ethereum.html">
+                            <i class="fab fa-ethereum mr-2"></i>
+                            Ethereum
+                        </a>
+                        <a class="mobile-dropdown-item" href="alt.html">
+                            <i class="fas fa-gem mr-2"></i>
+                            Altcoins
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Trade -->
+                <a class="mobile-menu-item" href="trade.html">
+                    <i class="fas fa-exchange-alt mr-2"></i>
+                    Trade
+                </a>
+
+                <!-- Blog -->
+                <a class="mobile-menu-item" href="Blog.html">
+                    <i class="fas fa-blog mr-2"></i>
+                    Blog
+                </a>
+                
+                <!-- Earn -->
+                <a class="mobile-menu-item" href="Earn.html">
+                    <i class="fas fa-hand-holding-usd mr-2"></i>
+                    Earn
+                </a>
+                
+                <!-- Contact -->
+                <a class="mobile-menu-item" href="contact.html">
+                    <i class="fas fa-phone mr-2"></i>
+                    Contact
+                </a>
+                
+                <!-- Dashboard -->
+                <div class="mobile-dropdown">
+                    <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
+                        <span>Dashboard</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    </button>
+                    <div class="mobile-dropdown-content">
+                        <a class="mobile-dropdown-item" href="admin.html">
+                            <i class="fas fa-user-shield mr-2"></i>
+                            Admin
+                        </a>
+                        <a class="mobile-dropdown-item" href="client.html">
+                            <i class="fas fa-user mr-2"></i>
+                            Client
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Auth Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 p-6">
+                    <a class="mobile-auth-btn login flex-1 text-center" href="login.html">
+                        Login
+                    </a>
+                    <a class="mobile-auth-btn signup flex-1 text-center" href="signup.html">
+                        Sign Up
+                    </a>
+                </div>
+                
+                <!-- Mobile Toggle Buttons -->
+                <div class="flex justify-center gap-3 p-6 border-t border-gray-200 dark:border-gray-800">
+                    <button id="theme-toggle-mobile" class="toggle-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="rtl-toggle-mobile" class="toggle-btn">
+                        ⇄
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 bitcoin-section">
+        <!-- Bitcoin Header Section -->
+        <section class="gradient-bg text-white py-12">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center justify-between">
+                    <div class="lg:w-1/2 mb-8 lg:mb-0">
+                        <div class="flex items-center mb-6">
+                            <div class="bitcoin-icon-bg w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                                <i class="fab fa-bitcoin text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h1 class="text-4xl md:text-5xl font-bold">Bitcoin</h1>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-2xl font-bold mr-3">BTC</span>
+                                    <span class="bg-white/20 px-3 py-1 rounded-full text-sm">#1 Market Cap</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bitcoin Price Ticker -->
+                        <div class="mb-8">
+                            <div class="flex items-baseline">
+                                <div class="text-5xl md:text-6xl font-bold price-ticker">$64,820.45</div>
+                                <div class="ml-4 text-2xl price-up font-bold">+2.4%</div>
+                            </div>
+                            <div class="text-white/80 mt-2">≈ 1.07 BTC = $69,420</div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition flex items-center">
+                                <i class="fas fa-chart-line mr-3"></i>
+                                Trade BTC
+                            </button>
+                            <button class="border-2 border-white/50 text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition flex items-center">
+                                <i class="fas fa-wallet mr-3"></i>
+                                Buy Bitcoin
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2">
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                <div class="text-xl font-bold">$1.27T</div>
+                                <div class="text-sm opacity-80">Market Cap</div>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                <div class="text-xl font-bold">19.5M</div>
+                                <div class="text-sm opacity-80">BTC in Circulation</div>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                <div class="text-xl font-bold">24H</div>
+                                <div class="text-sm opacity-80">Volume $42.8B</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bitcoin Info -->
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 mt-6">
+                            <h3 class="text-xl font-bold mb-4">About Bitcoin</h3>
+                            <p class="opacity-90 mb-4">
+                                Bitcoin is the first decentralized cryptocurrency, created in 2009 by Satoshi Nakamoto. It enables peer-to-peer transactions without the need for intermediaries like banks.
+                            </p>
+                            <div class="flex flex-wrap gap-4 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Launched: January 3, 2009</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-user mr-2"></i>
+                                    <span>Creator: Satoshi Nakamoto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Price Chart Section -->
+        <section class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover">
+                    <div class="flex flex-wrap justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-dark dark:text-white">BTC/USD Price Chart</h2>
+                        <div class="flex space-x-2 mt-4 md:mt-0">
+                            <button class="px-4 py-2 rounded-lg font-medium tab-active">1D</button>
+                            <button class="px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">7D</button>
+                            <button class="px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">1M</button>
+                            <button class="px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">1Y</button>
+                            <button class="px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">All</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Chart Container -->
+                    <div class="chart-container">
+                        <canvas id="bitcoinChart"></canvas>
+                    </div>
+                    
+                    <!-- Chart Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div class="text-sm text-gray-500 dark:text-gray-400">24H High</div>
+                            <div class="text-xl font-bold text-dark dark:text-white">$65,420.30</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div class="text-sm text-gray-500 dark:text-gray-400">24H Low</div>
+                            <div class="text-xl font-bold text-dark dark:text-white">$62,150.80</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div class="text-sm text-gray-500 dark:text-gray-400">24H Volume</div>
+                            <div class="text-xl font-bold text-dark dark:text-white">$42.8B</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Market Dominance</div>
+                            <div class="text-xl font-bold text-dark dark:text-white">52.4%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trading & Info Section -->
+        <section class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Trading Widget -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover">
+                            <h2 class="text-2xl font-bold mb-6 text-dark dark:text-white">Trade Bitcoin</h2>
+                            
+                            <!-- Trading Pairs -->
+                            <div class="flex space-x-4 mb-6 overflow-x-auto pb-2">
+                                <button class="px-4 py-2 rounded-lg bg-primary text-white font-medium whitespace-nowrap">BTC/USD</button>
+                                <button class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 font-medium whitespace-nowrap">BTC/EUR</button>
+                                <button class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 font-medium whitespace-nowrap">BTC/GBP</button>
+                                <button class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 font-medium whitespace-nowrap">BTC/JPY</button>
+                                <button class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 font-medium whitespace-nowrap">BTC/ETH</button>
+                            </div>
+                            
+                            <!-- Trading Interface -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Buy Section -->
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <h3 class="text-xl font-bold text-green-700 dark:text-green-400">Buy BTC</h3>
+                                        <div class="text-sm text-dark dark:text-white">Balance: $10,000.00</div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium mb-2 text-dark dark:text-white">Amount (USD)</label>
+                                        <div class="relative">
+                                            <input type="number" value="1000" class="w-full p-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-dark dark:text-white">
+                                            <div class="absolute right-3 top-3 text-gray-500">USD</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label class="block text-sm font-medium mb-2 text-dark dark:text-white">You Receive (BTC)</label>
+                                        <div class="relative">
+                                            <input type="text" value="0.0154" class="w-full p-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-dark dark:text-white">
+                                            <div class="absolute right-3 top-3 text-gray-500">BTC</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold transition">
+                                        Buy Bitcoin
+                                    </button>
+                                    
+                                    <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                                        Fee: 0.1% • You pay: $1,001.00
+                                    </div>
+                                </div>
+                                
+                                <!-- Sell Section -->
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-6">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <h3 class="text-xl font-bold text-red-700 dark:text-red-400">Sell BTC</h3>
+                                        <div class="text-sm text-dark dark:text-white">Balance: 0.5 BTC</div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium mb-2 text-dark dark:text-white">Amount (BTC)</label>
+                                        <div class="relative">
+                                            <input type="number" value="0.1" class="w-full p-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-dark dark:text-white">
+                                            <div class="absolute right-3 top-3 text-gray-500">BTC</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-6">
+                                        <label class="block text-sm font-medium mb-2 text-dark dark:text-white">You Receive (USD)</label>
+                                        <div class="relative">
+                                            <input type="text" value="6,482.05" class="w-full p-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-dark dark:text-white">
+                                            <div class="absolute right-3 top-3 text-gray-500">USD</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-bold transition">
+                                        Sell Bitcoin
+                                    </button>
+                                    
+                                    <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                                        Fee: 0.1% • You receive: $6,475.77
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Order Book Preview -->
+                            <div class="mt-8">
+                                <h3 class="text-lg font-bold mb-4 text-dark dark:text-white">Order Book</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <div class="text-sm text-gray-500 mb-2">Bids (Buy)</div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-green-600">
+                                                <span>$64,815.20</span>
+                                                <span>12.4 BTC</span>
+                                            </div>
+                                            <div class="flex justify-between text-green-600">
+                                                <span>$64,810.50</span>
+                                                <span>8.7 BTC</span>
+                                            </div>
+                                            <div class="flex justify-between text-green-600">
+                                                <span>$64,805.30</span>
+                                                <span>5.2 BTC</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-gray-500 mb-2">Asks (Sell)</div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-red-600">
+                                                <span>$64,825.70</span>
+                                                <span>9.8 BTC</span>
+                                            </div>
+                                            <div class="flex justify-between text-red-600">
+                                                <span>$64,830.40</span>
+                                                <span>14.3 BTC</span>
+                                            </div>
+                                            <div class="flex justify-between text-red-600">
+                                                <span>$64,835.10</span>
+                                                <span>7.6 BTC</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bitcoin Information -->
+                    <div class="space-y-8">
+                        <!-- Bitcoin Stats -->
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover">
+                            <h2 class="text-2xl font-bold mb-6 text-dark dark:text-white">Bitcoin Statistics</h2>
+                            
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">Market Cap</span>
+                                    <span class="font-bold text-dark dark:text-white">$1.27T</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">Fully Diluted Market Cap</span>
+                                    <span class="font-bold text-dark dark:text-white">$1.36T</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">Circulating Supply</span>
+                                    <span class="font-bold text-dark dark:text-white">19.5M BTC</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">Total Supply</span>
+                                    <span class="font-bold text-dark dark:text-white">21M BTC</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">Max Supply</span>
+                                    <span class="font-bold text-dark dark:text-white">21M BTC</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">Market Dominance</span>
+                                    <span class="font-bold text-dark dark:text-white">52.4%</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">All-Time High</span>
+                                    <span class="font-bold text-dark dark:text-white">$73,780.07</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 dark:text-gray-400">All-Time Low</span>
+                                    <span class="font-bold text-dark dark:text-white">$0.06</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bitcoin Resources -->
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover">
+                            <h2 class="text-2xl font-bold mb-6 text-dark dark:text-white">Resources</h2>
+                            
+                            <div class="space-y-4">
+                                <a href="#" class="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                    <div class="bitcoin-icon-bg w-10 h-10 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fab fa-bitcoin text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-dark dark:text-white">Bitcoin Whitepaper</div>
+                                        <div class="text-sm text-gray-500">Original Bitcoin paper by Satoshi Nakamoto</div>
+                                    </div>
+                                </a>
+                                
+                                <a href="#" class="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                    <div class="w-10 h-10 bg-primary-gradient rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-chart-bar text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-dark dark:text-white">Bitcoin Charts</div>
+                                        <div class="text-sm text-gray-500">Advanced charts & technical analysis</div>
+                                    </div>
+                                </a>
+                                
+                                <a href="#" class="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-graduation-cap text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-dark dark:text-white">Learn Bitcoin</div>
+                                        <div class="text-sm text-gray-500">Educational resources for beginners</div>
+                                    </div>
+                                </a>
+                                
+                                <a href="#" class="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-wallet text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-dark dark:text-white">Bitcoin Wallets</div>
+                                        <div class="text-sm text-gray-500">Secure storage solutions</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bitcoin Information Section -->
+        <section class="py-12 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-dark dark:text-white">What is Bitcoin?</h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        Bitcoin is the world's first decentralized digital currency that allows peer-to-peer transactions without the need for intermediaries like banks.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- How Bitcoin Works -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="w-16 h-16 primary-gradient rounded-xl flex items-center justify-center mb-6">
+                            <i class="fab fa-bitcoin text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-dark dark:text-white">How Bitcoin Works</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            Bitcoin operates on a technology called blockchain, which is a distributed ledger that records all transactions across a network of computers.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Decentralized:</strong> No central authority controls Bitcoin</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Limited Supply:</strong> Only 21 million BTC will ever exist</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Secure:</strong> Cryptography protects transactions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Transparent:</strong> All transactions are publicly visible</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Why Invest in Bitcoin -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-dark dark:text-white">Why Invest in Bitcoin?</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            Bitcoin has emerged as a store of value and hedge against inflation, often referred to as "digital gold" by investors.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Store of Value:</strong> Limited supply makes it resistant to inflation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Global Accessibility:</strong> Available to anyone with internet access</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Portable:</strong> Transfer large amounts anywhere in the world</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span class="text-dark dark:text-white"><strong>Institutional Adoption:</strong> Growing acceptance by companies and funds</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Bitcoin Info Card -->
+                <div class="bitcoin-info-card rounded-2xl p-8 mt-8">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/3 text-center mb-6 md:mb-0">
+                            <div class="bitcoin-icon-bg w-24 h-24 rounded-full flex items-center justify-center mx-auto">
+                                <i class="fab fa-bitcoin text-white text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 md:pl-8">
+                            <h3 class="text-2xl font-bold mb-4 text-dark dark:text-white">Bitcoin: The Future of Money</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                Since its creation in 2009, Bitcoin has grown from an experimental digital currency to a global financial asset with a market capitalization exceeding $1 trillion. It represents a fundamental shift in how we think about money, value, and trust.
+                            </p>
+                            <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                                <i class="fas fa-exclamation-circle mr-2 text-primary"></i>
+                                <span>Bitcoin transactions are irreversible and pseudonymous</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-dark dark:text-white">Frequently Asked Questions</h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        Get answers to common questions about Bitcoin and trading on Crypto Groww.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <!-- FAQ Item 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 card-hover">
+                        <h3 class="text-lg font-bold mb-3 text-dark dark:text-white">What is Bitcoin mining?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Bitcoin mining is the process of validating transactions and adding them to the blockchain. Miners use powerful computers to solve complex mathematical problems, and are rewarded with new bitcoins for their work.
+                        </p>
+                    </div>
+                    
+                    <!-- FAQ Item 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 card-hover">
+                        <h3 class="text-lg font-bold mb-3 text-dark dark:text-white">How do I buy Bitcoin on Crypto Groww?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            You can buy Bitcoin by depositing USD or other cryptocurrencies into your Crypto Groww account, then placing a buy order on the trading platform. We support bank transfers, credit cards, and crypto deposits.
+                        </p>
+                    </div>
+                    
+                    <!-- FAQ Item 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 card-hover">
+                        <h3 class="text-lg font-bold mb-3 text-dark dark:text-white">Is Bitcoin a good investment?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Bitcoin has shown significant growth since its inception, but it's also known for its volatility. As with any investment, it's important to do your own research and only invest what you can afford to lose.
+                        </p>
+                    </div>
+                    
+                    <!-- FAQ Item 4 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 card-hover">
+                        <h3 class="text-lg font-bold mb-3 text-dark dark:text-white">How do I store my Bitcoin securely?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            For maximum security, use a hardware wallet. For convenience, Crypto Groww offers secure online storage with 98% of funds in cold storage, insurance, and multi-signature protection.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- More Questions -->
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-flex items-center text-primary font-bold hover:text-secondary transition">
+                        <span>More Bitcoin Questions & Answers</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-12 gradient-bg text-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto rounded-3xl p-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Start Trading Bitcoin Today</h2>
+                    <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+                        Join millions of users who trust Crypto Groww for secure, fast, and reliable Bitcoin trading with industry-low fees.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-primary px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition flex items-center justify-center">
+                            <i class="fab fa-bitcoin mr-3"></i>
+                            Trade Bitcoin Now
+                        </button>
+                        <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition">
+                            Learn More About Bitcoin
+                        </button>
+                    </div>
+                    <p class="mt-8 text-sm opacity-80">No credit card required • Get started in minutes</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded flex items-center justify-center">
+                            <i class="fas fa-coins text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-white">Crypto</span>
+                            <span class="text-2xl font-bold text-primary">Groww</span>
+                        </div>
+                    </div>
+                    <p class="mb-6 opacity-80">
+                        The most secure cryptocurrency platform to buy, sell, trade, and earn digital assets.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="footer-social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="footer-social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="footer-social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer-social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white text-xl font-bold mb-6">Cryptocurrencies</h3>
+                    <ul class="space-y-3">
+                        <li><a class='hover:text-primary transition' href='Bit.html'>Bitcoin (BTC)</a></li>
+                        <li><a class='hover:text-primary transition' href='Ethereum.html'>Ethereum (ETH)</a></li>
+                        <li><a class='hover:text-primary transition' href='#'>Solana (SOL)</a></li>
+                        <li><a class='hover:text-primary transition' href='#'>Cardano (ADA)</a></li>
+                        <li><a class='hover:text-primary transition' href='#'>Dogecoin (DOGE)</a></li>
+                        <li><a class='hover:text-primary transition' href='Altcoins.html'>View All Altcoins</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-white text-xl font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-primary transition">Spot Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Futures Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Staking</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Crypto Lending</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Crypto Card</a></li>
+                        <li><a href="#" class="hover:text-primary transition">API Access</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-white text-xl font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                            <span>123 Crypto Street, Blockchain District, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-primary mr-3"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-3"></i>
+                            <span>help@cryptogroww.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-primary mr-3"></i>
+                            <span>24/7 Customer Support</span>
+                        </li>
+                    </ul>
+                    
+                    
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-sm opacity-75">&copy; 2023 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-sm hover:text-primary transition">Privacy Policy</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Terms of Service</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Cookie Policy</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                
+                if (document.documentElement.classList.contains('dark')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Check saved theme
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            rtlToggle.addEventListener('click', () => {
+                if (document.documentElement.dir === 'rtl') {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                    rtlToggle.textContent = '⇄';
+                    rtlToggle.classList.remove('active');
+                    localStorage.setItem('dir', 'ltr');
+                } else {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                    rtlToggle.textContent = '⇄';
+                    rtlToggle.classList.add('active');
+                    localStorage.setItem('dir', 'rtl');
+                }
+            });
+            
+            // Check saved RTL
+            if (localStorage.getItem('dir') === 'rtl') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                rtlToggle.textContent = '⇄';
+                rtlToggle.classList.add('active');
+            }
+            
+            // Mobile Menu Toggle
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const body = document.body;
+            
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Toggle the show class
+                mobileMenu.classList.toggle('show');
+                
+                if (mobileMenu.classList.contains('show')) {
+                    // Menu is opening
+                    mobileToggle.innerHTML = '<i class="fas fa-times text-xl"></i>';
+                    body.classList.add('menu-open');
+                } else {
+                    // Menu is closing
+                    mobileToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                    body.classList.remove('menu-open');
+                }
+            });
+            
+            // Mobile Dropdown Toggle
+            document.querySelectorAll('.mobile-dropdown-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    
+                    const dropdown = e.target.closest('.mobile-dropdown');
+                    const content = dropdown.querySelector('.mobile-dropdown-content');
+                    const icon = dropdown.querySelector('.fa-chevron-down');
+                    
+                    // Toggle current dropdown
+                    content.classList.toggle('show');
+                    
+                    // Rotate icon
+                    if (content.classList.contains('show')) {
+                        if (document.documentElement.dir === 'rtl') {
+                            icon.style.transform = 'rotate(0deg)';
+                        } else {
+                            icon.style.transform = 'rotate(180deg)';
+                        }
+                    } else {
+                        if (document.documentElement.dir === 'rtl') {
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            icon.style.transform = 'rotate(0)';
+                        }
+                    }
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.mobile-dropdown-content').forEach(otherContent => {
+                        if (otherContent !== content) {
+                            otherContent.classList.remove('show');
+                        }
+                    });
+                    
+                    // Reset other icons
+                    document.querySelectorAll('.mobile-dropdown-btn').forEach(otherButton => {
+                        if (otherButton !== button) {
+                            const otherIcon = otherButton.querySelector('.fa-chevron-down');
+                            if (otherIcon && document.documentElement.dir === 'rtl') {
+                                otherIcon.style.transform = 'rotate(180deg)';
+                            } else if (otherIcon) {
+                                otherIcon.style.transform = 'rotate(0)';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Mobile Theme Toggle
+            const mobileThemeToggle = document.getElementById('theme-toggle-mobile');
+            mobileThemeToggle?.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+                
+                // Update desktop toggle
+                if (document.documentElement.classList.contains('dark')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    mobileThemeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            });
+            
+            // Mobile RTL Toggle
+            const mobileRtlToggle = document.getElementById('rtl-toggle-mobile');
+            mobileRtlToggle?.addEventListener('click', () => {
+                if (document.documentElement.dir === 'rtl') {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                    mobileRtlToggle.textContent = '⇄';
+                    rtlToggle.textContent = '⇄';
+                    mobileRtlToggle.classList.remove('active');
+                    rtlToggle.classList.remove('active');
+                    localStorage.setItem('dir', 'ltr');
+                } else {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                    mobileRtlToggle.textContent = '⇄';
+                    rtlToggle.textContent = '⇄';
+                    mobileRtlToggle.classList.add('active');
+                    rtlToggle.classList.add('active');
+                    localStorage.setItem('dir', 'rtl');
+                }
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const mobileToggle = document.getElementById('mobile-toggle');
+                
+                // Check if click is outside mobile menu AND not on mobile toggle button
+                if (!mobileMenu.contains(e.target) && 
+                    !mobileToggle.contains(e.target) && 
+                    mobileMenu.classList.contains('show')) {
+                    
+                    mobileMenu.classList.remove('show');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                    
+                    // Also close all dropdowns
+                    document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
+                        content.classList.remove('show');
+                    });
+                    document.querySelectorAll('.mobile-dropdown-btn .fa-chevron-down').forEach(icon => {
+                        if (document.documentElement.dir === 'rtl') {
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            icon.style.transform = 'rotate(0)';
+                        }
+                    });
+                    
+                    // Unlock background scrolling
+                    body.classList.remove('menu-open');
+                }
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('show');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                    
+                    // Unlock background scrolling
+                    body.classList.remove('menu-open');
+                });
+            });
+            
+            // Bitcoin Price Chart
+            const ctx = document.getElementById('bitcoinChart').getContext('2d');
+            
+            // Debug chart
+            console.log('Chart context:', ctx);
+            
+            // Generate sample data for the chart
+            const labels = [];
+            const data = [];
+            
+            // Generate 24 hours of data
+            let currentPrice = 62000;
+            for (let i = 0; i < 24; i++) {
+                const hour = i.toString().padStart(2, '0') + ':00';
+                labels.push(hour);
+                
+                // Random price movement
+                const change = (Math.random() - 0.5) * 1000;
+                currentPrice += change;
+                data.push(currentPrice);
+            }
+            
+            // Create chart
+            const bitcoinChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'BTC/USD',
+                        data: data,
+                        borderColor: '#9c7be5',
+                        backgroundColor: 'rgba(156, 123, 229, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            console.log('Chart instance:', bitcoinChart);
+            
+            // Resize chart on window resize
+            window.addEventListener('resize', function() {
+                if (bitcoinChart) {
+                    bitcoinChart.resize();
+                }
+            });
+            
+            // Force redraw chart after a delay to ensure DOM is ready
+            setTimeout(() => {
+                if (bitcoinChart) {
+                    bitcoinChart.update();
+                }
+            }, 500);
+            
+            // Update chart on tab click
+            document.querySelectorAll('.chart-container + div button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.chart-container + div button').forEach(btn => {
+                        btn.classList.remove('tab-active');
+                        btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'hover:bg-gray-200', 'dark:hover:bg-gray-600');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'hover:bg-gray-200', 'dark:hover:bg-gray-600');
+                    this.classList.add('tab-active');
+                });
+            });
+            
+            // Trading pair buttons
+            document.querySelectorAll('.trading-pair-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.trading-pair-button').forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'hover:bg-gray-200', 'dark:hover:bg-gray-600');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'hover:bg-gray-200', 'dark:hover:bg-gray-600');
+                    this.classList.add('bg-primary', 'text-white');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

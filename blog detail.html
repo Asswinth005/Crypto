@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Halving 2024: What It Means For Your Portfolio | Crypto Groww</title>
+    <link rel="icon" type="assets/jpeg" href="assets/growwpark_logo.jpg">
+    <meta name="description" content="In-depth analysis of Bitcoin's 2024 halving event, historical patterns, market implications, and investment strategies for cryptocurrency portfolios.">
+    
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:title" content="Bitcoin Halving 2024: What It Means For Your Portfolio">
+    <meta property="og:description" content="Expert analysis of Bitcoin's upcoming halving event and its potential impact on your cryptocurrency investments.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1516245834210-8e0b8b86d3b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://cryptogroww.com/blog/bitcoin-halving-2024">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9c7be5',
+                        secondary: '#b299ea',
+                        accent: '#7e5fdb',
+                        dark: '#1a1a2e',
+                        light: '#f8f9ff'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Merriweather', 'Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            background: #f8f9ff;
+            color: #1a1a2e;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .dark body {
+            background: #0f0f1e;
+            color: #e5e5e5;
+        }
+        
+        /* Content Typography */
+        .blog-content {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        .dark .blog-content {
+            color: #d1d5db;
+        }
+        
+        .blog-content h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+        
+        .dark .blog-content h2 {
+            color: #ffffff;
+        }
+        
+        .blog-content h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        
+        .dark .blog-content h3 {
+            color: #ffffff;
+        }
+        
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-content blockquote {
+            border-left: 4px solid #9c7be5;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #6b7280;
+        }
+        
+        .dark .blog-content blockquote {
+            color: #9ca3af;
+        }
+        
+        .blog-content img {
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .blog-content img {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-content .info-box {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.1) 0%, rgba(126, 95, 219, 0.1) 100%);
+            border-left: 4px solid #9c7be5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .dark .blog-content .info-box {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.15) 0%, rgba(126, 95, 219, 0.15) 100%);
+        }
+        
+        /* Navigation styles - Same as your blog page */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-right-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+            font-weight: 500;
+            color: #1a1a2e;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            padding: 0.5rem 0;
+        }
+
+        .dark .nav-item {
+            color: #e5e5e5;
+        }
+
+        .nav-item:hover {
+            color: #9c7be5;
+        }
+
+        .nav-item.dropdown {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            min-width: 180px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .dark .dropdown-menu {
+            background: #1a1a2e;
+            border-color: #2d2d4d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        [dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .dark .dropdown-item {
+            color: #d1d5db;
+        }
+
+        .dropdown-item:hover {
+            background: #f3f4f6;
+            color: #9c7be5;
+            padding-left: 1.75rem;
+        }
+
+        [dir="rtl"] .dropdown-item:hover {
+            padding-left: 1.5rem;
+            padding-right: 1.75rem;
+        }
+
+        .dark .dropdown-item:hover {
+            background: #2d2d4d;
+        }
+
+        /* Blog detail specific styles */
+        .article-hero {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.15) 0%, rgba(126, 95, 219, 0.15) 100%);
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .article-header {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .article-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #9c7be5, #7e5fdb);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .article-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+        }
+
+        .dark .meta-item {
+            color: #9ca3af;
+        }
+
+        .author-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin: 3rem 0;
+        }
+
+        .dark .author-card {
+            background: #1a1a2e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .author-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 3px solid #9c7be5;
+        }
+
+        .author-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            transition: all 0.3s ease;
+        }
+
+        .dark .social-icon {
+            background: #2d2d4d;
+            color: #9ca3af;
+        }
+
+        .social-icon:hover {
+            background: #9c7be5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Comments section */
+        .comment-section {
+            margin-top: 4rem;
+        }
+
+        .comment-form {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+        }
+
+        .dark .comment-form {
+            background: #1a1a2e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .comment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .dark .comment-card {
+            background: #1a1a2e;
+            border-color: #2d2d4d;
+        }
+
+        .comment-reply {
+            margin-left: 3rem;
+            margin-top: 1.5rem;
+            padding-left: 2rem;
+            border-left: 2px solid #e5e7eb;
+        }
+
+        .dark .comment-reply {
+            border-left-color: #2d2d4d;
+        }
+
+        /* Share buttons */
+        .share-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+
+        .share-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .share-button:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-facebook { background: #3b5998; }
+        .share-twitter { background: #1da1f2; }
+        .share-linkedin { background: #0077b5; }
+        .share-reddit { background: #ff4500; }
+        .share-copy { background: #6b7280; }
+
+        /* Related posts */
+        .related-post-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .related-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(156, 123, 229, 0.2);
+        }
+
+        /* Table of contents */
+        .toc-container {
+            position: sticky;
+            top: 120px;
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .dark .toc-container {
+            background: #1a1a2e;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #6b7280;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .dark .toc-link {
+            color: #9ca3af;
+        }
+
+        .toc-link:hover {
+            color: #9c7be5;
+            border-left-color: #9c7be5;
+            padding-left: 1.5rem;
+        }
+
+        .toc-link.active {
+            color: #9c7be5;
+            border-left-color: #9c7be5;
+            font-weight: 600;
+            padding-left: 1.5rem;
+        }
+
+        /* Reading progress bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 9999;
+        }
+
+        .reading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #9c7be5, #7e5fdb);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress">
+        <div class="reading-progress-bar" id="reading-progress"></div>
+    </div>
+
+    <!-- Fixed Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center cursor-pointer">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-coins text-white"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-dark dark:text-white">Crypto</span>
+                        <span class="text-xl font-bold text-primary">Groww</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center">
+                    <div class="nav-links">
+                        <!-- Home Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="index.html">
+                                    <i class="fas fa-home"></i>
+                                    Home 1
+                                </a>
+                                <a class="dropdown-item" href="home2.html">
+                                    <i class="fas fa-home"></i>
+                                    Home 2
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- About -->
+                        <a class="nav-item" href="about.html">
+                            About
+                        </a>
+                        
+                        <!-- Markets Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span>Markets</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="market.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Market Overview
+                                </a>
+                                <a class="dropdown-item" href="bit.html">
+                                    <i class="fab fa-bitcoin"></i>
+                                    Bitcoin
+                                </a>
+                                <a class="dropdown-item" href="ethereum.html">
+                                    <i class="fab fa-ethereum"></i>
+                                    Ethereum
+                                </a>
+                                <a class="dropdown-item" href="alt.html">
+                                    <i class="fas fa-gem"></i>
+                                    Altcoins
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Trade -->
+                        <a class="nav-item" href="trade.html">
+                            Trade
+                        </a>
+                        
+                        <!-- Blog (Active) -->
+                        <a class="nav-item" href="Blog.html" style="color: #9c7be5; font-weight: 600;">
+                            Blog
+                        </a>
+                        
+                        <!-- Earn -->
+                        <a class="nav-item" href="Earn.html">
+                            Earn
+                        </a>
+                        
+                        <!-- Contact -->
+                        <a class="nav-item" href="contact.html">
+                            Contact
+                        </a>
+                        
+                        <!-- Dashboard Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span>Dashboard</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="Admin.html">
+                                    <i class="fas fa-user-shield"></i>
+                                    Admin
+                                </a>
+                                <a class="dropdown-item" href="Client.html">
+                                    <i class="fas fa-user"></i>
+                                    Client
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Section -->
+                    <div class="nav-right-section ml-6">
+                        <!-- Toggle buttons -->
+                        <div class="toggle-buttons">
+                            <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                            <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
+                                ⇄
+                            </button>
+                        </div>
+                        
+                        <!-- Login/Signup buttons -->
+                        <div class="auth-buttons">
+                            <a class="btn-login" href="Login.html">
+                                Login
+                            </a>
+                            <a class="btn-signup" href="Signup.html">
+                                Sign Up
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-toggle" class="xl:hidden text-dark dark:text-gray-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="xl:hidden">
+            <!-- Include mobile menu from your blog page -->
+            <!-- ... Same mobile menu as your blog page ... -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        <!-- Article Hero Section -->
+        <section class="article-hero">
+            <div class="container mx-auto px-6 py-20">
+                <div class="article-header">
+                    <span class="article-tag">Market Analysis</span>
+                    <h1 class="article-title text-dark dark:text-white">
+                        Bitcoin Halving 2024: What It Means For Your Portfolio
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        An in-depth analysis of Bitcoin's upcoming halving event, historical patterns, 
+                        and strategic implications for cryptocurrency investors.
+                    </p>
+                    
+                    <div class="article-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-user text-primary"></i>
+                            <span class="font-medium">Michael Chen</span>
+                            <span class="text-gray-500 dark:text-gray-400">• Senior Market Analyst</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-clock text-primary"></i>
+                            <span>8 min read</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-calendar text-primary"></i>
+                            <span>April 12, 2024</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-eye text-primary"></i>
+                            <span>2.4k views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="py-12">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                    <!-- Table of Contents (Desktop) -->
+                    <div class="hidden lg:block lg:col-span-1">
+                        <div class="toc-container">
+                            <h3 class="font-bold text-lg mb-4 text-dark dark:text-white">Table of Contents</h3>
+                            <nav id="toc-nav">
+                                <a href="#introduction" class="toc-link active">Introduction</a>
+                                <a href="#what-is-halving" class="toc-link">What is Bitcoin Halving?</a>
+                                <a href="#historical-analysis" class="toc-link">Historical Analysis</a>
+                                <a href="#supply-impact" class="toc-link">Supply & Demand Impact</a>
+                                <a href="#miner-economics" class="toc-link">Miner Economics</a>
+                                <a href="#investment-strategies" class="toc-link">Investment Strategies</a>
+                                <a href="#risks-challenges" class="toc-link">Risks & Challenges</a>
+                                <a href="#conclusion" class="toc-link">Conclusion</a>
+                            </nav>
+                            
+                            <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                                <h4 class="font-bold mb-3 text-dark dark:text-white">Share This Article</h4>
+                                <div class="share-buttons">
+                                    <div class="share-button share-facebook" onclick="shareOnFacebook()">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </div>
+                                    <div class="share-button share-twitter" onclick="shareOnTwitter()">
+                                        <i class="fab fa-twitter"></i>
+                                    </div>
+                                    <div class="share-button share-linkedin" onclick="shareOnLinkedIn()">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </div>
+                                    <div class="share-button share-reddit" onclick="shareOnReddit()">
+                                        <i class="fab fa-reddit-alien"></i>
+                                    </div>
+                                    <div class="share-button share-copy" onclick="copyArticleLink()" title="Copy link">
+                                        <i class="fas fa-link"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article Body -->
+                    <div class="lg:col-span-3">
+                        <!-- Featured Image -->
+                        <div class="mb-10">
+                            <img src="https://images.unsplash.com/photo-1516245834210-8e0b8b86d3b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Bitcoin Halving 2024" class="w-full rounded-2xl">
+                            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                Bitcoin mining facility - Illustration of the halving process
+                            </p>
+                        </div>
+
+                        <!-- Article Content -->
+                        <article class="blog-content">
+                            <div id="introduction" class="scroll-mt-24">
+                                <h2>Introduction: The Countdown Begins</h2>
+                                <p>
+                                    As we approach April 2024, the cryptocurrency community is buzzing with anticipation 
+                                    for Bitcoin's fourth halving event. This programmed reduction in block rewards will 
+                                    cut miner rewards from 6.25 BTC to 3.125 BTC per block, fundamentally altering Bitcoin's 
+                                    supply dynamics.
+                                </p>
+                                <p>
+                                    In this comprehensive analysis, we'll explore what the halving means for investors, 
+                                    examine historical patterns, and provide actionable strategies to position your portfolio 
+                                    for potential opportunities.
+                                </p>
+                            </div>
+
+                            <div id="what-is-halving" class="scroll-mt-24 mt-16">
+                                <h2>What is Bitcoin Halving?</h2>
+                                <p>
+                                    Bitcoin halving is a pre-programmed event coded into Bitcoin's protocol by its creator, 
+                                    Satoshi Nakamoto. It occurs approximately every 210,000 blocks (roughly four years) and 
+                                    reduces the rate at which new bitcoins are created by 50%.
+                                </p>
+                                
+                                <div class="info-box">
+                                    <h3 class="font-bold text-lg mb-2">Key Halving Facts:</h3>
+                                    <ul class="list-disc pl-5">
+                                        <li><strong>Total Halvings:</strong> 4th halving in 2024 (previous: 2012, 2016, 2020)</li>
+                                        <li><strong>Current Block Reward:</strong> 6.25 BTC per block</li>
+                                        <li><strong>Post-Halving Reward:</strong> 3.125 BTC per block</li>
+                                        <li><strong>Bitcoin Supply Cap:</strong> 21 million (never to be exceeded)</li>
+                                        <li><strong>Current Circulation:</strong> ~19.5 million BTC (93% of total supply)</li>
+                                    </ul>
+                                </div>
+
+                                <p>
+                                    This mechanism ensures Bitcoin's scarcity, mimicking the extraction of precious metals 
+                                    like gold. As mining becomes harder over time, Bitcoin becomes increasingly scarce, 
+                                    potentially driving value appreciation if demand remains constant or increases.
+                                </p>
+                            </div>
+
+                            <div id="historical-analysis" class="scroll-mt-24 mt-16">
+                                <h2>Historical Performance Analysis</h2>
+                                
+                                <img src="https://images.unsplash.com/photo-1620336655055-bd87c5d1d73f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" 
+                                     alt="Bitcoin Historical Chart" class="w-full">
+                                
+                                <p>
+                                    Historical data reveals intriguing patterns around previous halving events:
+                                </p>
+                                
+                                <h3>2012 Halving (Block Reward: 50 BTC → 25 BTC)</h3>
+                                <p>
+                                    Bitcoin price approximately $12 at halving. Within 12 months, price peaked at $1,100 - 
+                                    a 9,100% increase. This marked Bitcoin's first major bull run into public consciousness.
+                                </p>
+                                
+                                <h3>2016 Halving (Block Reward: 25 BTC → 12.5 BTC)</h3>
+                                <p>
+                                    Halving occurred with Bitcoin around $650. Eighteen months later, Bitcoin reached 
+                                    $20,000 - a 3,000% increase. This cycle introduced institutional interest.
+                                </p>
+                                
+                                <h3>2020 Halving (Block Reward: 12.5 BTC → 6.25 BTC)</h3>
+                                <p>
+                                    Halving during COVID-19 pandemic with Bitcoin at $8,600. Eighteen months later, 
+                                    all-time high of $69,000 - a 700% increase. This cycle saw massive institutional adoption.
+                                </p>
+                                
+                                <div class="info-box">
+                                    <h3 class="font-bold text-lg mb-2">Pattern Recognition:</h3>
+                                    <ul class="list-disc pl-5">
+                                        <li><strong>Cycle Duration:</strong> Bull markets typically peak 12-18 months post-halving</li>
+                                        <li><strong>Diminishing Returns:</strong> Percentage returns decrease each cycle</li>
+                                        <li><strong>Increasing Market Cap:</strong> Larger markets move slower</li>
+                                        <li><strong>Time Lag:</strong> Effects aren't immediate; patience is required</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="supply-impact" class="scroll-mt-24 mt-16">
+                                <h2>Supply and Demand Dynamics</h2>
+                                <p>
+                                    The halving's primary impact is on Bitcoin's supply side economics:
+                                </p>
+                                
+                                <h3>Reduced New Supply</h3>
+                                <p>
+                                    Daily new Bitcoin issuance will drop from approximately 900 BTC to 450 BTC. This $30 million 
+                                    daily reduction (at $60,000/BTC) represents significant decreased selling pressure from miners.
+                                </p>
+                                
+                                <h3>Stock-to-Flow Model</h3>
+                                <p>
+                                    The popular stock-to-flow ratio, which measures scarcity, will increase significantly. 
+                                    Post-2024 halving, Bitcoin's S2F ratio will approach that of gold, potentially influencing 
+                                    institutional allocation decisions.
+                                </p>
+                                
+                                <h3>Demand Considerations</h3>
+                                <p>
+                                    While supply decreases are predictable, demand factors are more variable:
+                                </p>
+                                <ul>
+                                    <li>Spot Bitcoin ETF inflows</li>
+                                    <li>Institutional adoption trends</li>
+                                    <li>Global macroeconomic conditions</li>
+                                    <li>Regulatory developments</li>
+                                    <li>Technological advancements (Lightning Network, Taproot)</li>
+                                </ul>
+                            </div>
+
+                            <!-- Continue with more sections... -->
+
+                            <div id="investment-strategies" class="scroll-mt-24 mt-16">
+                                <h2>Investment Strategies for 2024 Halving</h2>
+                                
+                                <h3>1. Dollar-Cost Averaging (DCA)</h3>
+                                <p>
+                                    Given potential volatility around the halving event, DCA remains a prudent strategy. 
+                                    Regular purchases smooth out price fluctuations and reduce timing risk.
+                                </p>
+                                
+                                <h3>2. Portfolio Allocation</h3>
+                                <p>
+                                    Conservative portfolios might allocate 1-3% to Bitcoin, while aggressive investors 
+                                    might consider 5-10%. Rebalance periodically to maintain target allocations.
+                                </p>
+                                
+                                <h3>3. Staggered Entry Points</h3>
+                                <p>
+                                    Consider dividing your investment into multiple tranches:
+                                </p>
+                                <ul>
+                                    <li>25% immediately as core position</li>
+                                    <li>25% if prices dip 20% from halving date</li>
+                                    <li>25% if prices dip 40% from halving date</li>
+                                    <li>25% reserved for post-halving opportunities</li>
+                                </ul>
+                                
+                                <h3>4. Altcoin Exposure</h3>
+                                <p>
+                                    Historically, Bitcoin halvings have preceded "altcoin seasons." Consider allocating 
+                                    a portion of your crypto portfolio to fundamentally strong altcoins with real utility.
+                                </p>
+                            </div>
+
+                            <div id="conclusion" class="scroll-mt-24 mt-16">
+                                <h2>Conclusion: Strategic Positioning</h2>
+                                <p>
+                                    The 2024 Bitcoin halving represents a significant milestone in cryptocurrency's evolution. 
+                                    While past performance doesn't guarantee future results, historical patterns combined with 
+                                    Bitcoin's improving fundamentals suggest potential for another significant cycle.
+                                </p>
+                                
+                                <blockquote>
+                                    "The halving isn't a magic price catalyst, but a fundamental reset of Bitcoin's supply 
+                                    economics. Combined with increasing institutional adoption and global macro trends, 
+                                    it creates a compelling investment thesis for the next 24-36 months."
+                                </blockquote>
+                                
+                                <p>
+                                    Investors should focus on long-term fundamentals rather than short-term price movements. 
+                                    The halving reinforces Bitcoin's value proposition as digital gold - a scarce, decentralized 
+                                    asset with predictable monetary policy.
+                                </p>
+                                
+                                <p class="font-bold">
+                                    <em>Disclaimer: This is not financial advice. Always conduct your own research and 
+                                    consult with financial professionals before making investment decisions. 
+                                    Cryptocurrency investments are volatile and carry significant risk.</em>
+                                </p>
+                            </div>
+                        </article>
+
+                        <!-- Article Footer -->
+                        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                            <!-- Tags -->
+                            <div class="mb-8">
+                                <h3 class="font-bold text-lg mb-4">Tags:</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <a href="#" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-primary hover:text-white transition">
+                                        Bitcoin
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-primary hover:text-white transition">
+                                        Halving
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-primary hover:text-white transition">
+                                        Market Analysis
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-primary hover:text-white transition">
+                                        Investment Strategy
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm hover:bg-primary hover:text-white transition">
+                                        Cryptocurrency
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Share buttons for mobile -->
+                            <div class="lg:hidden mb-8">
+                                <h3 class="font-bold text-lg mb-4">Share This Article</h3>
+                                <div class="share-buttons">
+                                    <div class="share-button share-facebook" onclick="shareOnFacebook()">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </div>
+                                    <div class="share-button share-twitter" onclick="shareOnTwitter()">
+                                        <i class="fab fa-twitter"></i>
+                                    </div>
+                                    <div class="share-button share-linkedin" onclick="shareOnLinkedIn()">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </div>
+                                    <div class="share-button share-reddit" onclick="shareOnReddit()">
+                                        <i class="fab fa-reddit-alien"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Author Bio -->
+                        <div class="author-card">
+                            <div class="author-header">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Michael Chen" class="author-avatar">
+                                <div>
+                                    <h3 class="text-xl font-bold">Michael Chen</h3>
+                                    <p class="text-primary font-medium">Senior Market Analyst</p>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                        Michael has been analyzing cryptocurrency markets since 2015. With a background 
+                                        in quantitative finance and blockchain technology, he provides data-driven 
+                                        insights on market trends, portfolio strategy, and risk management.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="author-social">
+                                <a href="#" class="social-icon" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-icon" title="Medium">
+                                    <i class="fab fa-medium-m"></i>
+                                </a>
+                                <a href="#" class="social-icon" title="Website">
+                                    <i class="fas fa-globe"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <div class="comment-section">
+                            <h2 class="text-2xl font-bold mb-6">Comments (24)</h2>
+                            
+                            <!-- Comment Form -->
+                            <div class="comment-form">
+                                <h3 class="text-lg font-bold mb-4">Leave a Comment</h3>
+                                <form id="comment-form">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                        <input type="text" placeholder="Your Name" 
+                                               class="px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                        <input type="email" placeholder="Your Email" 
+                                               class="px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                    </div>
+                                    <textarea placeholder="Your Comment" rows="4"
+                                              class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary mb-4"></textarea>
+                                    <button type="submit" 
+                                            class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary transition">
+                                        Post Comment
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Comments List -->
+                            <div class="space-y-6">
+                                <!-- Comment 1 -->
+                                <div class="comment-card">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=80" 
+                                                 alt="User" class="w-10 h-10 rounded-full mr-3">
+                                            <div>
+                                                <h4 class="font-bold">Robert Johnson</h4>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">3 hours ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 dark:text-gray-300">
+                                        Excellent analysis! I particularly appreciate the historical context. The diminishing 
+                                        returns pattern is something many newcomers overlook. What's your take on how ETF 
+                                        approvals might change the traditional halving cycle dynamics?
+                                    </p>
+                                    <button class="mt-3 text-primary font-medium hover:underline">Reply</button>
+                                    
+                                    <!-- Reply -->
+                                    <div class="comment-reply">
+                                        <div class="flex items-center mb-2">
+                                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" 
+                                                 alt="Author" class="w-8 h-8 rounded-full mr-2">
+                                            <div>
+                                                <h4 class="font-bold text-sm">Michael Chen</h4>
+                                                <p class="text-xs text-gray-500 dark:text-gray-400">Author • 2 hours ago</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                                            Great question, Robert! ETF approvals could potentially accelerate price discovery 
+                                            and compress the typical 12-18 month post-halving cycle. Institutional flows might 
+                                            front-run retail expectations.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Comment 2 -->
+                                <div class="comment-card">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=80" 
+                                                 alt="User" class="w-10 h-10 rounded-full mr-3">
+                                            <div>
+                                                <h4 class="font-bold">Sarah Miller</h4>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">1 day ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 dark:text-gray-300">
+                                        The mining economics section was particularly insightful. With reduced rewards, 
+                                        how do you see the mining industry consolidating? Will this push more miners 
+                                        to renewable energy sources?
+                                    </p>
+                                    <button class="mt-3 text-primary font-medium hover:underline">Reply</button>
+                                </div>
+
+                                <!-- Comment 3 -->
+                                <div class="comment-card">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div class="flex items-center">
+                                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=80" 
+                                                 alt="User" class="w-10 h-10 rounded-full mr-3">
+                                            <div>
+                                                <h4 class="font-bold">David Wilson</h4>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">2 days ago</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700 dark:text-gray-300">
+                                        As a long-term holder since 2016, I've lived through two halvings. Your analysis 
+                                        matches my experience - patience is key. The market often reacts slowly to supply 
+                                        shocks. Thanks for the balanced perspective!
+                                    </p>
+                                    <button class="mt-3 text-primary font-medium hover:underline">Reply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        <section class="py-16 bg-gray-50 dark:bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-10 text-center">Related Articles</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Related Post 1 -->
+                    <article class="related-post-card bg-white dark:bg-gray-800 shadow-lg">
+                        <div class="overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Ethereum Upgrade" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                                Blockchain Tech
+                            </span>
+                            <h3 class="text-xl font-bold mb-3">Ethereum's Dencun Upgrade: Lower Fees & Better Scaling</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                The latest Ethereum upgrade promises significant reductions in Layer 2 transaction 
+                                costs and improved network efficiency.
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="far fa-clock mr-2"></i>
+                                <span>6 min read • Mar 28, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Related Post 2 -->
+                    <article class="related-post-card bg-white dark:bg-gray-800 shadow-lg">
+                        <div class="overflow-hidden">
+                            <img src="https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg" 
+                                 alt="Altcoin Season" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                                Market Analysis
+                            </span>
+                            <h3 class="text-xl font-bold mb-3">Is Altcoin Season Finally Here? Top Picks for 2024</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                Analyzing market cycles and identifying promising altcoins with strong fundamentals 
+                                for the coming bull market.
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="far fa-clock mr-2"></i>
+                                <span>10 min read • Mar 22, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Related Post 3 -->
+                    <article class="related-post-card bg-white dark:bg-gray-800 shadow-lg">
+                        <div class="overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                 alt="DeFi Yield" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                                DeFi
+                            </span>
+                            <h3 class="text-xl font-bold mb-3">Maximizing Yield in DeFi: Strategies for Bear & Bull Markets</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                A comprehensive guide to DeFi yield farming strategies that work in different 
+                                market conditions with risk management tips.
+                            </p>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="far fa-clock mr-2"></i>
+                                <span>12 min read • Mar 15, 2024</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="Blog.html" 
+                       class="inline-flex items-center text-primary font-semibold hover:underline">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Back to All Articles
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter CTA -->
+        <section class="py-20 bg-gradient-to-r from-primary to-accent">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                    Never Miss a Market Update
+                </h2>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto mb-10">
+                    Subscribe to our newsletter for weekly crypto insights, analysis, and trading strategies.
+                </p>
+                <div class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" placeholder="Your email address" 
+                               class="flex-grow px-6 py-4 rounded-lg focus:outline-none">
+                        <button class="bg-white text-primary px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition">
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="text-white/70 text-sm mt-3">
+                        15,000+ investors already subscribed. No spam, unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-gray-900 text-gray-400">
+        <!-- Same footer as your blog page -->
+        <!-- ... Footer content from your blog page ... -->
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                
+                if (document.documentElement.classList.contains('dark')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Check saved theme
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            rtlToggle.addEventListener('click', () => {
+                if (document.documentElement.dir === 'rtl') {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                    rtlToggle.textContent = '⇄';
+                    rtlToggle.classList.remove('active');
+                    localStorage.setItem('dir', 'ltr');
+                } else {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                    rtlToggle.textContent = '⇄';
+                    rtlToggle.classList.add('active');
+                    localStorage.setItem('dir', 'rtl');
+                }
+            });
+            
+            // Check saved RTL
+            if (localStorage.getItem('dir') === 'rtl') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                rtlToggle.textContent = '⇄';
+                rtlToggle.classList.add('active');
+            }
+            
+            // Reading Progress Bar
+            const readingProgress = document.getElementById('reading-progress');
+            
+            function updateReadingProgress() {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                const scrolled = window.scrollY;
+                
+                const progress = (scrolled / documentHeight) * 100;
+                readingProgress.style.width = `${progress}%`;
+            }
+            
+            window.addEventListener('scroll', updateReadingProgress);
+            
+            // Table of Contents Navigation
+            const tocLinks = document.querySelectorAll('#toc-nav a');
+            const sections = document.querySelectorAll('.blog-content h2, .blog-content h3');
+            
+            function updateTocHighlight() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 150) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateTocHighlight);
+            
+            // Smooth scrolling for TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Share functionality
+            window.shareOnFacebook = function() {
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+            };
+            
+            window.shareOnTwitter = function() {
+                const text = encodeURIComponent(document.title);
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+            };
+            
+            window.shareOnLinkedIn = function() {
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+            };
+            
+            window.shareOnReddit = function() {
+                const title = encodeURIComponent(document.title);
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.reddit.com/submit?title=${title}&url=${url}`, '_blank');
+            };
+            
+            window.copyArticleLink = function() {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            };
+            
+            // Comment form submission
+            const commentForm = document.getElementById('comment-form');
+            commentForm?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your comment! (Note: This is a demo. In a real app, this would submit to a backend.)');
+                commentForm.reset();
+            });
+            
+            // Mobile menu functionality (simplified - you should include full mobile menu JS from your blog page)
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('show');
+                    mobileToggle.innerHTML = mobileMenu.classList.contains('show') 
+                        ? '<i class="fas fa-times text-xl"></i>' 
+                        : '<i class="fas fa-bars text-xl"></i>';
+                });
+            }
+            
+            // Initialize reading progress
+            updateReadingProgress();
+            updateTocHighlight();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Crypto Groww</title>
+    <link rel="icon" type="assets/jpeg" href="assets/growwpark_logo.jpg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9c7be5',
+                        secondary: '#b299ea',
+                        accent: '#7e5fdb',
+                        dark: '#1a1a2e',
+                        light: '#f8f9ff',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                        info: '#3b82f6',
+                        admin: '#7e5fdb'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        body {
+            background: #f8f9ff;
+            color: #1a1a2e;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .dark body {
+            background: #0f0f1e;
+            color: #e5e5e5;
+        }
+        
+        /* Gradient backgrounds */
+        .gradient-bg {
+            background: linear-gradient(135deg, #9c7be5 0%, #7e5fdb 50%, #6a4bc9 100%);
+        }
+        
+        .gradient-bg-dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 50%, #0a0a14 100%);
+        }
+        
+        /* Card styling */
+        .dashboard-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .dashboard-card {
+            background: #1a1a2e;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(156, 123, 229, 0.15);
+        }
+        
+        .dark .dashboard-card:hover {
+            box-shadow: 0 12px 30px rgba(156, 123, 229, 0.25);
+        }
+        
+        /* Admin specific styling */
+        .admin-badge {
+            background: linear-gradient(135deg, #7e5fdb 0%, #6a4bc9 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        /* Stats card styling */
+        .stats-card {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.1) 0%, rgba(126, 95, 219, 0.1) 100%);
+            border: 1px solid rgba(156, 123, 229, 0.2);
+        }
+        
+        .dark .stats-card {
+            background: linear-gradient(135deg, rgba(156, 123, 229, 0.15) 0%, rgba(126, 95, 219, 0.15) 100%);
+        }
+        
+        /* Table styling */
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .dashboard-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #6b7280;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .dark .dashboard-table th {
+            color: #9ca3af;
+            border-bottom: 1px solid #374151;
+        }
+        
+        .dashboard-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .dark .dashboard-table td {
+            border-bottom: 1px solid #374151;
+        }
+        
+        .dashboard-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Button styling */
+        .btn-primary {
+            background: #9c7be5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: #b299ea;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #9c7be5;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #9c7be5;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(156, 123, 229, 0.1);
+        }
+        
+        .btn-admin {
+            background: #7e5fdb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-admin:hover {
+            background: #6a4bc9;
+            transform: translateY(-2px);
+        }
+        
+        /* Status badges */
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .status-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+        
+        .status-warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+        
+        .status-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+        
+        .status-info {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+        }
+        
+        /* Toggle buttons */
+        .toggle-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            color: #6b7280;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .dark .toggle-btn {
+            background: #2d2d4d;
+            color: #9ca3af;
+        }
+        
+        .toggle-btn:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .dark .toggle-btn:hover {
+            background: #3d3d6d;
+            color: #e5e5e5;
+        }
+        
+        .toggle-btn.active {
+            background: #b299ea;
+            color: white;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: white;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: all 0.3s ease;
+            border-right: 1px solid #e5e7eb;
+            z-index: 40;
+        }
+        
+        [dir="rtl"] .sidebar {
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 1px solid #e5e7eb;
+        }
+        
+        .dark .sidebar {
+            background: #1a1a2e;
+            border-right: 1px solid #2d2d4d;
+        }
+        
+        [dir="rtl"] .dark .sidebar {
+            border-right: none;
+            border-left: 1px solid #2d2d4d;
+        }
+        
+        .sidebar-collapsed {
+            width: 80px;
+        }
+        
+        /* Main content */
+        .main-content {
+            margin-left: 280px;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            background: #f8f9ff;
+        }
+        
+        [dir="rtl"] .main-content {
+            margin-left: 0;
+            margin-right: 280px;
+        }
+        
+        .dark .main-content {
+            background: #0f0f1e;
+        }
+        
+        .main-content-expanded {
+            margin-left: 80px;
+        }
+        
+        [dir="rtl"] .main-content-expanded {
+            margin-left: 0;
+            margin-right: 80px;
+        }
+        
+        /* Navigation items */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.875rem 1.5rem;
+            color: #6b7280;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 10px;
+            margin: 0.25rem 1rem;
+            white-space: nowrap;
+        }
+        
+        .dark .nav-item {
+            color: #9ca3af;
+        }
+        
+        .nav-item:hover {
+            background: #f3f4f6;
+            color: #9c7be5;
+        }
+        
+        .dark .nav-item:hover {
+            background: #2d2d4d;
+            color: #b299ea;
+        }
+        
+        .nav-item.active {
+            background: #9c7be5;
+            color: white;
+        }
+        
+        .nav-item.active:hover {
+            background: #b299ea;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            text-align: center;
+            margin-right: 12px;
+        }
+        
+        [dir="rtl"] .nav-icon {
+            margin-right: 0;
+            margin-left: 12px;
+        }
+        
+        .sidebar-collapsed .nav-text {
+            display: none;
+        }
+        
+        /* Responsive Grid Utilities */
+        @media (max-width: 768px) {
+            .mobile-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .mobile-stack {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .mobile-full {
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+            
+            .mobile-text-center {
+                text-align: center;
+            }
+            
+            .mobile-hidden {
+                display: none !important;
+            }
+            
+            .mobile-block {
+                display: block !important;
+            }
+            
+            /* Mobile button order fix */
+            .mobile-button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+            }
+            
+            .mobile-button-group .btn-admin,
+            .mobile-button-group .btn-primary {
+                order: 1;
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Chart responsiveness */
+        @media (max-width: 640px) {
+            .responsive-chart {
+                height: 250px !important;
+            }
+            
+            .dashboard-table {
+                font-size: 0.875rem;
+            }
+            
+            .dashboard-table th,
+            .dashboard-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* Responsive buttons */
+        @media (max-width: 640px) {
+            .mobile-btn {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            .mobile-btn-group {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+            
+            .mobile-btn-group button {
+                width: 100% !important;
+            }
+        }
+
+        /* Responsive cards */
+        @media (max-width: 768px) {
+            .dashboard-card {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .stats-card {
+                padding: 1rem !important;
+            }
+        }
+
+        /* Hide/Show elements based on screen size */
+        @media (max-width: 1024px) {
+            .desktop-only {
+                display: none !important;
+            }
+            
+            .tablet-hidden {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-only {
+                display: none !important;
+            }
+        }
+
+        /* Sidebar mobile fixes */
+        @media (max-width: 1024px) {
+            .main-content {
+                margin-left: 0 !important;
+            }
+            
+            [dir="rtl"] .main-content {
+                margin-right: 0 !important;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 100;
+            }
+            
+            [dir="rtl"] .sidebar {
+                transform: translateX(100%);
+            }
+            
+            .sidebar-mobile-open {
+                transform: translateX(0) !important;
+            }
+        }
+
+        /* Top bar mobile fixes */
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 0.75rem 1rem !important;
+            }
+            
+            .user-profile-mobile {
+                display: none;
+            }
+        }
+
+        /* Mobile menu */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            [dir="rtl"] .sidebar {
+                transform: translateX(100%);
+            }
+            
+            .sidebar-mobile-open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            [dir="rtl"] .main-content {
+                margin-right: 0;
+            }
+        }
+        
+        /* NEW: Equal height card utilities */
+        .equal-height {
+            height: 100%;
+        }
+        
+        .flex-grow-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .card-content {
+            flex: 1;
+        }
+        
+        /* Grid fixes for equal heights */
+        .grid-equal-height {
+            display: grid;
+            grid-template-rows: 1fr auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar dark:bg-gray-900" id="sidebar">
+        <!-- Sidebar Header -->
+        <div class="p-6 border-b border-gray-200 dark:border-gray-800">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center cursor-pointer">
+                    <div class="w-10 h-10 bg-admin rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-coins text-white"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="text-xl font-bold text-dark dark:text-white">Crypto</span>
+                        <span class="text-xl font-bold text-admin">Admin</span>
+                    </div>
+                </a>
+                
+                <!-- Mobile close button -->
+                <button id="sidebar-close" class="lg:hidden text-gray-500 dark:text-gray-400">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- User Profile -->
+            <div class="flex items-center mt-8">
+                <div class="w-12 h-12 bg-gradient-to-br from-admin to-accent rounded-full flex items-center justify-center text-white font-bold text-xl mr-3">
+                    AS
+                </div>
+                <div class="user-info">
+                    <div class="font-bold text-dark dark:text-white">Admin Smith</div>
+                    <div class="flex items-center mt-1">
+                        <span class="admin-badge text-xs">Super Admin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="py-6 overflow-y-auto" style="height: calc(100vh - 200px);">
+            <!-- Dashboard -->
+            <a href="#" class="nav-item active">
+                <div class="nav-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            
+            <!-- User Management -->
+            <a href="#" class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <span class="nav-text">User Management</span>
+            </a>
+            
+            <!-- Transaction Monitor -->
+            <a href="#" class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <span class="nav-text">Transaction Monitor</span>
+            </a>
+            
+            <!-- Platform Analytics -->
+            <a href="#" class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <span class="nav-text">Platform Analytics</span>
+            </a>
+            
+            <!-- Security & Logs -->
+            <a href="#" class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <span class="nav-text">Security & Logs</span>
+            </a>
+            
+            <!-- System Settings -->
+            <a href="#" class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <span class="nav-text">System Settings</span>
+            </a>
+            
+           
+            
+            
+        </div>
+        
+        <!-- Sidebar Footer -->
+        <div class="absolute bottom-0 w-full p-6 border-t border-gray-200 dark:border-gray-800">
+            
+            
+            <!-- Logout Button -->
+           <a href="login.html" class="w-full btn-secondary inline-flex items-center justify-center">
+    <i class="fas fa-sign-out-alt mr-2"></i>
+    <span class="nav-text">Logout</span>
+</a>
+
+            
+            
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Top Bar -->
+        <div class="sticky top-0 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+            <div class="flex items-center justify-between px-4 sm:px-6 py-4">
+                <!-- Left Side: Menu Toggle and Title -->
+                <div class="flex items-center">
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobile-menu-toggle" class="lg:hidden mr-4 text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Page Title -->
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-bold text-dark dark:text-white">Admin Dashboard</h1>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Controls and User -->
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- System Status -->
+                    <div class="hidden sm:flex items-center px-3 py-1 bg-green-100 dark:bg-green-900/30 rounded-full">
+                        <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                        <span class="text-xs sm:text-sm text-green-700 dark:text-green-400">System: Normal</span>
+                    </div>
+                    
+                    <!-- Toggle Buttons (Theme & RTL) -->
+                    <div class="toggle-buttons">
+                        <!-- Theme Toggle -->
+                        
+                        
+                        <!-- RTL Toggle -->
+                        
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <div class="relative">
+                        <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        
+                        <!-- Notifications Dropdown -->
+                        <div id="notifications-dropdown" class="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 hidden z-50">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-bold text-dark dark:text-white">Admin Alerts</h3>
+                                <button class="text-admin text-sm">Mark all as read</button>
+                            </div>
+                            
+                            <div class="space-y-3 max-h-80 overflow-y-auto">
+                                <div class="p-3 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
+                                    <div class="flex justify-between">
+                                        <span class="font-medium text-dark dark:text-white">High Volume Alert</span>
+                                        <span class="text-xs text-gray-500">5 min ago</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Unusual trading volume detected on BTC/USDT pair.</p>
+                                </div>
+                                
+                                <div class="p-3 bg-red-50 dark:bg-red-900/30 rounded-lg">
+                                    <div class="flex justify-between">
+                                        <span class="font-medium text-dark dark:text-white">Failed Login Attempts</span>
+                                        <span class="text-xs text-gray-500">30 min ago</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Multiple failed login attempts from IP 192.168.1.100.</p>
+                                </div>
+                                
+                                <div class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                                    <div class="flex justify-between">
+                                        <span class="font-medium text-dark dark:text-white">New Support Ticket</span>
+                                        <span class="text-xs text-gray-500">1 hour ago</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">User #4521 submitted a high priority ticket.</p>
+                                </div>
+                                
+                                <div class="p-3 bg-green-50 dark:bg-green-900/30 rounded-lg">
+                                    <div class="flex justify-between">
+                                        <span class="font-medium text-dark dark:text-white">System Backup Complete</span>
+                                        <span class="text-xs text-gray-500">2 hours ago</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Nightly database backup completed successfully.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-center">
+                                <a href="#" class="text-admin text-sm">View all alerts</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions Dropdown -->
+                    <div class="relative">
+                        <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
+                            ⇄
+                        </button>
+                        
+                        <!-- Quick Actions Dropdown -->
+                        <div id="quick-actions-dropdown" class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 hidden z-50">
+                            <h3 class="font-bold text-dark dark:text-white mb-3">Admin Actions</h3>
+                            
+                            <div class="space-y-2">
+                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
+                                    <i class="fas fa-user-plus text-admin mr-3"></i>
+                                    <span>Add New User</span>
+                                </button>
+                                
+                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
+                                    <i class="fas fa-chart-bar text-admin mr-3"></i>
+                                    <span>Generate Reports</span>
+                                </button>
+                                
+                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
+                                    <i class="fas fa-cog text-admin mr-3"></i>
+                                    <span>System Settings</span>
+                                </button>
+                                
+                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
+                                    <i class="fas fa-database text-admin mr-3"></i>
+                                    <span>Backup Database</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dashboard Content -->
+        <div class="p-4 sm:p-6">
+            <!-- Welcome Section -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mobile-stack sm:flex-row">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mb-2">Welcome back, Admin!</h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Platform overview & management dashboard. Last updated: Today, 10:42 AM</p>
+                    </div>
+                    <!-- Mobile Button Order Fix -->
+                    <div class="mobile-button-group">
+                        <button class="btn-admin mobile-btn">
+                            <i class="fas fa-download mr-2"></i>
+                            Export Reports
+                        </button>
+                        <button class="btn-primary mobile-btn">
+                            <i class="fas fa-sync-alt mr-2"></i>
+                            Refresh Data
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- System Health -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+                    <div class="flex items-center p-3 bg-white dark:bg-gray-800 rounded-xl">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-server text-green-600 dark:text-green-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs sm:text-sm text-gray-500">API Status</div>
+                            <div class="font-bold text-green-600 dark:text-green-400 text-sm sm:text-base">Operational</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 bg-white dark:bg-gray-800 rounded-xl">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-database text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs sm:text-sm text-gray-500">Database</div>
+                            <div class="font-bold text-blue-600 dark:text-blue-400 text-sm sm:text-base">Healthy</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 bg-white dark:bg-gray-800 rounded-xl">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-shield-alt text-yellow-600 dark:text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs sm:text-sm text-gray-500">Security</div>
+                            <div class="font-bold text-yellow-600 dark:text-yellow-400 text-sm sm:text-base">Guarded</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 bg-white dark:bg-gray-800 rounded-xl">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-bolt text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs sm:text-sm text-gray-500">Uptime</div>
+                            <div class="font-bold text-purple-600 dark:text-purple-400 text-sm sm:text-base">99.9%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+                <!-- Total Users -->
+                <div class="dashboard-card">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Total Users</p>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">12,548</h3>
+                            <p class="text-green-500 text-xs sm:text-sm mt-1">
+                                <i class="fas fa-arrow-up mr-1"></i>
+                                +3.2% this month
+                            </p>
+                        </div>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-users text-blue-500 text-lg sm:text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Platform Volume -->
+                <div class="dashboard-card">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Platform Volume (24h)</p>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">$42.8M</h3>
+                            <p class="text-green-500 text-xs sm:text-sm mt-1">
+                                <i class="fas fa-chart-line mr-1"></i>
+                                +8.5% increase
+                            </p>
+                        </div>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-green-500 text-lg sm:text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Active Sessions -->
+                <div class="dashboard-card">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Active Sessions</p>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">1,842</h3>
+                            <p class="text-primary text-xs sm:text-sm mt-1">
+                                <i class="fas fa-user-clock mr-1"></i>
+                                54% mobile users
+                            </p>
+                        </div>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-user-check text-yellow-500 text-lg sm:text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pending Actions -->
+                <div class="dashboard-card">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Pending Actions</p>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">47</h3>
+                            <p class="text-red-500 text-xs sm:text-sm mt-1">
+                                <i class="fas fa-exclamation-circle mr-1"></i>
+                                12 require attention
+                            </p>
+                        </div>
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500/20 to-pink-500/20 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-tasks text-red-500 text-lg sm:text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts and User Management -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
+                <!-- Platform Growth Chart -->
+                <div class="dashboard-card">
+                    <div class="flex justify-between items-center mb-6 mobile-stack sm:flex-row">
+                        <h3 class="text-xl font-bold text-dark dark:text-white">Platform Growth</h3>
+                        <select class="bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-1 text-sm">
+                            <option>Last 30 days</option>
+                            <option>Last 90 days</option>
+                            <option>Last year</option>
+                        </select>
+                    </div>
+                    
+                    <div class="h-64">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                    
+                    <!-- Legend -->
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                            <span class="text-sm">New Users</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                            <span class="text-sm">Total Volume</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
+                            <span class="text-sm">Active Traders</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                            <span class="text-sm">Transactions</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Users -->
+                <div class="dashboard-card">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-dark dark:text-white">Recent Users</h3>
+                        <a href="#" class="text-admin text-sm font-medium">View All</a>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th class="tablet-hidden">Join Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-3 text-white font-bold">
+                                                MJ
+                                            </div>
+                                            <div>
+                                                <div>Michael Johnson</div>
+                                                <div class="text-xs text-gray-500">michael.j@email.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tablet-hidden">Today</td>
+                                    <td><span class="status-badge status-success">Verified</span></td>
+                                    <td>
+                                        <button class="px-3 py-1 bg-admin hover:bg-purple-700 text-white rounded-lg text-sm">Manage</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-3 text-white font-bold">
+                                                SR
+                                            </div>
+                                            <div>
+                                                <div>Sarah Roberts</div>
+                                                <div class="text-xs text-gray-500">sarah.r@email.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tablet-hidden">2 days ago</td>
+                                    <td><span class="status-badge status-success">Verified</span></td>
+                                    <td>
+                                        <button class="px-3 py-1 bg-admin hover:bg-purple-700 text-white rounded-lg text-sm">Manage</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mr-3 text-white font-bold">
+                                                DK
+                                            </div>
+                                            <div>
+                                                <div>David Kim</div>
+                                                <div class="text-xs text-gray-500">david.k@email.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tablet-hidden">3 days ago</td>
+                                    <td><span class="status-badge status-warning">Pending</span></td>
+                                    <td>
+                                        <button class="px-3 py-1 bg-admin hover:bg-purple-700 text-white rounded-lg text-sm">Verify</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mr-3 text-white font-bold">
+                                                LP
+                                            </div>
+                                            <div>
+                                                <div>Lisa Patel</div>
+                                                <div class="text-xs text-gray-500">lisa.p@email.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tablet-hidden">5 days ago</td>
+                                    <td><span class="status-badge status-success">Verified</span></td>
+                                    <td>
+                                        <button class="px-3 py-1 bg-admin hover:bg-purple-700 text-white rounded-lg text-sm">Manage</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center mr-3 text-white font-bold">
+                                                TR
+                                            </div>
+                                            <div>
+                                                <div>Thomas Reed</div>
+                                                <div class="text-xs text-gray-500">thomas.r@email.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tablet-hidden">1 week ago</td>
+                                    <td><span class="status-badge status-danger">Suspended</span></td>
+                                    <td>
+                                        <button class="px-3 py-1 bg-admin hover:bg-purple-700 text-white rounded-lg text-sm">Review</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MAIN CONTENT CHANGES START HERE -->
+            <!-- Transactions and System Overview with equal heights -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Recent Transactions - Takes 2 columns -->
+                <div class="lg:col-span-2 flex-grow-card equal-height">
+                    <div class="dashboard-card flex-grow-card equal-height">
+                        <div class="flex justify-between items-center mb-6 mobile-stack sm:flex-row">
+                            <h3 class="text-xl font-bold text-dark dark:text-white">Recent Platform Transactions</h3>
+                            <div class="flex gap-2 mobile-btn-group sm:flex-row">
+                                <button class="btn-admin mobile-btn">
+                                    <i class="fas fa-filter mr-2"></i>
+                                    Filter
+                                </button>
+                                <button class="btn-secondary mobile-btn">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Export
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-x-auto card-content">
+                            <table class="dashboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction ID</th>
+                                        <th>User</th>
+                                        <th class="tablet-hidden">Type</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-medium text-admin">TX-7842-AD</td>
+                                        <td class="font-medium">User #4521</td>
+                                        <td class="tablet-hidden">BTC Buy</td>
+                                        <td class="font-bold">$12,500.00</td>
+                                        <td><span class="status-badge status-success">Completed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-admin">TX-7841-AD</td>
+                                        <td class="font-medium">User #3987</td>
+                                        <td class="tablet-hidden">ETH Withdrawal</td>
+                                        <td class="font-bold">$8,250.00</td>
+                                        <td><span class="status-badge status-warning">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-admin">TX-7840-AD</td>
+                                        <td class="font-medium">User #5214</td>
+                                        <td class="tablet-hidden">SOL Stake</td>
+                                        <td class="font-bold">$5,000.00</td>
+                                        <td><span class="status-badge status-success">Completed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-admin">TX-7839-AD</td>
+                                        <td class="font-medium">User #6123</td>
+                                        <td class="tablet-hidden">USDT Deposit</td>
+                                        <td class="font-bold">$15,000.00</td>
+                                        <td><span class="status-badge status-success">Completed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-admin">TX-7838-AD</td>
+                                        <td class="font-medium">User #2345</td>
+                                        <td class="tablet-hidden">ADA Sell</td>
+                                        <td class="font-bold">$3,200.00</td>
+                                        <td><span class="status-badge status-danger">Failed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-medium text-admin">TX-7837-AD</td>
+                                        <td class="font-medium">User #7890</td>
+                                        <td class="tablet-hidden">BTC Withdrawal</td>
+                                        <td class="font-bold">$22,500.00</td>
+                                        <td><span class="status-badge status-warning">Pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- System Overview - Takes 1 column -->
+                <div class="flex-grow-card equal-height">
+                    <div class="dashboard-card flex-grow-card equal-height">
+                        <h3 class="text-xl font-bold text-dark dark:text-white mb-6">System Overview</h3>
+                        
+                        <div class="space-y-4 card-content">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">CPU Usage</span>
+                                    <span class="text-sm font-bold">42%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 42%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">Memory</span>
+                                    <span class="text-sm font-bold">68%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 68%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">Database Load</span>
+                                    <span class="text-sm font-bold">23%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 23%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">Network I/O</span>
+                                    <span class="text-sm font-bold">56%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-yellow-600 h-2 rounded-full" style="width: 56%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-dark dark:text-white mb-3">Recent Activities</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-1">
+                                        <i class="fas fa-user-plus text-blue-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm">New user registered: Alex Turner</p>
+                                        <p class="text-xs text-gray-500">2 minutes ago</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-3 mt-1">
+                                        <i class="fas fa-exchange-alt text-green-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm">Large trade executed: 5.2 BTC</p>
+                                        <p class="text-xs text-gray-500">15 minutes ago</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mr-3 mt-1">
+                                        <i class="fas fa-cog text-yellow-600 text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm">System settings updated</p>
+                                        <p class="text-xs text-gray-500">1 hour ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Three Equal Cards: Volume by Asset, Performance, Quick Admin Actions -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
+                <!-- Volume by Asset -->
+                <div class="dashboard-card flex-grow-card equal-height">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-dark dark:text-white">Volume by Asset</h3>
+                        <span class="text-admin text-sm font-medium">24h</span>
+                    </div>
+                    
+                    <div class="space-y-4 card-content">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-yellow-500/20 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fab fa-bitcoin text-yellow-500"></i>
+                                </div>
+                                <span class="font-medium">Bitcoin</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">$18.2M</div>
+                                <div class="text-green-500 text-sm">+12.5%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fab fa-ethereum text-purple-500"></i>
+                                </div>
+                                <span class="font-medium">Ethereum</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">$9.8M</div>
+                                <div class="text-green-500 text-sm">+8.3%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-gem text-blue-500"></i>
+                                </div>
+                                <span class="font-medium">Solana</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">$5.2M</div>
+                                <div class="text-red-500 text-sm">-2.1%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-code text-red-500"></i>
+                                </div>
+                                <span class="font-medium">Cardano</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">$3.1M</div>
+                                <div class="text-green-500 text-sm">+5.7%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-university text-green-500"></i>
+                                </div>
+                                <span class="font-medium">USDT</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold">$6.5M</div>
+                                <div class="text-green-500 text-sm">+3.2%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Performance -->
+                <div class="dashboard-card flex-grow-card equal-height">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-dark dark:text-white">Performance</h3>
+                        <span class="text-admin text-sm font-medium">This Week</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 card-content">
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+                            <div class="text-2xl font-bold text-admin">98.7%</div>
+                            <div class="text-sm text-gray-500 mt-1">Success Rate</div>
+                        </div>
+                        
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+                            <div class="text-2xl font-bold text-green-500">2.1s</div>
+                            <div class="text-sm text-gray-500 mt-1">Avg Response</div>
+                        </div>
+                        
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+                            <div class="text-2xl font-bold text-blue-500">99.9%</div>
+                            <div class="text-sm text-gray-500 mt-1">Uptime</div>
+                        </div>
+                        
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+                            <div class="text-2xl font-bold text-purple-500">0.02%</div>
+                            <div class="text-sm text-gray-500 mt-1">Error Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span>Server Load</span>
+                            <span>42%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-admin h-2 rounded-full" style="width: 42%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Admin Actions -->
+                <div class="dashboard-card flex-grow-card equal-height">
+                    <h3 class="text-xl font-bold text-dark dark:text-white mb-6">Quick Admin Actions</h3>
+                    
+                    <div class="grid grid-cols-2 gap-3 card-content">
+                        <button class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl hover:bg-blue-100 dark:hover:bg-blue-900/30 transition">
+                            <i class="fas fa-user-cog text-blue-600 text-xl mb-2"></i>
+                            <div class="text-sm font-medium">User Management</div>
+                        </button>
+                        
+                        <button class="p-3 bg-green-50 dark:bg-green-900/20 rounded-xl hover:bg-green-100 dark:hover:bg-green-900/30 transition">
+                            <i class="fas fa-chart-line text-green-600 text-xl mb-2"></i>
+                            <div class="text-sm font-medium">Analytics</div>
+                        </button>
+                        
+                        <button class="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-xl hover:bg-purple-100 dark:hover:bg-purple-900/30 transition">
+                            <i class="fas fa-shield-alt text-purple-600 text-xl mb-2"></i>
+                            <div class="text-sm font-medium">Security</div>
+                        </button>
+                        
+                        <button class="p-3 bg-red-50 dark:bg-red-900/20 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/30 transition">
+                            <i class="fas fa-file-invoice text-red-600 text-xl mb-2"></i>
+                            <div class="text-sm font-medium">Reports</div>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button class="w-full btn-admin">
+                            <i class="fas fa-cogs mr-2"></i>
+                            Advanced Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- MAIN CONTENT CHANGES END HERE -->
+            
+            <!-- REMOVED: High Priority and Security Status Cards -->
+        </div>
+    </div>
+    
+    <!-- Logout Modal -->
+    <div id="logout-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 max-w-md w-full mx-4">
+            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <i class="fas fa-sign-out-alt text-white text-xl sm:text-2xl"></i>
+            </div>
+            
+            <h3 class="text-xl sm:text-2xl font-bold text-center text-dark dark:text-white mb-2">Logout</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-center text-sm sm:text-base mb-6 sm:mb-8">Are you sure you want to logout from admin panel?</p>
+            
+            <div class="flex space-x-4">
+                <button id="cancel-logout" class="flex-1 btn-secondary py-3 text-sm sm:text-base">Cancel</button>
+                <button id="confirm-logout" class="flex-1 bg-gradient-to-r from-red-500 to-orange-500 text-white py-3 rounded-lg font-medium transition hover:opacity-90 text-sm sm:text-base">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                
+                if (document.documentElement.classList.contains('dark')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Check saved theme
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            rtlToggle.addEventListener('click', () => {
+                if (document.documentElement.dir === 'rtl') {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                    rtlToggle.classList.remove('active');
+                    localStorage.setItem('dir', 'ltr');
+                    
+                    // Update sidebar collapse icon
+                    const collapseIcon = document.getElementById('collapse-icon');
+                    if (collapseIcon) {
+                        collapseIcon.className = 'fas fa-chevron-left';
+                    }
+                } else {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                    rtlToggle.classList.add('active');
+                    localStorage.setItem('dir', 'rtl');
+                    
+                    // Update sidebar collapse icon
+                    const collapseIcon = document.getElementById('collapse-icon');
+                    if (collapseIcon) {
+                        collapseIcon.className = 'fas fa-chevron-right';
+                    }
+                }
+            });
+            
+            // Check saved RTL
+            if (localStorage.getItem('dir') === 'rtl') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                rtlToggle.classList.add('active');
+                
+                // Update sidebar collapse icon
+                const collapseIcon = document.getElementById('collapse-icon');
+                if (collapseIcon) {
+                    collapseIcon.className = 'fas fa-chevron-right';
+                }
+            }
+            
+            // Sidebar Toggle
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const collapseIcon = document.getElementById('collapse-icon');
+            
+            sidebarToggle?.addEventListener('click', () => {
+                sidebar.classList.toggle('sidebar-collapsed');
+                mainContent.classList.toggle('main-content-expanded');
+                
+                // Toggle icon direction
+                if (sidebar.classList.contains('sidebar-collapsed')) {
+                    if (document.documentElement.dir === 'rtl') {
+                        collapseIcon.className = 'fas fa-chevron-left';
+                    } else {
+                        collapseIcon.className = 'fas fa-chevron-right';
+                    }
+                } else {
+                    if (document.documentElement.dir === 'rtl') {
+                        collapseIcon.className = 'fas fa-chevron-right';
+                    } else {
+                        collapseIcon.className = 'fas fa-chevron-left';
+                    }
+                }
+            });
+            
+            // Mobile Menu Toggle
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const sidebarClose = document.getElementById('sidebar-close');
+            
+            mobileMenuToggle?.addEventListener('click', () => {
+                sidebar.classList.add('sidebar-mobile-open');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            sidebarClose?.addEventListener('click', () => {
+                sidebar.classList.remove('sidebar-mobile-open');
+                document.body.style.overflow = '';
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    if (!sidebar.contains(e.target) && 
+                        !mobileMenuToggle?.contains(e.target) && 
+                        sidebar.classList.contains('sidebar-mobile-open')) {
+                        sidebar.classList.remove('sidebar-mobile-open');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024 && sidebar.classList.contains('sidebar-mobile-open')) {
+                    sidebar.classList.remove('sidebar-mobile-open');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Notifications Dropdown
+            const notificationsBtn = document.getElementById('notifications-btn');
+            const notificationsDropdown = document.getElementById('notifications-dropdown');
+            
+            notificationsBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationsDropdown.classList.toggle('hidden');
+                
+                // Close other dropdowns
+                quickActionsDropdown.classList.add('hidden');
+            });
+            
+            // Quick Actions Dropdown
+            const quickActionsBtn = document.getElementById('quick-actions-btn');
+            const quickActionsDropdown = document.getElementById('quick-actions-dropdown');
+            
+            quickActionsBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                quickActionsDropdown.classList.toggle('hidden');
+                
+                // Close other dropdowns
+                notificationsDropdown.classList.add('hidden');
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!notificationsBtn?.contains(e.target) && !notificationsDropdown?.contains(e.target)) {
+                    notificationsDropdown?.classList.add('hidden');
+                }
+                
+                if (!quickActionsBtn?.contains(e.target) && !quickActionsDropdown?.contains(e.target)) {
+                    quickActionsDropdown?.classList.add('hidden');
+                }
+            });
+            
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            const logoutModal = document.getElementById('logout-modal');
+            const cancelLogout = document.getElementById('cancel-logout');
+            const confirmLogout = document.getElementById('confirm-logout');
+            
+            logoutBtn?.addEventListener('click', () => {
+                logoutModal.classList.remove('hidden');
+            });
+            
+            cancelLogout?.addEventListener('click', () => {
+                logoutModal.classList.add('hidden');
+            });
+            
+            confirmLogout?.addEventListener('click', () => {
+                alert('Admin logout successful!');
+                logoutModal.classList.add('hidden');
+                // Redirect to login page
+                // window.location.href = 'login.html';
+            });
+            
+            // Close modal when clicking outside
+            logoutModal?.addEventListener('click', (e) => {
+                if (e.target === logoutModal) {
+                    logoutModal.classList.add('hidden');
+                }
+            });
+            
+            // Client View Button
+            const clientViewBtn = document.getElementById('client-view-btn');
+            clientViewBtn?.addEventListener('click', () => {
+                alert('Switching to client view...');
+                // In a real app, you would redirect to client dashboard
+                // window.location.href = 'client-dashboard.html';
+            });
+            
+            // Initialize Charts
+            const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+            if (growthCtx) {
+                new Chart(growthCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [
+                            {
+                                label: 'New Users',
+                                data: [850, 920, 1020, 1150, 1250, 1340, 1420, 1550, 1620, 1750, 1840, 1950],
+                                borderColor: '#3b82f6',
+                                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                tension: 0.3,
+                                fill: true
+                            },
+                            {
+                                label: 'Active Traders',
+                                data: [4200, 4350, 4520, 4680, 4850, 5020, 5200, 5380, 5550, 5720, 5900, 6100],
+                                borderColor: '#9c7be5',
+                                backgroundColor: 'rgba(156, 123, 229, 0.1)',
+                                tension: 0.3,
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Active nav item highlighting
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all items
+                    document.querySelectorAll('.nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                });
+            });
+            
+            // System status update simulation
+            function updateSystemStatus() {
+                const statusIndicators = document.querySelectorAll('.flex.items-center.p-3.bg-white');
+                statusIndicators.forEach(indicator => {
+                    const random = Math.random();
+                    if (random > 0.95) {
+                        // Simulate a warning (5% chance)
+                        const statusDiv = indicator.querySelector('div:last-child div:last-child');
+                        if (statusDiv) {
+                            statusDiv.textContent = 'Warning';
+                            statusDiv.className = 'font-bold text-yellow-600 dark:text-yellow-400';
+                        }
+                    }
+                });
+            }
+            
+            // Update system status every 30 seconds
+            setInterval(updateSystemStatus, 30000);
+        });
+    </script>
+</body>
+</html>
