@@ -59,11 +59,6 @@
             color: #e5e5e5;
         }
         
-        /* Prevent scrolling when mobile menu is open */
-        body.mobile-menu-open {
-            overflow: hidden;
-        }
-        
         /* Gradient backgrounds */
         .gradient-bg {
             background: linear-gradient(135deg, #9c7be5 0%, #7e5fdb 50%, #6a4bc9 100%);
@@ -252,7 +247,7 @@
             left: 0;
             transition: all 0.3s ease;
             border-right: 1px solid #e5e7eb;
-            z-index: 50;
+            z-index: 40;
             overflow-y: auto;
         }
         
@@ -273,10 +268,6 @@
             border-left: 1px solid #2d2d4d;
         }
         
-        .sidebar-collapsed {
-            width: 80px;
-        }
-        
         /* Main content */
         .main-content {
             margin-left: 280px;
@@ -294,15 +285,6 @@
             background: #0f0f1e;
         }
         
-        .main-content-expanded {
-            margin-left: 80px;
-        }
-        
-        [dir="rtl"] .main-content-expanded {
-            margin-left: 0;
-            margin-right: 80px;
-        }
-        
         /* Navigation items */
         .nav-item {
             display: flex;
@@ -314,6 +296,7 @@
             border-radius: 10px;
             margin: 0.25rem 1rem;
             white-space: nowrap;
+            text-decoration: none;
         }
         
         .dark .nav-item {
@@ -350,16 +333,11 @@
             margin-left: 12px;
         }
         
-        .sidebar-collapsed .nav-text {
-            display: none;
-        }
-        
         /* Mobile menu */
         @media (max-width: 1024px) {
             .sidebar {
                 transform: translateX(-100%);
-                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                z-index: 100;
             }
             
             [dir="rtl"] .sidebar {
@@ -367,51 +345,58 @@
             }
             
             .sidebar-mobile-open {
-                transform: translateX(0);
-                box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+                transform: translateX(0) !important;
             }
             
             .main-content {
-                margin-left: 0;
+                margin-left: 0 !important;
             }
             
             [dir="rtl"] .main-content {
-                margin-right: 0;
+                margin-right: 0 !important;
+            }
+        }
+        
+        /* Mobile overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+        
+        .dark .mobile-overlay {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .mobile-overlay.active {
+            display: block;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .dashboard-card {
+                padding: 1rem;
             }
             
-            /* Overlay for mobile menu */
-            .sidebar::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: -1;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                pointer-events: none;
+            .mobile-stack {
+                flex-direction: column;
             }
             
-            /* Light mode overlay */
-            :not(.dark) .sidebar::before {
-                background: rgba(0, 0, 0, 0.3);
-            }
-            
-            /* Dark mode overlay */
-            .dark .sidebar::before {
-                background: rgba(0, 0, 0, 0.7);
-            }
-            
-            .sidebar-mobile-open::before {
-                opacity: 1;
-                pointer-events: all;
+            .mobile-full {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    
     <!-- Sidebar -->
     <div class="sidebar dark:bg-gray-900" id="sidebar">
         <!-- Sidebar Header -->
@@ -509,10 +494,9 @@
         <div class="absolute bottom-0 w-full p-6 border-t border-gray-200 dark:border-gray-800">
             <!-- Logout Button -->
             <a href="login.html" class="w-full btn-secondary inline-flex items-center justify-center">
-    <i class="fas fa-sign-out-alt mr-2"></i>
-    <span class="nav-text">Logout</span>
-</a>
-
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                <span class="nav-text">Logout</span>
+            </a>
         </div>
     </div>
     
@@ -520,7 +504,7 @@
     <div class="main-content" id="main-content">
         <!-- Top Bar -->
         <div class="sticky top-0 z-30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-            <div class="flex items-center justify-between px-6 py-4">
+            <div class="flex items-center justify-between px-4 sm:px-6 py-4">
                 <!-- Left Side: Menu Toggle and Title -->
                 <div class="flex items-center">
                     <!-- Mobile Menu Toggle -->
@@ -529,117 +513,37 @@
                     </button>
                     
                     <!-- Page Title -->
-                    <h1 class="text-2xl font-bold text-dark dark:text-white">Dashboard</h1>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-bold text-dark dark:text-white">Dashboard</h1>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Welcome back, John Smith</p>
+                    </div>
                 </div>
                 
-                <!-- Right Side: Controls and User -->
-                <div class="flex items-center space-x-4">
-                    <!-- Toggle Buttons (Theme & RTL) -->
-                    <div class="toggle-buttons">
-                        <!-- Theme Toggle -->
-                        
-                        
-                        
-                    </div>
+                <!-- Right Side: Toggle Buttons Only -->
+                <div class="toggle-buttons">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
                     
-                    <!-- Notifications -->
-                    <div class="relative">
-                        <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                        
-                        <!-- Notifications Dropdown -->
-                        <div id="notifications-dropdown" class="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 hidden z-50">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="font-bold text-dark dark:text-white">Notifications</h3>
-                                <button class="text-primary text-sm">Mark all as read</button>
-                            </div>
-                            
-                            <div class="space-y-3 max-h-80 overflow-y-auto">
-                                <div class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-                                    <div class="flex justify-between">
-                                        <span class="font-medium text-dark dark:text-white">Bitcoin reached $65,000</span>
-                                        <span class="text-xs text-gray-500">2 min ago</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">BTC has increased by 2.5% in the last hour.</p>
-                                </div>
-                                
-                                <div class="p-3 bg-green-50 dark:bg-green-900/30 rounded-lg">
-                                    <div class="flex justify-between">
-                                        <span class="font-medium text-dark dark:text-white">Trade executed</span>
-                                        <span class="text-xs text-gray-500">1 hour ago</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Your BTC buy order has been completed.</p>
-                                </div>
-                                
-                                <div class="p-3 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
-                                    <div class="flex justify-between">
-                                        <span class="font-medium text-dark dark:text-white">Security alert</span>
-                                        <span class="text-xs text-gray-500">3 hours ago</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">New login detected from a new device.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-center">
-                                <a href="#" class="text-primary text-sm">View all notifications</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quick Actions Dropdown -->
-                    <div class="relative">
-                        <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
-                            ⇄
-                        </button>
-                        
-                        <!-- Quick Actions Dropdown -->
-                        <div id="quick-actions-dropdown" class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 hidden z-50">
-                            <h3 class="font-bold text-dark dark:text-white mb-3">Quick Actions</h3>
-                            
-                            <div class="space-y-2">
-                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
-                                    <i class="fas fa-plus-circle text-primary mr-3"></i>
-                                    <span>Deposit Funds</span>
-                                </button>
-                                
-                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
-                                    <i class="fas fa-exchange-alt text-primary mr-3"></i>
-                                    <span>Buy/Sell Crypto</span>
-                                </button>
-                                
-                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
-                                    <i class="fas fa-hand-holding-usd text-primary mr-3"></i>
-                                    <span>Stake Assets</span>
-                                </button>
-                                
-                                <button class="w-full text-left p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
-                                    <i class="fas fa-shield-alt text-primary mr-3"></i>
-                                    <span>Security Check</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- RTL Toggle -->
+                    <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
+                        ⇄
+                    </button>
                 </div>
             </div>
         </div>
         
         <!-- Dashboard Content -->
-        <div class="p-6">
-            <!-- Welcome Section -->
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-dark dark:text-white mb-2">Welcome back, John!</h2>
-                <p class="text-gray-600 dark:text-gray-300">Here's what's happening with your crypto portfolio today.</p>
-            </div>
-            
+        <div class="p-4 sm:p-6">
             <!-- Stats Overview -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
                 <!-- Total Balance -->
                 <div class="dashboard-card">
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 text-sm">Total Balance</p>
-                            <h3 class="text-3xl font-bold text-dark dark:text-white mt-2">$84,250.75</h3>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">$84,250.75</h3>
                             <p class="text-green-500 text-sm mt-1">
                                 <i class="fas fa-arrow-up mr-1"></i>
                                 +2.4% today
@@ -656,7 +560,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 text-sm">24h Change</p>
-                            <h3 class="text-3xl font-bold text-dark dark:text-white mt-2">+$1,250.50</h3>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">+$1,250.50</h3>
                             <p class="text-green-500 text-sm mt-1">
                                 <i class="fas fa-chart-line mr-1"></i>
                                 +1.8% increase
@@ -673,7 +577,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 text-sm">Active Investments</p>
-                            <h3 class="text-3xl font-bold text-dark dark:text-white mt-2">8</h3>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">8</h3>
                             <p class="text-primary text-sm mt-1">
                                 <i class="fas fa-coins mr-1"></i>
                                 5 cryptocurrencies
@@ -690,7 +594,7 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400 text-sm">Staking Rewards</p>
-                            <h3 class="text-3xl font-bold text-dark dark:text-white mt-2">$450.25</h3>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-dark dark:text-white mt-2">$450.25</h3>
                             <p class="text-purple-500 text-sm mt-1">
                                 <i class="fas fa-gem mr-1"></i>
                                 +12.5% APY
@@ -704,7 +608,7 @@
             </div>
             
             <!-- Charts and Portfolio -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
                 <!-- Portfolio Distribution Chart -->
                 <div class="dashboard-card">
                     <div class="flex justify-between items-center mb-6">
@@ -811,282 +715,202 @@
                                     <td class="font-medium">500 ADA</td>
                                     <td><span class="status-badge status-success">Completed</span></td>
                                 </tr>
-                                <tr>
-                                    <td class="font-medium">
-                                        <div class="flex items-center">
-                                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                                                <i class="fas fa-coins text-white text-xs"></i>
-                                            </div>
-                                            <span>USDT</span>
-                                        </div>
-                                    </td>
-                                    <td>Withdraw</td>
-                                    <td class="font-medium">$1,000</td>
-                                    <td><span class="status-badge status-danger">Failed</span></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             
-            <!-- Crypto Assets and Quick Actions -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Left Column: Recent News -->
-                <div class="lg:col-span-1">
-                    <!-- Recent News -->
-                    <div class="dashboard-card mb-8">
-                        <h3 class="text-xl font-bold text-dark dark:text-white mb-6">Recent News</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="font-medium text-dark dark:text-white">Bitcoin ETF Approval</span>
-                                    <span class="text-xs text-gray-500">2h ago</span>
-                                </div>
-                                <p class="text-sm text-gray-600 dark:text-gray-300">SEC approves spot Bitcoin ETF, causing BTC to surge 5%.</p>
-                            </div>
-                            
-                            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="font-medium text-dark dark:text-white">Ethereum Upgrade</span>
-                                    <span class="text-xs text-gray-500">8h ago</span>
-                                </div>
-                                <p class="text-sm text-gray-600 dark:text-gray-300">Ethereum's Dencun upgrade goes live, reducing L2 fees.</p>
-                            </div>
-                            
-                            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="font-medium text-dark dark:text-white">Solana Network</span>
-                                    <span class="text-xs text-gray-500">1d ago</span>
-                                </div>
-                                <p class="text-sm text-gray-600 dark:text-gray-300">Solana processes record 4,000 TPS during memecoin surge.</p>
-                            </div>
-                            
-                            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="font-medium text-dark dark:text-white">Regulation Update</span>
-                                    <span class="text-xs text-gray-500">2d ago</span>
-                                </div>
-                                <p class="text-sm text-gray-600 dark:text-gray-300">EU implements MiCA regulations for crypto businesses.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <a href="#" class="text-primary font-medium flex items-center justify-center">
-                                <span>Read More News</span>
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
+            <!-- Crypto Assets -->
+            <div class="dashboard-card mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-dark dark:text-white">Your Crypto Assets</h3>
+                    <button class="btn-primary">
+                        <i class="fas fa-plus mr-2"></i>
+                        Add Funds
+                    </button>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Asset</th>
+                                <th>Balance</th>
+                                <th>Value</th>
+                                <th>24h Change</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-medium">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fab fa-bitcoin text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div>Bitcoin</div>
+                                            <div class="text-sm text-gray-500">BTC</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="font-medium">0.85 BTC</td>
+                                <td class="font-bold">$55,097.50</td>
+                                <td class="text-green-500 font-medium">+2.4%</td>
+                                <td>
+                                    <div class="flex space-x-2">
+                                        <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm">Buy</button>
+                                        <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">Sell</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fab fa-ethereum text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div>Ethereum</div>
+                                            <div class="text-sm text-gray-500">ETH</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="font-medium">8.5 ETH</td>
+                                <td class="font-bold">$29,325.00</td>
+                                <td class="text-green-500 font-medium">+1.8%</td>
+                                <td>
+                                    <div class="flex space-x-2">
+                                        <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm">Buy</button>
+                                        <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">Sell</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-medium">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                            <i class="fas fa-gem text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div>Solana</div>
+                                            <div class="text-sm text-gray-500">SOL</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="font-medium">42 SOL</td>
+                                <td class="font-bold">$7,770.00</td>
+                                <td class="text-green-500 font-medium">+5.2%</td>
+                                <td>
+                                    <div class="flex space-x-2">
+                                        <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm">Buy</button>
+                                        <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">Sell</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Quick Actions and News -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Quick Actions -->
+                <div class="dashboard-card">
+                    <h3 class="text-xl font-bold text-dark dark:text-white mb-6">Quick Actions</h3>
                     
-                    <!-- Quick Actions -->
-                    <div class="dashboard-card">
-                        <h3 class="text-xl font-bold text-dark dark:text-white mb-6">Quick Actions</h3>
+                    <div class="space-y-4">
+                        <button class="w-full btn-primary flex items-center justify-center py-4">
+                            <i class="fas fa-exchange-alt mr-3"></i>
+                            Buy / Sell Crypto
+                        </button>
                         
-                        <div class="space-y-4">
-                            <button class="w-full btn-primary flex items-center justify-center py-4">
-                                <i class="fas fa-exchange-alt mr-3"></i>
-                                Buy / Sell Crypto
-                            </button>
-                            
-                            <button class="w-full btn-secondary flex items-center justify-center py-4">
-                                <i class="fas fa-hand-holding-usd mr-3"></i>
-                                Stake Assets
-                            </button>
-                            
-                            <button class="w-full btn-secondary flex items-center justify-center py-4">
-                                <i class="fas fa-paper-plane mr-3"></i>
-                                Send / Receive
-                            </button>
-                            
-                            <button class="w-full btn-secondary flex items-center justify-center py-4">
-                                <i class="fas fa-chart-line mr-3"></i>
-                                Trading View
-                            </button>
+                        <button class="w-full btn-secondary flex items-center justify-center py-4">
+                            <i class="fas fa-hand-holding-usd mr-3"></i>
+                            Stake Assets
+                        </button>
+                        
+                        <button class="w-full btn-secondary flex items-center justify-center py-4">
+                            <i class="fas fa-paper-plane mr-3"></i>
+                            Send / Receive
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Recent News -->
+                <div class="dashboard-card">
+                    <h3 class="text-xl font-bold text-dark dark:text-white mb-6">Recent News</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-medium text-dark dark:text-white">Bitcoin ETF Approval</span>
+                                <span class="text-xs text-gray-500">2h ago</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">SEC approves spot Bitcoin ETF, causing BTC to surge 5%.</p>
+                        </div>
+                        
+                        <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-medium text-dark dark:text-white">Ethereum Upgrade</span>
+                                <span class="text-xs text-gray-500">8h ago</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Ethereum's Dencun upgrade goes live, reducing L2 fees.</p>
+                        </div>
+                        
+                        <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-medium text-dark dark:text-white">Solana Network</span>
+                                <span class="text-xs text-gray-500">1d ago</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Solana processes record 4,000 TPS during memecoin surge.</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Middle Column: Crypto Assets -->
-                <div class="lg:col-span-2">
-                    <div class="dashboard-card">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-xl font-bold text-dark dark:text-white">Your Crypto Assets</h3>
-                            <button class="btn-primary">
-                                <i class="fas fa-plus mr-2"></i>
-                                Add Funds
-                            </button>
-                        </div>
-                        
-                        <div class="overflow-x-auto">
-                            <table class="dashboard-table">
-                                <thead>
-                                    <tr>
-                                        <th>Asset</th>
-                                        <th>Balance</th>
-                                        <th>Value</th>
-                                        <th>24h Change</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="font-medium">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
-                                                    <i class="fab fa-bitcoin text-white"></i>
-                                                </div>
-                                                <div>
-                                                    <div>Bitcoin</div>
-                                                    <div class="text-sm text-gray-500">BTC</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="font-medium">0.85 BTC</td>
-                                        <td class="font-bold">$55,097.50</td>
-                                        <td class="text-green-500 font-medium">+2.4%</td>
-                                        <td>
-                                            <div class="flex space-x-2">
-                                                <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm">Buy</button>
-                                                <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">Sell</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-medium">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center mr-3">
-                                                    <i class="fab fa-ethereum text-white"></i>
-                                                </div>
-                                                <div>
-                                                    <div>Ethereum</div>
-                                                    <div class="text-sm text-gray-500">ETH</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="font-medium">8.5 ETH</td>
-                                        <td class="font-bold">$29,325.00</td>
-                                        <td class="text-green-500 font-medium">+1.8%</td>
-                                        <td>
-                                            <div class="flex space-x-2">
-                                                <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm">Buy</button>
-                                                <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">Sell</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-medium">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
-                                                    <i class="fas fa-gem text-white"></i>
-                                                </div>
-                                                <div>
-                                                    <div>Solana</div>
-                                                    <div class="text-sm text-gray-500">SOL</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="font-medium">42 SOL</td>
-                                        <td class="font-bold">$7,770.00</td>
-                                        <td class="text-green-500 font-medium">+5.2%</td>
-                                        <td>
-                                            <div class="flex space-x-2">
-                                                <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm">Buy</button>
-                                                <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">Sell</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-medium">
-                                            <div class="flex items-center">
-                                                <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center mr-3">
-                                                    <i class="fas fa-code text-white"></i>
-                                                </div>
-                                                <div>
-                                                    <div>Cardano</div>
-                                                    <div class="text-sm text-gray-500">ADA</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="font-medium">2,500 ADA</td>
-                                        <td class="font-bold">$1,700.00</td>
-                                        <td class="text-red-500 font-medium">-0.5%</td>
-                                        <td>
-                                            <div class="flex space-x-2">
-                                                <button class="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm">Buy</button>
-                                                <button class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">Sell</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <!-- Market Overview -->
+                <div class="dashboard-card">
+                    <h3 class="text-xl font-bold text-dark dark:text-white mb-6">Market Overview</h3>
                     
-                    <!-- Market Overview -->
-                    <div class="dashboard-card mt-8">
-                        <h3 class="text-xl font-bold text-dark dark:text-white mb-6">Market Overview</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
-                                        <i class="fab fa-bitcoin text-white text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-medium">BTC</div>
-                                        <div class="text-sm text-gray-500">$64,820</div>
-                                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fab fa-bitcoin text-white text-xs"></i>
                                 </div>
-                                <div class="text-green-500 font-medium">+2.4%</div>
-                            </div>
-                            
-                            <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
-                                        <i class="fab fa-ethereum text-white text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-medium">ETH</div>
-                                        <div class="text-sm text-gray-500">$3,450</div>
-                                    </div>
+                                <div>
+                                    <div class="font-medium">BTC</div>
+                                    <div class="text-sm text-gray-500">$64,820</div>
                                 </div>
-                                <div class="text-green-500 font-medium">+1.8%</div>
                             </div>
-                            
-                            <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
-                                        <i class="fas fa-gem text-white text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-medium">SOL</div>
-                                        <div class="text-sm text-gray-500">$185</div>
-                                    </div>
-                                </div>
-                                <div class="text-green-500 font-medium">+5.2%</div>
-                            </div>
-                            
-                            <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                                        <i class="fas fa-coins text-white text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-medium">USDT</div>
-                                        <div class="text-sm text-gray-500">$1.00</div>
-                                    </div>
-                                </div>
-                                <div class="text-gray-500 font-medium">0.0%</div>
-                            </div>
+                            <div class="text-green-500 font-medium">+2.4%</div>
                         </div>
                         
-                        <div class="mt-6">
-                            <a href="#" class="text-primary font-medium flex items-center justify-center">
-                                <span>View Full Market</span>
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fab fa-ethereum text-white text-xs"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">ETH</div>
+                                    <div class="text-sm text-gray-500">$3,450</div>
+                                </div>
+                            </div>
+                            <div class="text-green-500 font-medium">+1.8%</div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-gem text-white text-xs"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium">SOL</div>
+                                    <div class="text-sm text-gray-500">$185</div>
+                                </div>
+                            </div>
+                            <div class="text-green-500 font-medium">+5.2%</div>
                         </div>
                     </div>
                 </div>
@@ -1114,7 +938,67 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Theme Toggle
+            // ========== MOBILE MENU FUNCTIONALITY ==========
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarClose = document.getElementById('sidebar-close');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            
+            // Open mobile menu
+            mobileMenuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sidebar.classList.add('sidebar-mobile-open');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close mobile menu with close button
+            sidebarClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sidebar.classList.remove('sidebar-mobile-open');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close mobile menu with overlay click
+            mobileOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileOverlay) {
+                    sidebar.classList.remove('sidebar-mobile-open');
+                    mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close mobile menu when clicking on a link in sidebar
+            document.querySelectorAll('.sidebar a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.remove('sidebar-mobile-open');
+                        mobileOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Close mobile menu on Escape key press
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && sidebar.classList.contains('sidebar-mobile-open')) {
+                    sidebar.classList.remove('sidebar-mobile-open');
+                    mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024 && sidebar.classList.contains('sidebar-mobile-open')) {
+                    sidebar.classList.remove('sidebar-mobile-open');
+                    mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // ========== THEME TOGGLE ==========
             const themeToggle = document.getElementById('theme-toggle');
             themeToggle.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark');
@@ -1134,7 +1018,7 @@
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
             
-            // RTL Toggle
+            // ========== RTL TOGGLE ==========
             const rtlToggle = document.getElementById('rtl-toggle');
             rtlToggle.addEventListener('click', () => {
                 if (document.documentElement.dir === 'rtl') {
@@ -1142,23 +1026,11 @@
                     document.documentElement.lang = 'en';
                     rtlToggle.classList.remove('active');
                     localStorage.setItem('dir', 'ltr');
-                    
-                    // Update sidebar collapse icon
-                    const collapseIcon = document.getElementById('collapse-icon');
-                    if (collapseIcon) {
-                        collapseIcon.className = 'fas fa-chevron-left';
-                    }
                 } else {
                     document.documentElement.dir = 'rtl';
                     document.documentElement.lang = 'ar';
                     rtlToggle.classList.add('active');
                     localStorage.setItem('dir', 'rtl');
-                    
-                    // Update sidebar collapse icon
-                    const collapseIcon = document.getElementById('collapse-icon');
-                    if (collapseIcon) {
-                        collapseIcon.className = 'fas fa-chevron-right';
-                    }
                 }
             });
             
@@ -1167,115 +1039,40 @@
                 document.documentElement.dir = 'rtl';
                 document.documentElement.lang = 'ar';
                 rtlToggle.classList.add('active');
-                
-                // Update sidebar collapse icon
-                const collapseIcon = document.getElementById('collapse-icon');
-                if (collapseIcon) {
-                    collapseIcon.className = 'fas fa-chevron-right';
-                }
             }
             
-            // Sidebar Toggle
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('main-content');
+            // ========== LOGOUT FUNCTIONALITY ==========
+           // ========== LOGOUT FUNCTIONALITY ==========
+const logoutModal = document.getElementById('logout-modal');
+const cancelLogout = document.getElementById('cancel-logout');
+const confirmLogout = document.getElementById('confirm-logout');
+
+// Open logout modal when clicking logout button in sidebar
+document.querySelector('.btn-secondary[href="login.html"]').addEventListener('click', function(e) {
+    e.preventDefault();
+    logoutModal.classList.remove('hidden');
+});
+
+cancelLogout.addEventListener('click', () => {
+    logoutModal.classList.add('hidden');
+});
+
+confirmLogout.addEventListener('click', () => {
+    // Close modal
+    logoutModal.classList.add('hidden');
+    
+    // Redirect to login page immediately
+    window.location.href = 'login.html';
+});
+
+// Close modal when clicking outside
+logoutModal.addEventListener('click', (e) => {
+    if (e.target === logoutModal) {
+        logoutModal.classList.add('hidden');
+    }
+});
             
-            // Mobile Menu Toggle
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const sidebarClose = document.getElementById('sidebar-close');
-            
-            mobileMenuToggle?.addEventListener('click', () => {
-                sidebar.classList.add('sidebar-mobile-open');
-                document.body.classList.add('mobile-menu-open');
-            });
-            
-            sidebarClose?.addEventListener('click', () => {
-                sidebar.classList.remove('sidebar-mobile-open');
-                document.body.classList.remove('mobile-menu-open');
-            });
-            
-            // Close mobile menu when clicking on overlay
-            sidebar?.addEventListener('click', (e) => {
-                if (window.innerWidth <= 1024 && e.target === sidebar) {
-                    sidebar.classList.remove('sidebar-mobile-open');
-                    document.body.classList.remove('mobile-menu-open');
-                }
-            });
-            
-            // Close mobile menu when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 1024) {
-                    if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target) && sidebar.classList.contains('sidebar-mobile-open')) {
-                        sidebar.classList.remove('sidebar-mobile-open');
-                        document.body.classList.remove('mobile-menu-open');
-                    }
-                }
-            });
-            
-            // Notifications Dropdown
-            const notificationsBtn = document.getElementById('notifications-btn');
-            const notificationsDropdown = document.getElementById('notifications-dropdown');
-            
-            notificationsBtn?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                notificationsDropdown.classList.toggle('hidden');
-                
-                // Close other dropdowns
-                quickActionsDropdown.classList.add('hidden');
-            });
-            
-            // Quick Actions Dropdown
-            const quickActionsBtn = document.getElementById('quick-actions-btn');
-            const quickActionsDropdown = document.getElementById('quick-actions-dropdown');
-            
-            quickActionsBtn?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                quickActionsDropdown.classList.toggle('hidden');
-                
-                // Close other dropdowns
-                notificationsDropdown.classList.add('hidden');
-            });
-            
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!notificationsBtn?.contains(e.target) && !notificationsDropdown?.contains(e.target)) {
-                    notificationsDropdown?.classList.add('hidden');
-                }
-                
-                if (!quickActionsBtn?.contains(e.target) && !quickActionsDropdown?.contains(e.target)) {
-                    quickActionsDropdown?.classList.add('hidden');
-                }
-            });
-            
-            // Logout functionality
-            const logoutBtn = document.getElementById('logout-btn');
-            const logoutModal = document.getElementById('logout-modal');
-            const cancelLogout = document.getElementById('cancel-logout');
-            const confirmLogout = document.getElementById('confirm-logout');
-            
-            logoutBtn?.addEventListener('click', () => {
-                logoutModal.classList.remove('hidden');
-            });
-            
-            cancelLogout?.addEventListener('click', () => {
-                logoutModal.classList.add('hidden');
-            });
-            
-            confirmLogout?.addEventListener('click', () => {
-                // In a real app, you would handle logout logic here
-                alert('You have been logged out successfully!');
-                logoutModal.classList.add('hidden');
-                // Redirect to login page
-                // window.location.href = 'login.html';
-            });
-            
-            // Close modal when clicking outside
-            logoutModal?.addEventListener('click', (e) => {
-                if (e.target === logoutModal) {
-                    logoutModal.classList.add('hidden');
-                }
-            });
-            
-            // Initialize Charts
+            // ========== INITIALIZE CHARTS ==========
             const portfolioCtx = document.getElementById('portfolioChart')?.getContext('2d');
             if (portfolioCtx) {
                 new Chart(portfolioCtx, {
@@ -1313,7 +1110,7 @@
                 });
             }
             
-            // Active nav item highlighting
+            // ========== ACTIVE NAV ITEM HIGHLIGHTING ==========
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1325,22 +1122,37 @@
                     
                     // Add active class to clicked item
                     this.classList.add('active');
-                    
-                    // Close mobile menu after clicking a link
-                    if (window.innerWidth <= 1024) {
-                        sidebar.classList.remove('sidebar-mobile-open');
-                        document.body.classList.remove('mobile-menu-open');
-                    }
                 });
             });
             
-            // Close mobile menu on window resize if it becomes desktop
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 1024 && sidebar.classList.contains('sidebar-mobile-open')) {
-                    sidebar.classList.remove('sidebar-mobile-open');
-                    document.body.classList.remove('mobile-menu-open');
+            // ========== SIMULATE LIVE UPDATES ==========
+            function updateStats() {
+                // Update 24h change with random small fluctuation
+                const changeElement = document.querySelector('.dashboard-card:nth-child(2) .text-green-500');
+                if (changeElement) {
+                    const change = (Math.random() * 3 - 1.5).toFixed(1);
+                    const sign = change >= 0 ? '+' : '';
+                    const newValue = `+$${(1250.50 + parseFloat(change) * 100).toFixed(2)}`;
+                    const newPercent = `${sign}${(1.8 + parseFloat(change)).toFixed(1)}% increase`;
+                    
+                    document.querySelector('.dashboard-card:nth-child(2) h3').textContent = newValue;
+                    changeElement.innerHTML = `<i class="fas fa-chart-line mr-1"></i>${newPercent}`;
                 }
-            });
+                
+                // Update staking rewards
+                const rewardsElement = document.querySelector('.dashboard-card:nth-child(4) h3');
+                if (rewardsElement) {
+                    const current = parseFloat(rewardsElement.textContent.replace('$', '').replace(',', ''));
+                    const newRewards = (current + Math.random() * 10).toFixed(2);
+                    rewardsElement.textContent = `$${newRewards}`;
+                }
+            }
+            
+            // Update stats every 30 seconds
+            setInterval(updateStats, 30000);
+            
+            // Initial update
+            setTimeout(updateStats, 1000);
         });
     </script>
 </body>

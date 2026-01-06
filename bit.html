@@ -324,14 +324,17 @@
             color: #ef4444;
         }
         
-        /* Bitcoin info card */
+        /* Bitcoin info card - REMOVED PURPLE BORDER */
         .bitcoin-info-card {
             background: linear-gradient(135deg, rgba(156, 123, 229, 0.05) 0%, rgba(126, 95, 219, 0.05) 100%);
-            border-left: 4px solid #9c7be5;
+            /* Removed: border-left: 4px solid #9c7be5; */
+            border-radius: 16px;
+            border: 1px solid rgba(156, 123, 229, 0.1);
         }
         
         .dark .bitcoin-info-card {
             background: linear-gradient(135deg, rgba(156, 123, 229, 0.1) 0%, rgba(126, 95, 219, 0.1) 100%);
+            border-color: rgba(156, 123, 229, 0.2);
         }
         
         /* Bitcoin Icon Styling */
@@ -512,11 +515,77 @@
         .mobile-dropdown-content.show {
             max-height: 300px;
         }
+        
+        /* Table of Contents - NOT STICKY */
+        .toc-container {
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark .toc-container {
+            background: #1a1a2e;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toc-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .dark .toc-title {
+            color: #e5e5e5;
+            border-bottom-color: #2d2d4d;
+        }
+        
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: #4b5563;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+        
+        .dark .toc-list a {
+            color: #d1d5db;
+        }
+        
+        .toc-list a:hover {
+            background-color: #f3f4f6;
+            color: #9c7be5;
+            padding-left: 1rem;
+        }
+        
+        .dark .toc-list a:hover {
+            background-color: #2d2d4d;
+        }
+        
+        .toc-list a i {
+            margin-right: 0.75rem;
+            font-size: 0.875rem;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Fixed Navigation Bar -->
+    <!-- Fixed Navigation Bar - UPDATED HAMBURGER MENU -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-6">
             <div class="flex items-center justify-between h-20">
@@ -538,10 +607,10 @@
                     <div class="nav-links">
                         <!-- Home Dropdown -->
                         <div class="nav-item dropdown">
-                            <span style="color: #9c7be5; font-weight: 600;">Home</span>
+                            <span>Home</span>
                             <i class="fas fa-chevron-down text-xs"></i>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="index.html" style="color: #9c7be5; font-weight: 600;">
+                                <a class="dropdown-item" href="index.html">
                                     <i class="fas fa-home"></i>
                                     Home 1
                                 </a>
@@ -557,16 +626,16 @@
                             About
                         </a>
                         
-                        <!-- Markets Dropdown -->
+                        <!-- Markets Dropdown - ACTIVE -->
                         <div class="nav-item dropdown">
-                            <span>Markets</span>
+                            <span style="color: #9c7be5; font-weight: 600;">Markets</span>
                             <i class="fas fa-chevron-down text-xs"></i>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="market.html">
                                     <i class="fas fa-chart-bar"></i>
                                     Market Overview
                                 </a>
-                                <a class="dropdown-item" href="bit.html">
+                                <a class="dropdown-item" href="bit.html" style="color: #9c7be5; font-weight: 600;">
                                     <i class="fab fa-bitcoin"></i>
                                     Bitcoin
                                 </a>
@@ -645,13 +714,13 @@
                     </div>
                 </div>
 
-                <!-- Mobile Menu Toggle Button - ADDED HERE -->
-                <button id="mobile-toggle" class="xl:hidden w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <!-- Mobile Menu Toggle Button - UPDATED TO MATCH TRADE PAGE -->
+                <button id="mobile-toggle" class="xl:hidden text-dark dark:text-gray-300">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
 
-            <!-- Mobile Menu -->
+            <!-- Mobile Menu - UPDATED TO MATCH TRADE PAGE -->
             <div id="mobile-menu" class="xl:hidden">
                 <!-- Home -->
                 <div class="mobile-dropdown">
@@ -780,9 +849,9 @@
                                 <i class="fab fa-bitcoin text-white text-3xl"></i>
                             </div>
                             <div>
-                                <h1 class="text-4xl md:text-5xl font-bold">Bitcoin</h1>
+                                <h1 class="text-5xl md:text-5xl font-bold">Bitcoin</h1>
                                 <div class="flex items-center mt-2">
-                                    <span class="text-2xl font-bold mr-3">BTC</span>
+                                    <span class="text-3xl font-bold mr-3">BTC</span>
                                     <span class="bg-white/20 px-3 py-1 rounded-full text-sm">#1 Market Cap</span>
                                 </div>
                             </div>
@@ -791,7 +860,7 @@
                         <!-- Bitcoin Price Ticker -->
                         <div class="mb-8">
                             <div class="flex items-baseline">
-                                <div class="text-5xl md:text-6xl font-bold price-ticker">$64,820.45</div>
+                                <div class="text-4xl md:text-6xl font-bold price-ticker">$64,820.45</div>
                                 <div class="ml-4 text-2xl price-up font-bold">+2.4%</div>
                             </div>
                             <div class="text-white/80 mt-2">≈ 1.07 BTC = $69,420</div>
@@ -804,7 +873,7 @@
                             </button>
                             <button class="border-2 border-white/50 text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition flex items-center">
                                 <i class="fas fa-wallet mr-3"></i>
-                                Buy Bitcoin
+                                Buy BTC
                             </button>
                         </div>
                     </div>
@@ -848,8 +917,28 @@
             </div>
         </section>
 
+        <!-- Table of Contents - NOT STICKY -->
+        <section class="py-6">
+            <div class="container mx-auto px-6">
+                <div class="toc-container">
+                    <div class="toc-title">
+                        <i class="fas fa-list mr-2"></i>
+                        Table of Contents
+                    </div>
+                    <ul class="toc-list">
+                        <li><a href="#price-chart"><i class="fas fa-chart-line"></i> Price Chart & Analysis</a></li>
+                        <li><a href="#trading"><i class="fas fa-exchange-alt"></i> Trading Bitcoin</a></li>
+                        <li><a href="#statistics"><i class="fas fa-chart-bar"></i> Bitcoin Statistics</a></li>
+                        <li><a href="#how-it-works"><i class="fas fa-cogs"></i> How Bitcoin Works</a></li>
+                        <li><a href="#why-invest"><i class="fas fa-chart-line"></i> Why Invest in Bitcoin?</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> Frequently Asked Questions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- Price Chart Section -->
-        <section class="py-12">
+        <section id="price-chart" class="py-12">
             <div class="container mx-auto px-6">
                 <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover">
                     <div class="flex flex-wrap justify-between items-center mb-6">
@@ -892,7 +981,7 @@
         </section>
 
         <!-- Trading & Info Section -->
-        <section class="py-12">
+        <section id="trading" class="py-12">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <!-- Trading Widget -->
@@ -984,15 +1073,15 @@
                                         <div class="text-sm text-gray-500 mb-2">Bids (Buy)</div>
                                         <div class="space-y-2">
                                             <div class="flex justify-between text-green-600">
-                                                <span>$64,815.20</span>
+                                                <span>$64,815</span>
                                                 <span>12.4 BTC</span>
                                             </div>
                                             <div class="flex justify-between text-green-600">
-                                                <span>$64,810.50</span>
+                                                <span>$64,810</span>
                                                 <span>8.7 BTC</span>
                                             </div>
                                             <div class="flex justify-between text-green-600">
-                                                <span>$64,805.30</span>
+                                                <span>$64,805</span>
                                                 <span>5.2 BTC</span>
                                             </div>
                                         </div>
@@ -1001,15 +1090,15 @@
                                         <div class="text-sm text-gray-500 mb-2">Asks (Sell)</div>
                                         <div class="space-y-2">
                                             <div class="flex justify-between text-red-600">
-                                                <span>$64,825.70</span>
+                                                <span>$64,825</span>
                                                 <span>9.8 BTC</span>
                                             </div>
                                             <div class="flex justify-between text-red-600">
-                                                <span>$64,830.40</span>
+                                                <span>$64,830</span>
                                                 <span>14.3 BTC</span>
                                             </div>
                                             <div class="flex justify-between text-red-600">
-                                                <span>$64,835.10</span>
+                                                <span>$64,835</span>
                                                 <span>7.6 BTC</span>
                                             </div>
                                         </div>
@@ -1022,7 +1111,7 @@
                     <!-- Bitcoin Information -->
                     <div class="space-y-8">
                         <!-- Bitcoin Stats -->
-                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover">
+                        <div id="statistics" class="bg-white dark:bg-gray-800 rounded-2xl p-6 card-hover">
                             <h2 class="text-2xl font-bold mb-6 text-dark dark:text-white">Bitcoin Statistics</h2>
                             
                             <div class="space-y-4">
@@ -1124,7 +1213,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- How Bitcoin Works -->
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                    <div id="how-it-works" class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
                         <div class="w-16 h-16 primary-gradient rounded-xl flex items-center justify-center mb-6">
                             <i class="fab fa-bitcoin text-white text-2xl"></i>
                         </div>
@@ -1153,7 +1242,7 @@
                     </div>
                     
                     <!-- Why Invest in Bitcoin -->
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                    <div id="why-invest" class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
                         <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-6">
                             <i class="fas fa-chart-line text-white text-2xl"></i>
                         </div>
@@ -1206,7 +1295,7 @@
         </section>
 
         <!-- FAQ Section -->
-        <section class="py-12">
+        <section id="faq" class="py-12">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4 text-dark dark:text-white">Frequently Asked Questions</h2>
@@ -1282,7 +1371,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer - SAME AS BLOG PAGE -->
     <footer class="py-16 bg-gray-900 text-gray-400">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -1363,8 +1452,6 @@
                             <span>24/7 Customer Support</span>
                         </li>
                     </ul>
-                    
-                    
                 </div>
             </div>
             
@@ -1432,7 +1519,7 @@
                 rtlToggle.classList.add('active');
             }
             
-            // Mobile Menu Toggle
+            // Mobile Menu Toggle - UPDATED TO MATCH TRADE PAGE
             const mobileToggle = document.getElementById('mobile-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const body = document.body;
@@ -1454,7 +1541,7 @@
                 }
             });
             
-            // Mobile Dropdown Toggle
+            // Mobile Dropdown Toggle - UPDATED TO MATCH TRADE PAGE
             document.querySelectorAll('.mobile-dropdown-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1690,6 +1777,22 @@
                     // Add active class to clicked button
                     this.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'hover:bg-gray-200', 'dark:hover:bg-gray-600');
                     this.classList.add('bg-primary', 'text-white');
+                });
+            });
+            
+            // Smooth scroll for table of contents links
+            document.querySelectorAll('.toc-list a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });

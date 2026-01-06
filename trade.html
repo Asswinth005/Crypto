@@ -1058,7 +1058,7 @@
     <div class="nav-links">
         <!-- Home Dropdown -->
         <div class="nav-item dropdown">
-            <span style="color: #9c7be5; font-weight: 600;">Home</span>
+            <span style>Home</span>
             <i class="fas fa-chevron-down text-xs"></i>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="index.html"style="color: #9c7be5; font-weight: 600;">
@@ -1102,7 +1102,7 @@
         </div>
         
         <!-- Trade -->
-        <a class="nav-item" href="trade.html">
+        <a class="nav-item" href="trade.html"style="color: #9c7be5; font-weight: 600;">
             Trade
         </a>
         
@@ -1310,237 +1310,500 @@
                 </div>
             </div>
         </section>
-
-        <!-- Market Overview -->
-        <section class="container mx-auto px-4 sm:px-6 mb-8 sm:mb-16">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold">Live Market Overview</h2>
-                <div class="market-tabs-container flex overflow-x-auto pb-2 -mx-4 sm:mx-0 px-4 sm:px-0">
-                    <button class="market-tab active">All Coins</button>
-                    <button class="market-tab">Gainers</button>
-                    <button class="market-tab">Trending</button>
-                    <button class="market-tab">DeFi</button>
-                    <button class="market-tab">NFT</button>
-                    <button class="market-tab">Metaverse</button>
-                    <button class="market-tab">Web3</button>
+<!-- Trading Dashboard - Clean Version -->
+<section class="container mx-auto px-4 sm:px-6 mb-8 sm:mb-16">
+    <!-- Header with Market Data -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2">Trade Crypto</h2>
+                <p class="text-gray-600 dark:text-gray-400">Real-time trading with advanced order types</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Trading Fee</div>
+                    <div class="text-lg font-bold">0.10%</div>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm text-gray-600 dark:text-gray-400">24h Volume</div>
+                    <div class="text-lg font-bold">$142B</div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Main Trading Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Left: Trading Pair Info & Order Book -->
+        <div class="lg:col-span-2">
+            <!-- Trading Pair Selector -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                    <div class="flex items-center space-x-4 mb-4 sm:mb-0">
+                        <div class="flex items-center">
+                            <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="BTC" class="w-10 h-10 mr-3">
+                            <div>
+                                <div class="flex items-center">
+                                    <h3 class="text-xl sm:text-2xl font-bold mr-3">BTC/USDT</h3>
+                                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Spot</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Bitcoin / Tether USD</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg hover:border-primary transition-colors">
+                            <i class="fas fa-star mr-2"></i>Favorite
+                        </button>
+                        <button class="px-4 py-2 bg-gray-100 dark:bg-gray-900 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Market Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">24h High</div>
+                        <div class="text-lg font-bold">$68,245.20</div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">24h Low</div>
+                        <div class="text-lg font-bold">$66,120.80</div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">24h Change</div>
+                        <div class="text-lg font-bold text-green-500">+2.34%</div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">24h Volume</div>
+                        <div class="text-lg font-bold">$42.8B</div>
+                    </div>
+                </div>
+
+                <!-- Order Book -->
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-bold">Order Book</h4>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">
+                            Depth: <span class="font-bold">$12.5M</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Bids -->
+                    <div class="mb-6">
+                        <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            <span>Price (USDT)</span>
+                            <span>Amount (BTC)</span>
+                            <span>Total</span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between bg-red-50 dark:bg-red-900/20 p-2 rounded">
+                                <span class="text-red-500 font-medium">67,891.20</span>
+                                <span>2.450</span>
+                                <span class="font-medium">$166,234</span>
+                            </div>
+                            <div class="flex justify-between p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+                                <span class="text-red-500">67,890.50</span>
+                                <span>1.820</span>
+                                <span class="text-gray-600 dark:text-gray-400">$123,567</span>
+                            </div>
+                            <div class="flex justify-between p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+                                <span class="text-red-500">67,889.80</span>
+                                <span>3.150</span>
+                                <span class="text-gray-600 dark:text-gray-400">$213,456</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Price -->
+                    <div class="text-center my-4 py-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-600 dark:text-gray-400">Current Price</div>
+                        <div class="text-2xl font-bold my-1">$67,892.45</div>
+                        <div class="text-sm text-gray-500">Spread: $1.25 (0.0018%)</div>
+                    </div>
+                    
+                    <!-- Asks -->
+                    <div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+                                <span class="text-green-500">67,893.70</span>
+                                <span>1.230</span>
+                                <span class="text-gray-600 dark:text-gray-400">$83,456</span>
+                            </div>
+                            <div class="flex justify-between p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+                                <span class="text-green-500">67,894.20</span>
+                                <span>0.890</span>
+                                <span class="text-gray-600 dark:text-gray-400">$60,432</span>
+                            </div>
+                            <div class="flex justify-between bg-green-50 dark:bg-green-900/20 p-2 rounded">
+                                <span class="text-green-500 font-medium">67,895.10</span>
+                                <span>2.110</span>
+                                <span class="font-medium">$143,267</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Trades -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+                <h4 class="font-bold mb-4">Recent Trades</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-200 dark:border-gray-700">
+                                <th class="py-3 text-left">Time</th>
+                                <th class="py-3 text-left">Price (USDT)</th>
+                                <th class="py-3 text-left">Amount (BTC)</th>
+                                <th class="py-3 text-left">Total (USDT)</th>
+                                <th class="py-3 text-left">Side</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                                <td class="py-3">17:23:05</td>
+                                <td class="py-3 text-green-500">67,892.45</td>
+                                <td class="py-3">0.254</td>
+                                <td class="py-3">$17,234</td>
+                                <td class="py-3"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Buy</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                                <td class="py-3">17:22:48</td>
+                                <td class="py-3 text-red-500">67,892.30</td>
+                                <td class="py-3">1.890</td>
+                                <td class="py-3">$128,456</td>
+                                <td class="py-3"><span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs px-2 py-1 rounded">Sell</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                                <td class="py-3">17:22:15</td>
+                                <td class="py-3 text-green-500">67,892.60</td>
+                                <td class="py-3">0.056</td>
+                                <td class="py-3">$3,802</td>
+                                <td class="py-3"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Buy</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                                <td class="py-3">17:21:59</td>
+                                <td class="py-3 text-green-500">67,892.80</td>
+                                <td class="py-3">0.432</td>
+                                <td class="py-3">$29,340</td>
+                                <td class="py-3"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Buy</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                                <td class="py-3">17:21:30</td>
+                                <td class="py-3 text-red-500">67,891.90</td>
+                                <td class="py-3">2.150</td>
+                                <td class="py-3">$145,967</td>
+                                <td class="py-3"><span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs px-2 py-1 rounded">Sell</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Trading Interface -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+            <!-- Trading Mode Tabs -->
+            <div class="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+                <button class="trading-mode-tab active">Spot</button>
+                <button class="trading-mode-tab">Margin (3x)</button>
+                <button class="trading-mode-tab">Futures</button>
+            </div>
+
+            <!-- Buy/Sell Tabs -->
+            <div class="grid grid-cols-2 gap-2 mb-6">
+                <button class="buy-sell-tab active bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border-2 border-green-500">
+                    <i class="fas fa-arrow-up mr-2"></i>Buy
+                </button>
+                <button class="buy-sell-tab bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-2 border-transparent">
+                    <i class="fas fa-arrow-down mr-2"></i>Sell
+                </button>
+            </div>
+
+                        <!-- Fee & Summary -->
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 mb-6">
+                <div class="flex justify-between text-sm mb-2">
+                    <span class="text-gray-600 dark:text-gray-400">Trading Fee</span>
+                    <span>0.10%</span>
+                </div>
+                <div class="flex justify-between text-sm mb-2">
+                    <span class="text-gray-600 dark:text-gray-400">Estimated Fee</span>
+                    <span>$6.79</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600 dark:text-gray-400">Total Cost</span>
+                    <span class="font-bold">$6,796.04</span>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button class="w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-bold text-lg transition-colors">
+                Buy BTC
+            </button>
+
+            <!-- Account Balances -->
+            <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+    <div class="flex justify-between items-center mb-4">
+        <h4 class="font-bold">Your Balances</h4>
+        <button class="text-sm text-primary hover:underline flex items-center">
+            <i class="fas fa-wallet mr-2"></i>
+            Total: <span class="font-bold ml-1">$235,804</span>
+        </button>
+    </div>
+    
+    <div class="space-y-3">
+        <!-- BTC -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div class="flex items-center">
+                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="BTC" class="w-6 h-6 mr-3">
+                <div>
+                    <div class="font-medium">Bitcoin</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">BTC</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="font-bold">2.450 BTC</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">≈ $166,234</div>
+            </div>
+        </div>
+        
+        <!-- ETH -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div class="flex items-center">
+                <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="ETH" class="w-6 h-6 mr-3">
+                <div>
+                    <div class="font-medium">Ethereum</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">ETH</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="font-bold">8.920 ETH</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">≈ $34,120</div>
+            </div>
+        </div>
+        
+        <!-- SOL -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div class="flex items-center">
+                <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="SOL" class="w-6 h-6 mr-3">
+                <div>
+                    <div class="font-medium">Solana</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">SOL</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="font-bold">42.150 SOL</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">≈ $7,698</div>
+            </div>
+        </div>
+        
+        <!-- BNB -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div class="flex items-center">
+                <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="BNB" class="w-6 h-6 mr-3">
+                <div>
+                    <div class="font-medium">BNB</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">BNB</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="font-bold">6.825 BNB</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">≈ $4,267</div>
+            </div>
+        </div>
+        
+        <!-- XRP -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div class="flex items-center">
+                <img src="https://cryptologos.cc/logos/xrp-xrp-logo.png" alt="XRP" class="w-6 h-6 mr-3">
+                <div>
+                    <div class="font-medium">Ripple</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">XRP</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="font-bold">2,450.50 XRP</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">≈ $1,501</div>
+            </div>
+        </div>
+        
+        <!-- ADA -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div class="flex items-center">
+                <img src="https://cryptologos.cc/logos/cardano-ada-logo.png" alt="ADA" class="w-6 h-6 mr-3">
+                <div>
+                    <div class="font-medium">Cardano</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">ADA</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="font-bold">5,240.80 ADA</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">≈ $2,526</div>
+            </div>
+        </div>
+        
+        <!-- AVAX -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div class="flex items-center">
+                <img src="https://cryptologos.cc/logos/avalanche-avax-logo.png" alt="AVAX" class="w-6 h-6 mr-3">
+                <div>
+                    <div class="font-medium">Avalanche</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">AVAX</div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="font-bold">18.450 AVAX</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">≈ $834</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Show More/Less Toggle -->
+    <div class="mt-4 text-center">
+        <button id="toggleBalances" class="text-sm text-primary hover:underline flex items-center justify-center w-full">
+            <span>Show All Assets</span>
+            <i class="fas fa-chevron-down ml-2"></i>
+        </button>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trading Pairs Quick Access -->
+    
+
+<style>
+/* Trading-specific styles */
+.trading-mode-tab {
+    @apply px-4 py-3 text-sm font-medium border-b-2 border-transparent transition-colors hover:text-primary;
+}
+
+.trading-mode-tab.active {
+    @apply border-primary text-primary;
+}
+
+.buy-sell-tab {
+    @apply p-4 rounded-xl text-center font-bold transition-all;
+}
+
+.buy-sell-tab.active {
+    @apply border-2;
+}
+
+.order-type-btn {
+    @apply p-3 text-center border border-gray-300 dark:border-gray-700 rounded-lg transition-colors hover:border-primary hover:text-primary;
+}
+
+.order-type-btn.active {
+    @apply border-primary bg-primary/10 text-primary;
+}
+
+.trade-input {
+    @apply w-full p-4 border border-gray-300 dark:border-gray-700 bg-transparent rounded-xl focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none text-lg;
+}
+
+.price-adjust-btn {
+    @apply px-3 py-1 text-xs border border-gray-300 dark:border-gray-700 rounded hover:border-primary hover:text-primary transition-colors;
+}
+
+.amount-btn {
+    @apply p-2 text-center border border-gray-300 dark:border-gray-700 rounded-lg transition-colors hover:border-primary hover:text-primary;
+}
+
+.trading-pair-btn {
+    @apply p-4 border border-gray-300 dark:border-gray-700 rounded-xl transition-all hover:border-primary hover:bg-gray-50 dark:hover:bg-gray-900;
+}
+
+.trading-pair-btn.active {
+    @apply border-primary bg-primary/5 border-2;
+}
+</style>
+
+<script>
+// Trading functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Trading mode tabs
+    document.querySelectorAll('.trading-mode-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.trading-mode-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // Buy/sell tabs
+    document.querySelectorAll('.buy-sell-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.buy-sell-tab').forEach(t => {
+                t.classList.remove('active', 'border-green-500', 'border-red-500');
+                t.classList.add('border-transparent');
+            });
             
-            <!-- Market Stats -->
-            <div class="stats-grid mb-8 sm:mb-12">
-                <div class="stat-card">
-                    <div class="text-xl sm:text-2xl font-bold text-primary mb-2">$2.5T</div>
-                    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Total Market Cap</div>
-                    <div class="price-up mt-2 text-sm">+3.2%</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-xl sm:text-2xl font-bold text-primary mb-2">$142B</div>
-                    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-300">24h Volume</div>
-                    <div class="price-up mt-2 text-sm">+12.5%</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-xl sm:text-2xl font-bold text-primary mb-2">52.4%</div>
-                    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-300">BTC Dominance</div>
-                    <div class="price-down mt-2 text-sm">-0.8%</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-xl sm:text-2xl font-bold text-primary mb-2">76</div>
-                    <div class="text-sm sm:text-base text-gray-600 dark:text-gray-300">Fear & Greed</div>
-                    <div class="text-yellow-500 font-medium mt-2 text-sm">Greed</div>
-                </div>
-            </div>
-
-            <!-- Trading Volume Chart - ENHANCED REAL GRAPH -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-8 sm:mb-12 overflow-hidden">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
-                    <h3 class="text-lg sm:text-xl font-bold mb-4 sm:mb-0">24h Trading Volume</h3>
-                    <div class="flex space-x-4">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 rounded-full bg-primary mr-2"></div>
-                            <span class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Volume (USD)</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-                            <span class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">BTC Volume</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <!-- Y-axis labels -->
-                    <div class="absolute left-0 top-0 bottom-0 w-8 sm:w-12 flex flex-col justify-between text-xs text-gray-500 dark:text-gray-400">
-                        <div class="text-xs">$80B</div>
-                        <div class="text-xs">$60B</div>
-                        <div class="text-xs">$40B</div>
-                        <div class="text-xs">$20B</div>
-                        <div class="text-xs">$0</div>
-                    </div>
-                    
-                    <!-- Graph Container -->
-                    <div class="ml-8 sm:ml-12 h-48 sm:h-64 relative" id="volumeGraph">
-                        <!-- Volume Bars -->
-                        <div class="absolute inset-0 flex items-end justify-between px-2">
-                            <!-- Hour 0-3 -->
-                            <div class="flex flex-col items-center w-6 sm:w-8">
-                                <div class="volume-bar bg-primary/30 hover:bg-primary/50 transition-all duration-300" 
-                                     style="height: 45%" 
-                                     data-volume="36.2" 
-                                     data-time="00:00-03:00">
-                                </div>
-                                <div class="volume-bar bg-green-500/30 hover:bg-green-500/50 transition-all duration-300 mt-1" 
-                                     style="height: 25%" 
-                                     data-volume="20.1">
-                                </div>
-                            </div>
-                            
-                            <!-- Hour 4-7 -->
-                            <div class="flex flex-col items-center w-6 sm:w-8">
-                                <div class="volume-bar bg-primary/30 hover:bg-primary/50 transition-all duration-300" 
-                                     style="height: 55%" 
-                                     data-volume="44.3" 
-                                     data-time="04:00-07:00">
-                                </div>
-                                <div class="volume-bar bg-green-500/30 hover:bg-green-500/50 transition-all duration-300 mt-1" 
-                                     style="height: 30%" 
-                                     data-volume="24.5">
-                                </div>
-                            </div>
-                            
-                            <!-- Hour 8-11 -->
-                            <div class="flex flex-col items-center w-6 sm:w-8">
-                                <div class="volume-bar bg-primary/30 hover:bg-primary/50 transition-all duration-300" 
-                                     style="height: 70%" 
-                                     data-volume="56.8" 
-                                     data-time="08:00-11:00">
-                                </div>
-                                <div class="volume-bar bg-green-500/30 hover:bg-green-500/50 transition-all duration-300 mt-1" 
-                                     style="height: 40%" 
-                                     data-volume="32.1">
-                                </div>
-                            </div>
-                            
-                            <!-- Hour 12-15 -->
-                            <div class="flex flex-col items-center w-6 sm:w-8">
-                                <div class="volume-bar bg-primary/30 hover:bg-primary/50 transition-all duration-300" 
-                                     style="height: 85%" 
-                                     data-volume="68.4" 
-                                     data-time="12:00-15:00">
-                                </div>
-                                <div class="volume-bar bg-green-500/30 hover:bg-green-500/50 transition-all duration-300 mt-1" 
-                                     style="height: 50%" 
-                                     data-volume="40.2">
-                                </div>
-                            </div>
-                            
-                            <!-- Hour 16-19 (Peak) -->
-                            <div class="flex flex-col items-center w-6 sm:w-8">
-                                <div class="volume-bar bg-primary/30 hover:bg-primary/50 transition-all duration-300" 
-                                     style="height: 95%" 
-                                     data-volume="76.2" 
-                                     data-time="16:00-19:00">
-                                </div>
-                                <div class="volume-bar bg-green-500/30 hover:bg-green-500/50 transition-all duration-300 mt-1" 
-                                     style="height: 60%" 
-                                     data-volume="48.5">
-                                </div>
-                            </div>
-                            
-                            <!-- Hour 20-23 -->
-                            <div class="flex flex-col items-center w-6 sm:w-8">
-                                <div class="volume-bar bg-primary/30 hover:bg-primary/50 transition-all duration-300" 
-                                     style="height: 65%" 
-                                     data-volume="52.1" 
-                                     data-time="20:00-23:00">
-                                </div>
-                                <div class="volume-bar bg-green-500/30 hover:bg-green-500/50 transition-all duration-300 mt-1" 
-                                     style="height: 35%" 
-                                     data-volume="28.3">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Volume line connecting peaks - GOES ALL THE WAY -->
-                        <svg class="absolute inset-0 w-full h-full" style="pointer-events: none;">
-                            <!-- Total Volume Line - Goes full width -->
-                            <path id="volumeLine" d="M16,154 L72,124 L128,90 L184,62 L240,26 L304,90" 
-                                  fill="none" stroke="#9c7be5" stroke-width="2" stroke-linecap="round" 
-                                  stroke-dasharray="5,3" opacity="0.7"/>
-                            
-                            <!-- BTC Volume Line - Goes full width -->
-                            <path id="btcLine" d="M16,174 L72,154 L128,132 L184,110 L240,90 L304,132" 
-                                  fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" 
-                                  stroke-dasharray="3,3" opacity="0.7"/>
-                            
-                            <!-- Data points for Total Volume -->
-                            <circle cx="16" cy="154" r="3" fill="#9c7be5"/>
-                            <circle cx="72" cy="124" r="3" fill="#9c7be5"/>
-                            <circle cx="128" cy="90" r="3" fill="#9c7be5"/>
-                            <circle cx="184" cy="62" r="3" fill="#9c7be5"/>
-                            <circle cx="240" cy="26" r="3" fill="#9c7be5"/>
-                            <circle cx="304" cy="90" r="3" fill="#9c7be5"/>
-                            
-                            <!-- Data points for BTC Volume -->
-                            <circle cx="16" cy="174" r="3" fill="#10b981"/>
-                            <circle cx="72" cy="154" r="3" fill="#10b981"/>
-                            <circle cx="128" cy="132" r="3" fill="#10b981"/>
-                            <circle cx="184" cy="110" r="3" fill="#10b981"/>
-                            <circle cx="240" cy="90" r="3" fill="#10b981"/>
-                            <circle cx="304" cy="132" r="3" fill="#10b981"/>
-                        </svg>
-                    </div>
-                    
-                    <!-- X-axis labels - Full width -->
-                    <div class="ml-8 sm:ml-12 mt-4 flex justify-between px-2">
-                        <div class="text-xs text-gray-500 dark:text-gray-400">00:00</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">04:00</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">08:00</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">12:00</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">16:00</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">20:00</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">00:00</div>
-                    </div>
-                </div>
-                
-                <!-- Volume Stats -->
-                <div class="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
-                        <div class="text-sm text-gray-600 dark:text-gray-400">24h Total Volume</div>
-                        <div class="text-xl sm:text-2xl font-bold">$68.4B</div>
-                        <div class="text-green-500 text-xs sm:text-sm flex items-center mt-1">
-                            <i class="fas fa-arrow-up mr-1 text-xs"></i>
-                            +12.5% from yesterday
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
-                        <div class="text-sm text-gray-600 dark:text-gray-400">BTC Dominance</div>
-                        <div class="text-xl sm:text-2xl font-bold">58.7%</div>
-                        <div class="text-green-500 text-xs sm:text-sm flex items-center mt-1">
-                            <i class="fas fa-arrow-up mr-1 text-xs"></i>
-                            +2.1% from yesterday
-                        </div>
-                    </div>
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Peak Volume Time</div>
-                        <div class="text-xl sm:text-2xl font-bold">16:00-19:00</div>
-                        <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">US Trading Hours</div>
-                    </div>
-                </div>
-                
-                <!-- Interactive Tooltip (Hidden by default) -->
-                <div id="volumeTooltip" class="absolute bg-gray-900 text-white p-3 rounded-lg shadow-xl text-sm hidden z-50">
-                    <div class="font-bold mb-2" id="tooltipTime">Time: 00:00-03:00</div>
-                    <div class="flex justify-between mb-1">
-                        <span>Total Volume:</span>
-                        <span id="tooltipTotal" class="font-bold">$36.2B</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span>BTC Volume:</span>
-                        <span id="tooltipBTC" class="font-bold">$20.1B</span>
-                    </div>
-                    <div class="w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-gray-900 absolute -bottom-2 left-1/2 transform -translate-x-1/2"></div>
-                </div>
-            </div>
-
+            if (this.textContent.includes('Buy')) {
+                this.classList.add('active', 'border-green-500');
+                // Change action button to green
+                document.querySelector('button.bg-green-500').textContent = 'Buy BTC';
+                document.querySelector('button.bg-green-500').classList.replace('bg-red-500', 'bg-green-500');
+            } else {
+                this.classList.add('active', 'border-red-500');
+                // Change action button to red
+                document.querySelector('button.bg-green-500').textContent = 'Sell BTC';
+                document.querySelector('button.bg-green-500').classList.replace('bg-green-500', 'bg-red-500');
+            }
+        });
+    });
+    
+    // Order type buttons
+    document.querySelectorAll('.order-type-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.order-type-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // Quick amount buttons
+    document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const percentage = parseFloat(this.textContent) / 100;
+            // In real app, calculate amount based on balance
+            console.log('Set amount to', percentage * 100 + '%');
+        });
+    });
+    
+    // Price adjustment buttons
+    document.querySelectorAll('.price-adjust-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const priceInput = document.querySelector('.trade-input[type="number"]');
+            let currentPrice = parseFloat(priceInput.value);
+            
+            if (this.textContent.includes('−')) {
+                priceInput.value = (currentPrice * 0.99).toFixed(2);
+            } else {
+                priceInput.value = (currentPrice * 1.01).toFixed(2);
+            }
+        });
+    });
+    
+    // Trading pair selection
+    document.querySelectorAll('.trading-pair-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.trading-pair-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // In real app, this would load the selected trading pair data
+            const pair = this.querySelector('span').textContent;
+            console.log('Selected trading pair:', pair);
+        });
+    });
+});
+</script>
+       
             <!-- Cryptocurrency Cards Grid -->
             <section class="container mx-auto px-4 sm:px-6 mb-12 sm:mb-20">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12">Top Cryptocurrencies</h2>
@@ -2014,65 +2277,65 @@
                 
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-4 sm:mb-6">Quick Links</h3>
+                    <h3 class="text-white text-xl font-bold mb-6">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='index.html'>Home</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='about.html'>About</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='Market.html'>Markets</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='trade.html'>Trade</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='Blog.html'>Blog</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='contact.html'>Contact</a></li>
+                        <li><a class='hover:text-primary transition' href='index.html'>Home</a></li>
+                        <li><a class='hover:text-primary transition' href='about.html'>About</a></li>
+                        <li><a class='hover:text-primary transition' href='market.html'>Markets</a></li>
+                        <li><a class='hover:text-primary transition' href='trade.html'>Trade</a></li>
+                        <li><a class='hover:text-primary transition' href='Blog.html'>Blog</a></li>
+                        <li><a class='hover:text-primary transition' href='contact.html'>Contact</a></li>
                     </ul>
                 </div>
                 
                 <!-- Services -->
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-4 sm:mb-6">Services</h3>
+                    <h3 class="text-white text-xl font-bold mb-6">Services</h3>
                     <ul class="space-y-3">
-                        <li><a href="trade.html" class="hover:text-primary transition text-sm sm:text-base">Spot Trading</a></li>
-                        <li><a href="trade.html" class="hover:text-primary transition text-sm sm:text-base">Futures Trading</a></li>
-                        <li><a href="Earn.html" class="hover:text-primary transition text-sm sm:text-base">Staking</a></li>
-                        <li><a href="Earn.html" class="hover:text-primary transition text-sm sm:text-base">Crypto Lending</a></li>
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">Crypto Card</a></li>
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">API Access</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Spot Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Futures Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Staking</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Crypto Lending</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Crypto Card</a></li>
+                        <li><a href="#" class="hover:text-primary transition">API Access</a></li>
                     </ul>
                 </div>
                 
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-4 sm:mb-6">Contact Info</h3>
+                    <h3 class="text-white text-xl font-bold mb-6">Contact Info</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
-                            <span class="text-sm sm:text-base">123 Crypto Street, Blockchain District, NY 10001</span>
+                            <span>123 Crypto Street, Blockchain District, NY 10001</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone text-primary mr-3"></i>
-                            <span class="text-sm sm:text-base">+1 (555) 123-4567</span>
+                            <span>+1 (555) 123-4567</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-envelope text-primary mr-3"></i>
-                            <span class="text-sm sm:text-base">help@cryptogroww.com>
+                            <span>help@cryptogroww.com</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-clock text-primary mr-3"></i>
-                            <span class="text-sm sm:text-base">24/7 Customer Support</span>
+                            <span>24/7 Customer Support</span>
                         </li>
                     </ul>
                     
-                    
+                   
                 </div>
             </div>
             
             <!-- Bottom Bar -->
-            <div class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
+            <div class="mt-12 pt-8 border-t border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-xs sm:text-sm opacity-75 text-center md:text-left mb-4 md:mb-0">&copy; 2023 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
-                    <div class="flex flex-wrap justify-center space-x-4 sm:space-x-6 gap-2 sm:gap-0">
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Privacy Policy</a>
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Terms of Service</a>
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Cookie Policy</a>
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Sitemap</a>
+                    <p class="text-sm opacity-75">&copy; 2026 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-sm hover:text-primary transition">Privacy Policy</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Terms of Service</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Cookie Policy</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Sitemap</a>
                     </div>
                 </div>
             </div>

@@ -156,214 +156,294 @@
             box-shadow: 0 4px 12px rgba(156, 123, 229, 0.3);
         }
         
-        /* Navigation styles - RESPONSIVE */
-      /* Navigation styles - RIGHT SIDE NAVIGATION */
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
+        /* Navigation styles - RIGHT SIDE NAVIGATION */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem; /* Consistent spacing between all nav items */
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Consistent spacing between all nav items */
+        }
 
-.nav-right-section {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
+        .nav-right-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
 
-.nav-item {
-    position: relative;
-    font-weight: 500;
-    color: #1a1a2e;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    padding: 0.5rem 0;
-}
+        .nav-item {
+            position: relative;
+            font-weight: 500;
+            color: #1a1a2e;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            padding: 0.5rem 0;
+        }
 
-.dark .nav-item {
-    color: #e5e5e5;
-}
+        .dark .nav-item {
+            color: #e5e5e5;
+        }
 
-.nav-item:hover {
-    color: #9c7be5;
-}
+        .nav-item:hover {
+            color: #9c7be5;
+        }
 
-.nav-item.dropdown {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    cursor: pointer;
-}
+        .nav-item.dropdown {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    border-radius: 8px;
-    padding: 0.5rem 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.2s ease;
-    z-index: 1000;
-    min-width: 180px;
-    border: 1px solid #e5e7eb;
-}
-
-.dark .dropdown-menu {
-    background: #1a1a2e;
-    border-color: #2d2d4d;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-[dir="rtl"] .dropdown-menu {
-    left: auto;
-    right: 0;
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-item {
-    padding: 0.75rem 1.5rem;
-    color: #4b5563;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all 0.2s ease;
-}
-
-.dark .dropdown-item {
-    color: #d1d5db;
-}
-
-.dropdown-item:hover {
-    background: #f3f4f6;
-    color: #9c7be5;
-    padding-left: 1.75rem;
-}
-
-[dir="rtl"] .dropdown-item:hover {
-    padding-left: 1.5rem;
-    padding-right: 1.75rem;
-}
-
-.dark .dropdown-item:hover {
-    background: #2d2d4d;
-}
-
-/* Auth buttons */
-.auth-buttons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.btn-login {
-    padding: 0.5rem 1.5rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    color: #4b5563;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.dark .btn-login {
-    border-color: #4b5563;
-    color: #d1d5db;
-}
-
-.btn-login:hover {
-    border-color: #9c7be5;
-    color: #9c7be5;
-}
-
-.btn-signup {
-    padding: 0.5rem 1.5rem;
-    background: #9c7be5;
-    color: white;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.btn-signup:hover {
-    background: #b299ea;
-}
-
-/* Toggle buttons */
-.toggle-buttons {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.toggle-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f4f6;
-    color: #6b7280;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.dark .toggle-btn {
-    background: #2d2d4d;
-    color: #9ca3af;
-}
-
-.toggle-btn:hover {
-    background: #e5e7eb;
-    color: #374151;
-}
-
-.dark .toggle-btn:hover {
-    background: #3d3d6d;
-    color: #e5e5e5;
-}
-
-.toggle-btn.active {
-    background: #b299ea;
-    color: white;
-}
-        
-        /* Mobile Menu Styles */
-        #mobile-menu {
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
             background: white;
-            border-top: 1px solid #e5e7eb;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            min-width: 180px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .dark .dropdown-menu {
+            background: #1a1a2e;
+            border-color: #2d2d4d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        [dir="rtl"] .dropdown-menu {
+            left: auto;
+            right: 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .dark .dropdown-item {
+            color: #d1d5db;
+        }
+
+        .dropdown-item:hover {
+            background: #f3f4f6;
+            color: #9c7be5;
+            padding-left: 1.75rem;
+        }
+
+        [dir="rtl"] .dropdown-item:hover {
+            padding-left: 1.5rem;
+            padding-right: 1.75rem;
+        }
+
+        .dark .dropdown-item:hover {
+            background: #2d2d4d;
+        }
+
+        /* Auth buttons */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-login {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            color: #4b5563;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dark .btn-login {
+            border-color: #4b5563;
+            color: #d1d5db;
+        }
+
+        .btn-login:hover {
+            border-color: #9c7be5;
+            color: #9c7be5;
+        }
+
+        .btn-signup {
+            padding: 0.5rem 1.5rem;
+            background: #9c7be5;
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-signup:hover {
+            background: #b299ea;
+        }
+
+        /* Toggle buttons */
+        .toggle-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            color: #6b7280;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .dark .toggle-btn {
+            background: #2d2d4d;
+            color: #9ca3af;
+        }
+
+        .toggle-btn:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .dark .toggle-btn:hover {
+            background: #3d3d6d;
+            color: #e5e5e5;
+        }
+
+        .toggle-btn.active {
+            background: #b299ea;
+            color: white;
+        }
+        
+        /* ========== MOBILE MENU - LEFTSIDE SLIDEOUT ========== */
+        /* Mobile Menu Overlay */
+        #mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #mobile-menu-overlay.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Mobile Menu Container */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .dark #mobile-menu {
             background: #1a1a2e;
-            border-color: #2d2d4d;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
         }
 
         #mobile-menu.show {
-            max-height: 85vh;
-            overflow-y: auto;
+            left: 0;
         }
 
-        /* Mobile menu items */
+        /* Mobile Menu Header */
+        .mobile-menu-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dark .mobile-menu-header {
+            border-bottom-color: #2d2d4d;
+        }
+
+        .mobile-menu-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .mobile-menu-logo {
+            width: 36px;
+            height: 36px;
+            background: #9c7be5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-logo i {
+            color: white;
+            font-size: 1rem;
+        }
+
+        .mobile-menu-brand-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-brand-text span:first-child {
+            color: #1a1a2e;
+        }
+
+        .dark .mobile-menu-brand-text span:first-child {
+            color: #ffffff;
+        }
+
+        .mobile-menu-brand-text span:last-child {
+            color: #9c7be5;
+        }
+
+        /* Mobile Menu Content */
+        .mobile-menu-content {
+            padding: 1rem 0;
+        }
+
+        /* Mobile Menu Items */
         .mobile-menu-item {
             display: block;
             padding: 1rem 1.5rem;
@@ -371,6 +451,7 @@
             color: #4b5563;
             border-bottom: 1px solid #f3f4f6;
             transition: all 0.2s ease;
+            text-decoration: none;
         }
 
         .dark .mobile-menu-item {
@@ -381,7 +462,7 @@
         .mobile-menu-item:hover {
             background-color: #f9fafb;
             color: #9c7be5;
-            padding-left: 2rem;
+            padding-left: 1.75rem;
         }
 
         .dark .mobile-menu-item:hover {
@@ -390,60 +471,18 @@
 
         [dir="rtl"] .mobile-menu-item:hover {
             padding-left: 1.5rem;
-            padding-right: 2rem;
+            padding-right: 1.75rem;
         }
 
-        /* Mobile auth buttons */
-        .mobile-auth-btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-align: center;
-            margin: 0.25rem;
-            border: 1px solid transparent;
-        }
-
-        .mobile-auth-btn.login {
-            background: transparent;
-            border-color: #e5e7eb;
-            color: #4b5563;
-        }
-
-        .dark .mobile-auth-btn.login {
-            border-color: #4b5563;
-            color: #d1d5db;
-        }
-
-        .mobile-auth-btn.login:hover {
-            background-color: #9c7be5;
-            color: white;
-            border-color: #9c7be5;
-        }
-
-        .mobile-auth-btn.signup {
-            background: #9c7be5;
-            color: white;
-        }
-
-        .mobile-auth-btn.signup:hover {
-            background: #b299ea;
-        }
-
-        /* Lock body scroll when menu is open */
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        /* Mobile dropdown items */
+        /* Mobile Dropdown Items */
         .mobile-dropdown-item {
             display: block;
-            padding: 0.75rem 2.5rem;
+            padding: 0.875rem 2rem;
             font-size: 0.95rem;
             color: #6b7280;
             transition: all 0.2s ease;
             border-bottom: 1px solid #f9fafb;
+            text-decoration: none;
         }
 
         .dark .mobile-dropdown-item {
@@ -454,7 +493,7 @@
         .mobile-dropdown-item:hover {
             color: #9c7be5;
             background-color: #f9fafb;
-            padding-left: 3rem;
+            padding-left: 2.25rem;
         }
 
         .dark .mobile-dropdown-item:hover {
@@ -462,11 +501,11 @@
         }
 
         [dir="rtl"] .mobile-dropdown-item:hover {
-            padding-left: 2.5rem;
-            padding-right: 3rem;
+            padding-left: 2rem;
+            padding-right: 2.25rem;
         }
 
-        /* Mobile dropdown content */
+        /* Mobile Dropdown Content */
         .mobile-dropdown-content {
             max-height: 0;
             overflow: hidden;
@@ -475,6 +514,139 @@
 
         .mobile-dropdown-content.show {
             max-height: 300px;
+        }
+
+        /* Mobile Dropdown Button */
+        .mobile-dropdown-btn {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+            color: #4b5563;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dark .mobile-dropdown-btn {
+            color: #d1d5db;
+            border-bottom-color: #2d2d4d;
+        }
+
+        .mobile-dropdown-btn:hover {
+            background-color: #f9fafb;
+            color: #9c7be5;
+        }
+
+        .dark .mobile-dropdown-btn:hover {
+            background-color: #2d2d4d;
+        }
+
+        .mobile-dropdown-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown-btn.active i {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile Auth Section */
+        .mobile-auth-section {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .dark .mobile-auth-section {
+            border-top-color: #2d2d4d;
+            background: #1a1a2e;
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-auth-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-auth-btn.login {
+            background: transparent;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+        }
+
+        .dark .mobile-auth-btn.login {
+            border-color: #4b5563;
+            color: #d1d5db;
+        }
+
+        .mobile-auth-btn.login:hover {
+            background: #9c7be5;
+            color: white;
+            border-color: #9c7be5;
+        }
+
+        .mobile-auth-btn.signup {
+            background: #9c7be5;
+            color: white;
+            border: 1px solid #9c7be5;
+        }
+
+        .mobile-auth-btn.signup:hover {
+            background: #b299ea;
+            border-color: #b299ea;
+        }
+
+        /* Mobile Toggle Buttons */
+        .mobile-toggle-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Mobile Close Button */
+        .mobile-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .dark .mobile-close-btn {
+            color: #d1d5db;
+        }
+
+        .mobile-close-btn:hover {
+            background: #f3f4f6;
+            color: #9c7be5;
+        }
+
+        .dark .mobile-close-btn:hover {
+            background: #2d2d4d;
+        }
+
+        /* Lock body scroll when menu is open */
+        body.menu-open {
+            overflow: hidden;
         }
         
         /* Footer social icons */
@@ -600,13 +772,37 @@
             border-color: #9c7be5;
         }
         
-        /* RESPONSIVE UTILITIES */
+        /* ========== RESPONSIVE UTILITIES ========== */
         .container {
             width: 100%;
             padding-right: 1rem;
             padding-left: 1rem;
             margin-right: auto;
             margin-left: auto;
+        }
+        
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px;
+            }
         }
         
         /* Responsive text sizes */
@@ -733,6 +929,68 @@
                 height: 500px;
             }
         }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 480px) {
+            .mobile-menu-header {
+                padding: 1rem 1.25rem;
+            }
+            
+            .mobile-menu-item,
+            .mobile-dropdown-btn {
+                padding: 0.875rem 1.25rem;
+            }
+            
+            .mobile-dropdown-item {
+                padding: 0.75rem 1.75rem;
+            }
+            
+            .mobile-auth-section {
+                padding: 1.25rem;
+            }
+            
+            .mobile-auth-buttons {
+                flex-direction: column;
+            }
+            
+            #mobile-menu {
+                width: 90%;
+            }
+        }
+
+        /* RTL adjustments for mobile menu */
+        [dir="rtl"] #mobile-menu {
+            left: auto;
+            right: -100%;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark[dir="rtl"] #mobile-menu {
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        [dir="rtl"] #mobile-menu.show {
+            left: auto;
+            right: 0;
+        }
+
+        [dir="rtl"] .mobile-menu-item:hover {
+            padding-right: 1.75rem;
+            padding-left: 1.5rem;
+        }
+
+        [dir="rtl"] .mobile-dropdown-item:hover {
+            padding-right: 2.25rem;
+            padding-left: 2rem;
+        }
+
+        [dir="rtl"] .mobile-dropdown-btn {
+            text-align: right;
+        }
+
+        [dir="rtl"] .mobile-dropdown-btn.active i {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="no-overflow">
@@ -754,239 +1012,264 @@
                 </a>
 
                 <!-- Desktop Navigation - RIGHT SIDE NAVIGATION -->
-              <div class="hidden xl:flex items-center">
-    <!-- Navigation Links on RIGHT side -->
-    <div class="nav-links">
-        <!-- Home Dropdown -->
-        <div class="nav-item dropdown">
-            <span style="color: #9c7be5; font-weight: 600;">Home</span>
-            <i class="fas fa-chevron-down text-xs"></i>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="index.html"style="color: #9c7be5; font-weight: 600;">
-                    <i class="fas fa-home"></i>
-                    Home 1
-                </a>
-                <a class="dropdown-item" href="home2.html">
-                    <i class="fas fa-home"></i>
-                    Home 2
-                </a>
-            </div>
-        </div>
-        
-        <!-- About -->
-        <a class="nav-item" href="about.html">
-            About
-        </a>
-        
-        <!-- Markets Dropdown -->
-        <div class="nav-item dropdown">
-            <span>Markets</span>
-            <i class="fas fa-chevron-down text-xs"></i>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="market.html">
-                    <i class="fas fa-chart-bar"></i>
-                    Market Overview
-                </a>
-                <a class="dropdown-item" href="bit.html">
-                    <i class="fab fa-bitcoin"></i>
-                    Bitcoin
-                </a>
-                <a class="dropdown-item" href="ethereum.html">
-                    <i class="fab fa-ethereum"></i>
-                    Ethereum
-                </a>
-                <a class="dropdown-item" href="alt.html">
-                    <i class="fas fa-gem"></i>
-                    Altcoins
-                </a>
-            </div>
-        </div>
-        
-        <!-- Trade -->
-        <a class="nav-item" href="trade.html">
-            Trade
-        </a>
-        
-        <!-- Blog -->
-        <a class="nav-item" href="Blog.html">
-            Blog
-        </a>
-        
-        <!-- Earn -->
-        <a class="nav-item" href="Earn.html">
-            Earn
-        </a>
-        
-        <!-- Contact -->
-        <a class="nav-item" href="contact.html">
-            Contact
-        </a>
-        
-        <!-- Dashboard Dropdown -->
-        <div class="nav-item dropdown">
-            <span>Dashboard</span>
-            <i class="fas fa-chevron-down text-xs"></i>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="Admin.html">
-                    <i class="fas fa-user-shield"></i>
-                    Admin
-                </a>
-                <a class="dropdown-item" href="Client.html">
-                    <i class="fas fa-user"></i>
-                    Client
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Right Section: Toggle buttons and Auth buttons -->
-    <div class="nav-right-section ml-6">
-        <!-- Toggle buttons (Theme & RTL) -->
-        <div class="toggle-buttons">
-            <!-- Theme Toggle -->
-            <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
-                <i class="fas fa-moon"></i>
-            </button>
-            
-            <!-- RTL Toggle -->
-            <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
-                ⇄
-            </button>
-        </div>
-        
-        <!-- Login/Signup buttons -->
-        <div class="auth-buttons">
-            <a class="btn-login" href="Login.html">
-                Login
-            </a>
-            <a class="btn-signup" href="Signup.html">
-                Sign Up
-            </a>
-        </div>
-    </div>
-</div>
+                <div class="hidden xl:flex items-center">
+                    <!-- Navigation Links on RIGHT side -->
+                    <div class="nav-links">
+                        <!-- Home Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span style>Home</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="index.html">
+                                    <i class="fas fa-home"></i>
+                                    Home 1
+                                </a>
+                                <a class="dropdown-item" href="home2.html">
+                                    <i class="fas fa-home"></i>
+                                    Home 2
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- About -->
+                        <a class="nav-item" href="about.html">
+                            About
+                        </a>
+                        
+                        <!-- Markets Dropdown -->
+                        <div class="nav-item dropdown"style="color: #9c7be5; font-weight: 600;">
+                            <span>Markets</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="market.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Market Overview
+                                </a>
+                                <a class="dropdown-item" href="bit.html">
+                                    <i class="fab fa-bitcoin"></i>
+                                    Bitcoin
+                                </a>
+                                <a class="dropdown-item" href="ethereum.html">
+                                    <i class="fab fa-ethereum"></i>
+                                    Ethereum
+                                </a>
+                                <a class="dropdown-item" href="alt.html"style="color: #9c7be5; font-weight: 600;">
+                                    <i class="fas fa-gem"></i>
+                                    Altcoins
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Trade -->
+                        <a class="nav-item" href="trade.html">
+                            Trade
+                        </a>
+                        
+                        <!-- Blog -->
+                        <a class="nav-item" href="Blog.html">
+                            Blog
+                        </a>
+                        
+                        <!-- Earn -->
+                        <a class="nav-item" href="Earn.html">
+                            Earn
+                        </a>
+                        
+                        <!-- Contact -->
+                        <a class="nav-item" href="contact.html">
+                            Contact
+                        </a>
+                        
+                        <!-- Dashboard Dropdown -->
+                        <div class="nav-item dropdown">
+                            <span>Dashboard</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="Admin.html">
+                                    <i class="fas fa-user-shield"></i>
+                                    Admin
+                                </a>
+                                <a class="dropdown-item" href="Client.html">
+                                    <i class="fas fa-user"></i>
+                                    Client
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Section: Toggle buttons and Auth buttons -->
+                    <div class="nav-right-section ml-6">
+                        <!-- Toggle buttons (Theme & RTL) -->
+                        <div class="toggle-buttons">
+                            <!-- Theme Toggle -->
+                            <button id="theme-toggle" class="toggle-btn" title="Toggle theme">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                            
+                            <!-- RTL Toggle -->
+                            <button id="rtl-toggle" class="toggle-btn" title="Toggle RTL/LTR">
+                                ⇄
+                            </button>
+                        </div>
+                        
+                        <!-- Login/Signup buttons -->
+                        <div class="auth-buttons">
+                            <a class="btn-login" href="Login.html">
+                                Login
+                            </a>
+                            <a class="btn-signup" href="Signup.html">
+                                Sign Up
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Mobile Menu Button -->
-<button id="mobile-toggle" class="xl:hidden text-dark dark:text-gray-300 touch-target p-2">
+                <button id="mobile-toggle" class="xl:hidden text-dark dark:text-gray-300 touch-target p-2">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
+    </nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="xl:hidden">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu (Leftside Slideout) -->
+    <div id="mobile-menu">
+        <!-- Mobile Menu Header -->
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-brand">
+                <div class="mobile-menu-logo">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="mobile-menu-brand-text">
+                    <span>Crypto</span>
+                    <span>Groww</span>
+                </div>
+            </div>
+            <button id="mobile-close" class="mobile-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Content -->
+        <div class="mobile-menu-content">
             <!-- Home -->
             <div class="mobile-dropdown">
-                <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item touch-target">
+                <button class="mobile-dropdown-btn">
                     <span>Home</span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down text-xs"></i>
                 </button>
                 <div class="mobile-dropdown-content">
                     <a class="mobile-dropdown-item" href="index.html">
-                        <i class="fas fa-home mr-2"></i>
+                        <i class="fas fa-home mr-3"></i>
                         Home 1
                     </a>
                     <a class="mobile-dropdown-item" href="index.html">
-                        <i class="fas fa-home mr-2"></i>
+                        <i class="fas fa-home mr-3"></i>
                         Home 2
                     </a>
                 </div>
             </div>
             
             <!-- About -->
-            <a class="mobile-menu-item touch-target" href="about.html">
-                <i class="fas fa-info-circle mr-2"></i>
+            <a class="mobile-menu-item" href="about.html">
+                <i class="fas fa-info-circle mr-3"></i>
                 About
             </a>
             
             <!-- Markets -->
             <div class="mobile-dropdown">
-                <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item touch-target">
+                <button class="mobile-dropdown-btn">
                     <span style="color: #9c7be5; font-weight: 600;">Markets</span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down text-xs"></i>
                 </button>
                 <div class="mobile-dropdown-content">
                     <a class="mobile-dropdown-item" href="market.html">
-                        <i class="fas fa-chart-bar mr-2"></i>
+                        <i class="fas fa-chart-bar mr-3"></i>
                         Market Overview
                     </a>
                     <a class="mobile-dropdown-item" href="bit.html">
-                        <i class="fab fa-bitcoin mr-2"></i>
+                        <i class="fab fa-bitcoin mr-3"></i>
                         Bitcoin
                     </a>
                     <a class="mobile-dropdown-item" href="ethereum.html">
-                        <i class="fab fa-ethereum mr-2"></i>
+                        <i class="fab fa-ethereum mr-3"></i>
                         Ethereum
                     </a>
                     <a class="mobile-dropdown-item" href="alt.html" style="color: #9c7be5; font-weight: 600;">
-                        <i class="fas fa-gem mr-2"></i>
+                        <i class="fas fa-gem mr-3"></i>
                         Altcoins
                     </a>
                 </div>
             </div>
             
             <!-- Trade -->
-            <a class="mobile-menu-item touch-target" href="trade.html">
-                <i class="fas fa-exchange-alt mr-2"></i>
+            <a class="mobile-menu-item" href="trade.html">
+                <i class="fas fa-exchange-alt mr-3"></i>
                 Trade
             </a>
 
             <!-- Blog -->
-            <a class="mobile-menu-item touch-target" href="Blog.html">
-                <i class="fas fa-blog mr-2"></i>
+            <a class="mobile-menu-item" href="Blog.html">
+                <i class="fas fa-blog mr-3"></i>
                 Blog
             </a>
             
             <!-- Earn -->
-            <a class="mobile-menu-item touch-target" href="Earn.html">
-                <i class="fas fa-hand-holding-usd mr-2"></i>
+            <a class="mobile-menu-item" href="Earn.html">
+                <i class="fas fa-hand-holding-usd mr-3"></i>
                 Earn
             </a>
             
             <!-- Contact -->
-            <a class="mobile-menu-item touch-target" href="contact.html">
-                <i class="fas fa-phone mr-2"></i>
+            <a class="mobile-menu-item" href="contact.html">
+                <i class="fas fa-phone mr-3"></i>
                 Contact
             </a>
             
             <!-- Dashboard -->
             <div class="mobile-dropdown">
-                <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item touch-target">
+                <button class="mobile-dropdown-btn">
                     <span>Dashboard</span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    <i class="fas fa-chevron-down text-xs"></i>
                 </button>
                 <div class="mobile-dropdown-content">
                     <a class="mobile-dropdown-item" href="Admin.html">
-                        <i class="fas fa-user-shield mr-2"></i>
+                        <i class="fas fa-user-shield mr-3"></i>
                         Admin
                     </a>
                     <a class="mobile-dropdown-item" href="Client.html">
-                        <i class="fas fa-user mr-2"></i>
+                        <i class="fas fa-user mr-3"></i>
                         Client
                     </a>
                 </div>
             </div>
-            
-            <!-- Mobile Auth Buttons -->
-            <div class="flex flex-col sm:flex-row gap-3 p-4 sm:p-6">
-                <a class="mobile-auth-btn login flex-1 text-center touch-target" href="Login.html">
+        </div>
+        
+        <!-- Mobile Auth Section -->
+        <div class="mobile-auth-section">
+            <div class="mobile-auth-buttons">
+                <a class="mobile-auth-btn login" href="Login.html">
                     Login
                 </a>
-                <a class="mobile-auth-btn signup flex-1 text-center touch-target" href="Signup.html">
+                <a class="mobile-auth-btn signup" href="Signup.html">
                     Sign Up
                 </a>
             </div>
             
             <!-- Mobile Toggle Buttons -->
-            <div class="flex justify-center gap-3 p-4 sm:p-6 border-t border-gray-200 dark:border-gray-800">
-                <button id="theme-toggle-mobile" class="toggle-btn touch-target">
+            <div class="mobile-toggle-buttons">
+                <button id="mobile-theme-toggle" class="toggle-btn">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button id="rtl-toggle-mobile" class="toggle-btn touch-target">
+                <button id="mobile-rtl-toggle" class="toggle-btn">
                     ⇄
                 </button>
             </div>
         </div>
-    </nav>
+    </div>
 
     <!-- Main Content -->
     <main class="pt-20 sm:pt-24 lg:pt-32 pb-12 sm:pb-16 lg:pb-20">
@@ -1736,9 +2019,32 @@
                     </div>
                 </div>
                 
-                
+                <!-- Chart Section - Responsive -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-0">Altcoin Market Cap Growth</h3>
+                        <div class="flex space-x-2 sm:space-x-4">
+                            <select class="py-2 px-4 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm sm:text-base">
+                                <option>Last 12 Months</option>
+                                <option>Last 6 Months</option>
+                                <option>Last 30 Days</option>
+                            </select>
+                        </div>
+                    </div>
                     
-                    
+                    <div class="relative">
+                        <!-- Simplified chart representation -->
+                        <div class="responsive-chart bg-gradient-to-t from-primary/10 to-transparent dark:from-primary/5 dark:to-transparent rounded-lg sm:rounded-xl overflow-hidden">
+                            <!-- Chart would be implemented with a charting library in a real application -->
+                            <div class="absolute inset-0 flex items-end">
+                                <div class="w-1/6 h-2/3 bg-gradient-to-t from-primary/40 to-primary/10 ml-4"></div>
+                                <div class="w-1/6 h-1/2 bg-gradient-to-t from-primary/40 to-primary/10 ml-2"></div>
+                                <div class="w-1/6 h-3/4 bg-gradient-to-t from-primary/40 to-primary/10 ml-2"></div>
+                                <div class="w-1/6 h-2/5 bg-gradient-to-t from-primary/40 to-primary/10 ml-2"></div>
+                                <div class="w-1/6 h-4/5 bg-gradient-to-t from-primary/40 to-primary/10 ml-2"></div>
+                                <div class="w-1/6 h-3/5 bg-gradient-to-t from-primary/40 to-primary/10 ml-2 mr-4"></div>
+                            </div>
+                        </div>
                         
                         <!-- Chart labels -->
                         <div class="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-500 dark:text-gray-400 px-2 sm:px-4">
@@ -1843,141 +2149,134 @@
                 
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-white text-lg sm:text-xl font-bold mb-3 sm:mb-6">Quick Links</h3>
-                    <ul class="space-y-2 sm:space-y-3">
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='index.html'>Home</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='about.html'>About</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='market.html'>Markets</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='trade.html'>Trade</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='Blog.html'>Blog</a></li>
-                        <li><a class='hover:text-primary transition text-sm sm:text-base' href='contact.html'>Contact</a></li>
+                    <h3 class="text-white text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a class='hover:text-primary transition' href='index.html'>Home</a></li>
+                        <li><a class='hover:text-primary transition' href='about.html'>About</a></li>
+                        <li><a class='hover:text-primary transition' href='market.html'>Markets</a></li>
+                        <li><a class='hover:text-primary transition' href='trade.html'>Trade</a></li>
+                        <li><a class='hover:text-primary transition' href='Blog.html'>Blog</a></li>
+                        <li><a class='hover:text-primary transition' href='contact.html'>Contact</a></li>
                     </ul>
                 </div>
                 
                 <!-- Services -->
                 <div>
-                    <h3 class="text-white text-lg sm:text-xl font-bold mb-3 sm:mb-6">Services</h3>
-                    <ul class="space-y-2 sm:space-y-3">
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">Spot Trading</a></li>
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">Futures Trading</a></li>
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">Staking</a></li>
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">Crypto Lending</a></li>
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">Crypto Card</a></li>
-                        <li><a href="#" class="hover:text-primary transition text-sm sm:text-base">API Access</a></li>
+                    <h3 class="text-white text-xl font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-primary transition">Spot Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Futures Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Staking</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Crypto Lending</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Crypto Card</a></li>
+                        <li><a href="#" class="hover:text-primary transition">API Access</a></li>
                     </ul>
                 </div>
                 
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-white text-lg sm:text-xl font-bold mb-3 sm:mb-6">Contact Info</h3>
-                    <ul class="space-y-3 sm:space-y-4">
+                    <h3 class="text-white text-xl font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">123 Crypto Street, Blockchain District, NY 10001</span>
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                            <span>123 Crypto Street, Blockchain District, NY 10001</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-phone text-primary mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">+1 (555) 123-4567</span>
+                            <i class="fas fa-phone text-primary mr-3"></i>
+                            <span>+1 (555) 123-4567</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-envelope text-primary mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">help@cryptogroww.com</span>
+                            <i class="fas fa-envelope text-primary mr-3"></i>
+                            <span>help@cryptogroww.com</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-clock text-primary mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">24/7 Customer Support</span>
+                            <i class="fas fa-clock text-primary mr-3"></i>
+                            <span>24/7 Customer Support</span>
                         </li>
                     </ul>
                     
-                  
+                   
                 </div>
             </div>
             
-            <!-- Bottom Bar - Responsive -->
-            <div class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
+            <!-- Bottom Bar -->
+            <div class="mt-12 pt-8 border-t border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-xs sm:text-sm opacity-75 text-center md:text-left mb-4 md:mb-0">&copy; 2023 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
-                    <div class="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Privacy Policy</a>
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Terms of Service</a>
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Cookie Policy</a>
-                        <a href="#" class="text-xs sm:text-sm hover:text-primary transition">Sitemap</a>
+                    <p class="text-sm opacity-75">&copy; 2026 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-sm hover:text-primary transition">Privacy Policy</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Terms of Service</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Cookie Policy</a>
+                        <a href="#" class="text-sm hover:text-primary transition">Sitemap</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Theme Toggle
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                
-                if (document.documentElement.classList.contains('dark')) {
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Check saved theme
-            if (localStorage.getItem('theme') === 'dark') {
-                document.documentElement.classList.add('dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            }
-            
-            // RTL Toggle
-            const rtlToggle = document.getElementById('rtl-toggle');
-            rtlToggle.addEventListener('click', () => {
-                if (document.documentElement.dir === 'rtl') {
-                    document.documentElement.dir = 'ltr';
-                    document.documentElement.lang = 'en';
-                    rtlToggle.textContent = '⇄';
-                    rtlToggle.classList.remove('active');
-                    localStorage.setItem('dir', 'ltr');
-                } else {
-                    document.documentElement.dir = 'rtl';
-                    document.documentElement.lang = 'ar';
-                    rtlToggle.textContent = '⇄';
-                    rtlToggle.classList.add('active');
-                    localStorage.setItem('dir', 'rtl');
-                }
-            });
-            
-            // Check saved RTL
-            if (localStorage.getItem('dir') === 'rtl') {
-                document.documentElement.dir = 'rtl';
-                document.documentElement.lang = 'ar';
-                rtlToggle.textContent = '⇄';
-                rtlToggle.classList.add('active');
-            }
-            
-            // Mobile Menu Toggle
+            // ========== MOBILE MENU FUNCTIONALITY ==========
             const mobileToggle = document.getElementById('mobile-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
+            const mobileOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileClose = document.getElementById('mobile-close');
             const body = document.body;
             
+            // Open mobile menu
             mobileToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                
-                // Toggle the show class
-                mobileMenu.classList.toggle('show');
-                
-                if (mobileMenu.classList.contains('show')) {
-                    // Menu is opening
-                    mobileToggle.innerHTML = '<i class="fas fa-times text-xl"></i>';
-                    body.classList.add('menu-open');
-                } else {
-                    // Menu is closing
-                    mobileToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
-                    body.classList.remove('menu-open');
+                openMobileMenu();
+            });
+            
+            // Close mobile menu with close button
+            mobileClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeMobileMenu();
+            });
+            
+            // Close mobile menu with overlay click
+            mobileOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileOverlay) {
+                    closeMobileMenu();
                 }
             });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
+            
+            // Close mobile menu on Escape key press
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('show')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            function openMobileMenu() {
+                mobileMenu.classList.add('show');
+                mobileOverlay.classList.add('show');
+                body.classList.add('menu-open');
+                mobileToggle.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            }
+            
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('show');
+                mobileOverlay.classList.remove('show');
+                body.classList.remove('menu-open');
+                mobileToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                
+                // Close all dropdowns
+                document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
+                    content.classList.remove('show');
+                });
+                document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
             
             // Mobile Dropdown Toggle
             document.querySelectorAll('.mobile-dropdown-btn').forEach(button => {
@@ -1987,25 +2286,10 @@
                     
                     const dropdown = e.target.closest('.mobile-dropdown');
                     const content = dropdown.querySelector('.mobile-dropdown-content');
-                    const icon = dropdown.querySelector('.fa-chevron-down');
                     
                     // Toggle current dropdown
                     content.classList.toggle('show');
-                    
-                    // Rotate icon
-                    if (content.classList.contains('show')) {
-                        if (document.documentElement.dir === 'rtl') {
-                            icon.style.transform = 'rotate(0deg)';
-                        } else {
-                            icon.style.transform = 'rotate(180deg)';
-                        }
-                    } else {
-                        if (document.documentElement.dir === 'rtl') {
-                            icon.style.transform = 'rotate(180deg)';
-                        } else {
-                            icon.style.transform = 'rotate(0)';
-                        }
-                    }
+                    button.classList.toggle('active');
                     
                     // Close other dropdowns
                     document.querySelectorAll('.mobile-dropdown-content').forEach(otherContent => {
@@ -2014,100 +2298,90 @@
                         }
                     });
                     
-                    // Reset other icons
                     document.querySelectorAll('.mobile-dropdown-btn').forEach(otherButton => {
                         if (otherButton !== button) {
-                            const otherIcon = otherButton.querySelector('.fa-chevron-down');
-                            if (otherIcon && document.documentElement.dir === 'rtl') {
-                                otherIcon.style.transform = 'rotate(180deg)';
-                            } else if (otherIcon) {
-                                otherIcon.style.transform = 'rotate(0)';
-                            }
+                            otherButton.classList.remove('active');
                         }
                     });
                 });
             });
             
-            // Mobile Theme Toggle
-            const mobileThemeToggle = document.getElementById('theme-toggle-mobile');
-            mobileThemeToggle?.addEventListener('click', () => {
+            // ========== THEME TOGGLE ==========
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            
+            function toggleTheme() {
                 document.documentElement.classList.toggle('dark');
-                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
                 
-                // Update desktop toggle
                 if (document.documentElement.classList.contains('dark')) {
                     themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    if (mobileThemeToggle) mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
                 } else {
                     themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    mobileThemeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    if (mobileThemeToggle) mobileThemeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
                 }
-            });
+            }
             
-            // Mobile RTL Toggle
-            const mobileRtlToggle = document.getElementById('rtl-toggle-mobile');
-            mobileRtlToggle?.addEventListener('click', () => {
+            themeToggle.addEventListener('click', toggleTheme);
+            if (mobileThemeToggle) {
+                mobileThemeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            // Check saved theme
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                if (mobileThemeToggle) mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // ========== RTL TOGGLE ==========
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+            
+            function toggleRTL() {
                 if (document.documentElement.dir === 'rtl') {
                     document.documentElement.dir = 'ltr';
                     document.documentElement.lang = 'en';
-                    mobileRtlToggle.textContent = '⇄';
                     rtlToggle.textContent = '⇄';
-                    mobileRtlToggle.classList.remove('active');
                     rtlToggle.classList.remove('active');
+                    if (mobileRtlToggle) {
+                        mobileRtlToggle.textContent = '⇄';
+                        mobileRtlToggle.classList.remove('active');
+                    }
                     localStorage.setItem('dir', 'ltr');
                 } else {
                     document.documentElement.dir = 'rtl';
                     document.documentElement.lang = 'ar';
-                    mobileRtlToggle.textContent = '⇄';
                     rtlToggle.textContent = '⇄';
-                    mobileRtlToggle.classList.add('active');
                     rtlToggle.classList.add('active');
+                    if (mobileRtlToggle) {
+                        mobileRtlToggle.textContent = '⇄';
+                        mobileRtlToggle.classList.add('active');
+                    }
                     localStorage.setItem('dir', 'rtl');
                 }
-            });
+            }
             
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (e) => {
-                const mobileMenu = document.getElementById('mobile-menu');
-                const mobileToggle = document.getElementById('mobile-toggle');
-                
-                // Check if click is outside mobile menu AND not on mobile toggle button
-                if (!mobileMenu.contains(e.target) && 
-                    !mobileToggle.contains(e.target) && 
-                    mobileMenu.classList.contains('show')) {
-                    
-                    mobileMenu.classList.remove('show');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
-                    
-                    // Also close all dropdowns
-                    document.querySelectorAll('.mobile-dropdown-content').forEach(content => {
-                        content.classList.remove('show');
-                    });
-                    document.querySelectorAll('.mobile-dropdown-btn .fa-chevron-down').forEach(icon => {
-                        if (document.documentElement.dir === 'rtl') {
-                            icon.style.transform = 'rotate(180deg)';
-                        } else {
-                            icon.style.transform = 'rotate(0)';
-                        }
-                    });
-                    
-                    // Unlock background scrolling
-                    body.classList.remove('menu-open');
+            rtlToggle.addEventListener('click', toggleRTL);
+            if (mobileRtlToggle) {
+                mobileRtlToggle.addEventListener('click', toggleRTL);
+            }
+            
+            // Check saved RTL
+            if (localStorage.getItem('dir') === 'rtl') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+                rtlToggle.textContent = '⇄';
+                rtlToggle.classList.add('active');
+                if (mobileRtlToggle) {
+                    mobileRtlToggle.textContent = '⇄';
+                    mobileRtlToggle.classList.add('active');
                 }
-            });
+            }
             
-            // Close mobile menu when clicking on a link
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('show');
-                    mobileToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
-                    
-                    // Unlock background scrolling
-                    body.classList.remove('menu-open');
-                });
-            });
-            
-            // Altcoin Search Functionality
+            // ========== ALTCOIN SEARCH & FILTER ==========
             const searchInput = document.getElementById('altcoin-search');
             const searchClear = document.querySelector('.search-clear');
             const categoryFilter = document.getElementById('category-filter');
@@ -2184,7 +2458,7 @@
                 });
             }
             
-            // Pagination functionality
+            // ========== PAGINATION FUNCTIONALITY ==========
             const paginationButtons = document.querySelectorAll('.pagination-btn:not(.disabled)');
             paginationButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -2205,8 +2479,8 @@
                 });
             });
             
-            // Responsive adjustments for window resize
-            window.addEventListener('resize', function() {
+            // ========== RESPONSIVE ADJUSTMENTS ==========
+            function adjustResponsiveElements() {
                 // Adjust badge position on mobile
                 const badges = document.querySelectorAll('.trending-badge');
                 if (window.innerWidth < 640) {
@@ -2224,10 +2498,23 @@
                         }
                     });
                 }
-            });
+                
+                // Adjust mobile menu width for very small screens
+                if (window.innerWidth < 400) {
+                    mobileMenu.style.width = '95%';
+                } else if (window.innerWidth < 480) {
+                    mobileMenu.style.width = '90%';
+                } else {
+                    mobileMenu.style.width = '85%';
+                    mobileMenu.style.maxWidth = '320px';
+                }
+            }
             
-            // Trigger initial responsive check
-            window.dispatchEvent(new Event('resize'));
+            // Initial responsive adjustment
+            adjustResponsiveElements();
+            
+            // Adjust on window resize
+            window.addEventListener('resize', adjustResponsiveElements);
         });
     </script>
 </body>
