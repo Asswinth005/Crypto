@@ -97,13 +97,21 @@ body.dark-mode .auth-card{
     transform:scale(1.05);
 }
 
-.card-brand-logo i{
-    font-size:1.5rem;
-    background:linear-gradient(135deg,#9c7be5,#b299ea);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    background-clip:text;
+.logo-box{
+    width:42px;
+    height:42px;
+    background:#9c7be5;   /* purple box */
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
+
+.logo-box i{
+    font-size:1.3rem;
+    color:#ffffff;        /* white icon */
+}
+
 
 .card-brand-logo h2{
     font-size:2rem;
@@ -662,20 +670,22 @@ body.dark-mode .control-btn:hover{
     <div class="auth-container">
         <div class="auth-card">
             <!-- ✅ BRAND LOGO WITH ICON IN SAME LINE - NOW CLICKABLE -->
-            <div class="card-brand-logo">
-                <a href='index.html'>
-                    <i class="fas fa-coins"></i>
-<h2>
-    <span class="text-black">Crypto</span>
-    <span class="brand-purple ml-0.5">Groww</span>
-</h2>
-                </a>
-            </div>
+          <div class="card-brand-logo">
+    <a href="index.html">
+        
+        <!-- PURPLE LOGO BOX -->
+        <div class="logo-box">
+            <i class="fas fa-coins"></i>
+        </div>
 
-            <div class="auth-header">
-                <h1 class="auth-title">Create Account</h1>
-                <p class="auth-subtitle">Join Crypto Groww today and start your crypto journey with us</p>
-            </div>
+        <h2>
+            <span class="text-yellow-400">Crypto</span>
+            <span class="brand-purple ml-1">Groww</span>
+        </h2>
+
+    </a>
+</div>
+
 
             <!-- Added social login buttons here -->
             <div class="social-login">

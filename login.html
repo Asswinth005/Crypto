@@ -88,10 +88,21 @@ body.dark-mode .login-card{
     transform:scale(1.05);
 }
 
-.card-brand-logo i{
-    font-size:1.5rem;
-    color:#9c7be5;
+.logo-box{
+    width:42px;
+    height:42px;
+    background:#9c7be5;   /* purple box */
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
+
+.logo-box i{
+    font-size:1.3rem;
+    color:#ffffff;        /* white icon = visible */
+}
+
 
 .card-brand-logo h2{
     font-size:2rem;
@@ -571,15 +582,23 @@ body.dark-mode .dark-mode-subtext{
 <section class="login-section">
     <div class="login-card">
         <!-- ✅ BRAND LOGO WITH ICON IN SAME LINE - NOW CLICKABLE -->
-        <div class="card-brand-logo">
-            <a href='index.html'>
-                <i class="fas fa-coins"></i>
-<h2>
-    <span class="text-black">Crypto</span>
-    <span class="brand-purple ml-0.5">Groww</span>
-</h2>
-            </a>
+       <div class="card-brand-logo">
+    <a href="index.html">
+        
+        <!-- PURPLE BOX -->
+        <div class="logo-box">
+            <i class="fas fa-coins"></i>
         </div>
+
+        <h2>
+            <span class="text-yellow-400">Crypto</span>
+            <span class="brand-purple ml-1">Groww</span>
+        </h2>
+
+    </a>
+</div>
+
+
 
         <div class="header-section">
             <div class="icon-circle">
