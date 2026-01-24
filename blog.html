@@ -37,663 +37,706 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        body {
-            background: #f8f9ff;
-            color: #1a1a2e;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .dark body {
-            background: #0f0f1e;
-            color: #e5e5e5;
-        }
-        
-        /* Navigation styles - FIXED FOR ALIGNMENT */
-       /* Navigation styles - RIGHT SIDE NAVIGATION */
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
+   <style>
+    body {
+        background: #f8f9ff;
+        color: #1a1a2e;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .dark body {
+        background: #0f0f1e;
+        color: #e5e5e5;
+    }
+    
+    /* Navigation styles - FIXED FOR ALIGNMENT */
+    .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem; /* Consistent spacing between all nav items */
-}
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem; /* Consistent spacing between all nav items */
+    }
 
-.nav-right-section {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
+    .nav-right-section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
 
-.nav-item {
-    position: relative;
-    font-weight: 500;
-    color: #1a1a2e;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    padding: 0.5rem 0;
-}
+    .nav-item {
+        position: relative;
+        font-weight: 500;
+        color: #1a1a2e;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        padding: 0.5rem 0;
+    }
 
-.dark .nav-item {
-    color: #e5e5e5;
-}
+    .dark .nav-item {
+        color: #e5e5e5;
+    }
 
-.nav-item:hover {
-    color: #9c7be5;
-}
+    .nav-item:hover {
+        color: #9c7be5;
+    }
 
-.nav-item.dropdown {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    cursor: pointer;
-}
+    .nav-item.dropdown {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        cursor: pointer;
+    }
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    border-radius: 8px;
-    padding: 0.5rem 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.2s ease;
-    z-index: 1000;
-    min-width: 180px;
-    border: 1px solid #e5e7eb;
-}
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border-radius: 8px;
+        padding: 0.5rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.2s ease;
+        z-index: 1000;
+        min-width: 180px;
+        border: 1px solid #e5e7eb;
+    }
 
-.dark .dropdown-menu {
-    background: #1a1a2e;
-    border-color: #2d2d4d;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
+    .dark .dropdown-menu {
+        background: #1a1a2e;
+        border-color: #2d2d4d;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
 
-[dir="rtl"] .dropdown-menu {
-    left: auto;
-    right: 0;
-}
+    [dir="rtl"] .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
 
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
 
-.dropdown-item {
-    padding: 0.75rem 1.5rem;
-    color: #4b5563;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all 0.2s ease;
-}
+    .dropdown-item {
+        padding: 0.75rem 1.5rem;
+        color: #4b5563;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.2s ease;
+    }
 
-.dark .dropdown-item {
-    color: #d1d5db;
-}
+    .dark .dropdown-item {
+        color: #d1d5db;
+    }
 
-.dropdown-item:hover {
-    background: #f3f4f6;
-    color: #9c7be5;
-    padding-left: 1.75rem;
-}
+    .dropdown-item:hover {
+        background: #f3f4f6;
+        color: #9c7be5;
+        padding-left: 1.75rem;
+    }
 
-[dir="rtl"] .dropdown-item:hover {
-    padding-left: 1.5rem;
-    padding-right: 1.75rem;
-}
+    [dir="rtl"] .dropdown-item:hover {
+        padding-left: 1.5rem;
+        padding-right: 1.75rem;
+    }
 
-.dark .dropdown-item:hover {
-    background: #2d2d4d;
-}
+    .dark .dropdown-item:hover {
+        background: #2d2d4d;
+    }
 
-/* Auth buttons */
-.auth-buttons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+    /* Auth buttons */
+    .auth-buttons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
 
-.btn-login {
-    padding: 0.5rem 1.5rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    color: #4b5563;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
+    .btn-login {
+        padding: 0.5rem 1.5rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        color: #4b5563;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
 
-.dark .btn-login {
-    border-color: #4b5563;
-    color: #d1d5db;
-}
+    .dark .btn-login {
+        border-color: #4b5563;
+        color: #d1d5db;
+    }
 
-.btn-login:hover {
-    border-color: #9c7be5;
-    color: #9c7be5;
-}
+    .btn-login:hover {
+        border-color: #9c7be5;
+        color: #9c7be5;
+    }
 
-.btn-signup {
-    padding: 0.5rem 1.5rem;
-    background: #9c7be5;
-    color: white;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
+    .btn-signup {
+        padding: 0.5rem 1.5rem;
+        background: #9c7be5;
+        color: white;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
 
-.btn-signup:hover {
-    background: #b299ea;
-}
+    .btn-signup:hover {
+        background: #b299ea;
+    }
 
-/* Toggle buttons */
-.toggle-buttons {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
+    /* Toggle buttons */
+    .toggle-buttons {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-.toggle-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f4f6;
-    color: #6b7280;
-    transition: all 0.2s ease;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
+    .toggle-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f3f4f6;
+        color: #6b7280;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
 
-.dark .toggle-btn {
-    background: #2d2d4d;
-    color: #9ca3af;
-}
+    .dark .toggle-btn {
+        background: #2d2d4d;
+        color: #9ca3af;
+    }
 
-.toggle-btn:hover {
-    background: #e5e7eb;
-    color: #374151;
-}
+    .toggle-btn:hover {
+        background: #e5e7eb;
+        color: #374151;
+    }
 
-.dark .toggle-btn:hover {
-    background: #3d3d6d;
-    color: #e5e5e5;
-}
+    .dark .toggle-btn:hover {
+        background: #3d3d6d;
+        color: #e5e5e5;
+    }
 
-.toggle-btn.active {
-    background: #b299ea;
-    color: white;
-}
-        
-        /* Mobile Menu Styles */
-        #mobile-menu {
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
+    .toggle-btn.active {
+        background: #b299ea;
+        color: white;
+    }
+    
+    /* Mobile Menu Styles */
+    #mobile-menu {
+        background: white;
+        border-top: 1px solid #e5e7eb;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
 
-        .dark #mobile-menu {
-            background: #1a1a2e;
-            border-color: #2d2d4d;
-        }
+    .dark #mobile-menu {
+        background: #1a1a2e;
+        border-color: #2d2d4d;
+    }
 
-        #mobile-menu.show {
-            max-height: 85vh;
-            overflow-y: auto;
-        }
+    #mobile-menu.show {
+        max-height: 85vh;
+        overflow-y: auto;
+    }
 
-        /* Mobile menu items */
-        .mobile-menu-item {
-            display: block;
-            padding: 1rem 1.5rem;
-            font-weight: 500;
-            color: #4b5563;
-            border-bottom: 1px solid #f3f4f6;
-            transition: all 0.2s ease;
-        }
+    /* Mobile menu items */
+    .mobile-menu-item {
+        display: block;
+        padding: 1rem 1.5rem;
+        font-weight: 500;
+        color: #4b5563;
+        border-bottom: 1px solid #f3f4f6;
+        transition: all 0.2s ease;
+    }
 
-        .dark .mobile-menu-item {
-            color: #d1d5db;
-            border-bottom-color: #2d2d4d;
-        }
+    .dark .mobile-menu-item {
+        color: #d1d5db;
+        border-bottom-color: #2d2d4d;
+    }
 
-        .mobile-menu-item:hover {
-            background-color: #f9fafb;
-            color: #9c7be5;
-            padding-left: 2rem;
-        }
+    .mobile-menu-item:hover {
+        background-color: #f9fafb;
+        color: #9c7be5;
+        padding-left: 2rem;
+    }
 
-        .dark .mobile-menu-item:hover {
-            background-color: #2d2d4d;
-        }
+    .dark .mobile-menu-item:hover {
+        background-color: #2d2d4d;
+    }
 
-        [dir="rtl"] .mobile-menu-item:hover {
-            padding-left: 1.5rem;
-            padding-right: 2rem;
-        }
+    [dir="rtl"] .mobile-menu-item:hover {
+        padding-left: 1.5rem;
+        padding-right: 2rem;
+    }
 
-        /* Mobile auth buttons */
-        .mobile-auth-btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-align: center;
-            margin: 0.25rem;
-            border: 1px solid transparent;
-        }
+    /* Mobile auth buttons */
+    .mobile-auth-btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-align: center;
+        margin: 0.25rem;
+        border: 1px solid transparent;
+    }
 
-        .mobile-auth-btn.login {
-            background: transparent;
-            border-color: #e5e7eb;
-            color: #4b5563;
-        }
+    .mobile-auth-btn.login {
+        background: transparent;
+        border-color: #e5e7eb;
+        color: #4b5563;
+    }
 
-        .dark .mobile-auth-btn.login {
-            border-color: #4b5563;
-            color: #d1d5db;
-        }
+    .dark .mobile-auth-btn.login {
+        border-color: #4b5563;
+        color: #d1d5db;
+    }
 
-        .mobile-auth-btn.login:hover {
-            background-color: #9c7be5;
-            color: white;
-            border-color: #9c7be5;
-        }
+    .mobile-auth-btn.login:hover {
+        background-color: #9c7be5;
+        color: white;
+        border-color: #9c7be5;
+    }
 
-        .mobile-auth-btn.signup {
-            background: #9c7be5;
-            color: white;
-        }
+    .mobile-auth-btn.signup {
+        background: #9c7be5;
+        color: white;
+    }
 
-        .mobile-auth-btn.signup:hover {
-            background: #b299ea;
-        }
+    .mobile-auth-btn.signup:hover {
+        background: #b299ea;
+    }
 
-        /* Lock body scroll when menu is open */
-        body.menu-open {
-            overflow: hidden;
-        }
+    /* Lock body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
 
-        /* Mobile dropdown items */
-        .mobile-dropdown-item {
-            display: block;
-            padding: 0.75rem 2.5rem;
-            font-size: 0.95rem;
-            color: #6b7280;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid #f9fafb;
-        }
+    /* Mobile dropdown items */
+    .mobile-dropdown-item {
+        display: block;
+        padding: 0.75rem 2.5rem;
+        font-size: 0.95rem;
+        color: #6b7280;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid #f9fafb;
+    }
 
-        .dark .mobile-dropdown-item {
-            color: #9ca3af;
-            border-bottom-color: #2d2d4d;
-        }
+    .dark .mobile-dropdown-item {
+        color: #9ca3af;
+        border-bottom-color: #2d2d4d;
+    }
 
-        .mobile-dropdown-item:hover {
-            color: #9c7be5;
-            background-color: #f9fafb;
-            padding-left: 3rem;
-        }
+    .mobile-dropdown-item:hover {
+        color: #9c7be5;
+        background-color: #f9fafb;
+        padding-left: 3rem;
+    }
 
-        .dark .mobile-dropdown-item:hover {
-            background-color: #2d2d4d;
-        }
+    .dark .mobile-dropdown-item:hover {
+        background-color: #2d2d4d;
+    }
 
-        [dir="rtl"] .mobile-dropdown-item:hover {
-            padding-left: 2.5rem;
-            padding-right: 3rem;
-        }
+    [dir="rtl"] .mobile-dropdown-item:hover {
+        padding-left: 2.5rem;
+        padding-right: 3rem;
+    }
 
-        /* Mobile dropdown content */
-        .mobile-dropdown-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
+    /* Mobile dropdown content */
+    .mobile-dropdown-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
 
-        .mobile-dropdown-content.show {
-            max-height: 300px;
-        }
-        
-        /* Blog page specific styles */
-        .blog-hero {
-            background: linear-gradient(135deg, rgba(156, 123, 229, 0.1) 0%, rgba(126, 95, 219, 0.1) 100%);
-        }
-        
-        .blog-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 16px;
-            overflow: hidden;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(156, 123, 229, 0.15);
-        }
-        
-        .dark .blog-card:hover {
-            box-shadow: 0 20px 40px rgba(156, 123, 229, 0.25);
-        }
-        
-        .blog-image {
-            height: 200px;
-            width: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .blog-card:hover .blog-image {
-            transform: scale(1.05);
-        }
-        
-        .blog-category {
-            display: inline-block;
-            background: linear-gradient(135deg, #9c7be5, #7e5fdb);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .blog-read-time {
-            display: flex;
-            align-items: center;
-            color: #6b7280;
-            font-size: 0.875rem;
-        }
-        
-        .dark .blog-read-time {
-            color: #9ca3af;
-        }
-        
-        .blog-author {
-            display: flex;
-            align-items: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e5e7eb;
-        }
-        
-        .dark .blog-author {
-            border-top-color: #374151;
-        }
-        
-        .author-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 1rem;
-        }
-        
-        /* Featured post */
+    .mobile-dropdown-content.show {
+        max-height: 300px;
+    }
+    
+    /* Blog page specific styles */
+    .blog-hero {
+        background: linear-gradient(135deg, rgba(156, 123, 229, 0.1) 0%, rgba(126, 95, 219, 0.1) 100%);
+    }
+    
+    .blog-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 16px;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .blog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(156, 123, 229, 0.15);
+    }
+    
+    .dark .blog-card:hover {
+        box-shadow: 0 20px 40px rgba(156, 123, 229, 0.25);
+    }
+    
+    .blog-image {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .blog-card:hover .blog-image {
+        transform: scale(1.05);
+    }
+    
+    .blog-category {
+        display: inline-block;
+        background: linear-gradient(135deg, #9c7be5, #7e5fdb);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    
+    .blog-read-time {
+        display: flex;
+        align-items: center;
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+    
+    .dark .blog-read-time {
+        color: #9ca3af;
+    }
+    
+    .blog-author {
+        display: flex;
+        align-items: center;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+    
+    .dark .blog-author {
+        border-top-color: #374151;
+    }
+    
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+    
+    /* Featured post - Centered card version */
+    .featured-post {
+        max-width: 1000px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(156, 123, 229, 0.15);
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, rgba(156, 123, 229, 0.15) 0%, rgba(126, 95, 219, 0.15) 100%);
+    }
+    
+    .featured-post:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba(156, 123, 229, 0.2);
+    }
+    
+    .dark .featured-post {
+        background: linear-gradient(135deg, rgba(156, 123, 229, 0.08) 0%, rgba(126, 95, 219, 0.08) 100%);
+        box-shadow: 0 20px 40px rgba(156, 123, 229, 0.1);
+    }
+    
+    .dark .featured-post:hover {
+        box-shadow: 0 25px 50px rgba(156, 123, 229, 0.15);
+    }
+    
+    .featured-tag {
+        display: inline-block;
+        background: linear-gradient(135deg, #9c7be5, #7e5fdb);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 15px rgba(156, 123, 229, 0.3);
+    }
+    
+    /* Remove old overlay styles */
+    .featured-post-overlay {
+        display: none;
+    }
+    
+    /* Featured post content alignment */
+    .featured-post > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: auto;
+        padding: 3rem 2rem;
+    }
+    
+    .featured-post > div > div {
+        width: 100%;
+        max-width: 800px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
         .featured-post {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            height: 500px;
+            text-align: center;
+            margin: 0 1rem;
         }
         
-        .featured-post-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 3rem;
-            color: white;
+        .featured-post > div {
+            padding: 2rem 1.5rem;
         }
         
-        .featured-tag {
-            background: rgba(156, 123, 229, 0.9);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: inline-block;
+        .featured-post > div > div {
+            padding: 0 !important;
         }
-        
-        /* Sidebar */
-        .sidebar-widget {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .dark .sidebar-widget {
-            background: #1a1a2e;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .widget-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid #9c7be5;
-        }
-        
-        .category-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #e5e7eb;
-            transition: all 0.2s ease;
-        }
-        
-        .dark .category-item {
-            border-bottom-color: #374151;
-        }
-        
-        .category-item:hover {
-            color: #9c7be5;
-            padding-left: 0.5rem;
-        }
-        
-        .tag-item {
-            display: inline-block;
-            background: #f3f4f6;
-            color: #4b5563;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            margin: 0.25rem;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-        }
-        
-        .dark .tag-item {
-            background: #2d2d4d;
-            color: #d1d5db;
-        }
-        
-        .tag-item:hover {
-            background: #9c7be5;
-            color: white;
-        }
-        
-        .recent-post-item {
-            display: flex;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .dark .recent-post-item {
-            border-bottom-color: #374151;
-        }
-        
-        .recent-post-image {
-            width: 80px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 1rem;
-        }
-        
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-        
-        .page-item {
-            margin: 0 0.25rem;
-        }
-        
-        .page-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: white;
-            color: #4b5563;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        
-        .dark .page-link {
-            background: #1a1a2e;
-            color: #d1d5db;
-        }
-        
-        .page-link:hover {
-            background: #9c7be5;
-            color: white;
-        }
-        
-        .page-link.active {
-            background: #9c7be5;
-            color: white;
-        }
-        
-        /* FIXED: Search bar styles */
-        .search-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            padding-right: 4.5rem; /* Space for the button */
-            background: white;
-            border: none;
-            border-radius: 16px;
-            font-size: 1rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .dark .search-input {
-            background: #1a1a2e;
-            color: #e5e5e5;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 5px 25px rgba(156, 123, 229, 0.2);
-        }
-        
-        .dark .search-input:focus {
-            box-shadow: 0 5px 25px rgba(156, 123, 229, 0.3);
-        }
-        
-        .search-button {
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #9c7be5, #7e5fdb);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .search-button:hover {
-            background: linear-gradient(135deg, #b299ea, #9c7be5);
-            transform: translateY(-50%) scale(1.05);
-        }
-        
-        .search-button i {
-            font-size: 1rem;
-        }
-        
-        /* Footer styles */
-        .footer-social-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #374151;
-            color: white;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .footer-social-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #b299ea, #7e5fdb);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-social-icon:hover::before {
-            opacity: 1;
-        }
-        
-        .footer-social-icon i {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(178, 153, 234, 0.3);
-        }
-    </style>
+    }
+    
+    /* Sidebar */
+    .sidebar-widget {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .dark .sidebar-widget {
+        background: #1a1a2e;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .widget-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #9c7be5;
+    }
+    
+    .category-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #e5e7eb;
+        transition: all 0.2s ease;
+    }
+    
+    .dark .category-item {
+        border-bottom-color: #374151;
+    }
+    
+    .category-item:hover {
+        color: #9c7be5;
+        padding-left: 0.5rem;
+    }
+    
+    .tag-item {
+        display: inline-block;
+        background: #f3f4f6;
+        color: #4b5563;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        margin: 0.25rem;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+    }
+    
+    .dark .tag-item {
+        background: #2d2d4d;
+        color: #d1d5db;
+    }
+    
+    .tag-item:hover {
+        background: #9c7be5;
+        color: white;
+    }
+    
+    .recent-post-item {
+        display: flex;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .dark .recent-post-item {
+        border-bottom-color: #374151;
+    }
+    
+    .recent-post-image {
+        width: 80px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-right: 1rem;
+    }
+    
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+    
+    .page-item {
+        margin: 0 0.25rem;
+    }
+    
+    .page-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: white;
+        color: #4b5563;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .dark .page-link {
+        background: #1a1a2e;
+        color: #d1d5db;
+    }
+    
+    .page-link:hover {
+        background: #9c7be5;
+        color: white;
+    }
+    
+    .page-link.active {
+        background: #9c7be5;
+        color: white;
+    }
+    
+    /* FIXED: Search bar styles */
+    .search-container {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto 3rem auto;
+    }
+    
+    .search-input {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        padding-right: 4.5rem; /* Space for the button */
+        background: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 1rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .dark .search-input {
+        background: #1a1a2e;
+        color: #e5e5e5;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 5px 25px rgba(156, 123, 229, 0.2);
+    }
+    
+    .dark .search-input:focus {
+        box-shadow: 0 5px 25px rgba(156, 123, 229, 0.3);
+    }
+    
+    .search-button {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, #9c7be5, #7e5fdb);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .search-button:hover {
+        background: linear-gradient(135deg, #b299ea, #9c7be5);
+        transform: translateY(-50%) scale(1.05);
+    }
+    
+    .search-button i {
+        font-size: 1rem;
+    }
+    
+    /* Footer styles */
+    .footer-social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #374151;
+        color: white;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .footer-social-icon::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #b299ea, #7e5fdb);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .footer-social-icon:hover::before {
+        opacity: 1;
+    }
+    
+    .footer-social-icon i {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .footer-social-icon:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 10px 20px rgba(178, 153, 234, 0.3);
+    }
+</style>
 </head>
 <body>
 
@@ -768,7 +811,7 @@
         </a>
         
         <!-- Blog -->
-        <a class="nav-item" href="Blog.html"style="color: #9c7be5; font-weight: 600;">
+        <a class="nav-item" href="blog.html"style="color: #9c7be5; font-weight: 600;">
             Blog
         </a>
         
@@ -819,7 +862,7 @@
             <a class="btn-login" href="login.html">
                 Login
             </a>
-            <a class="btn-signup" href="Signup.html">
+            <a class="btn-signup" href="signup.html">
                 Sign Up
             </a>
         </div>
@@ -891,7 +934,7 @@
             </a>
 
             <!-- Blog (Active) -->
-            <a class="mobile-menu-item" href="Blog.html"style="color: #9c7be5; font-weight: 600;">
+            <a class="mobile-menu-item" href="blog.html"style="color: #9c7be5; font-weight: 600;">
                 <i class="fas fa-blog mr-2"></i>
                 Blog
             </a>
@@ -998,35 +1041,36 @@
         </section>
 
         <!-- Featured Post -->
-        <section class="py-12">
-            <div class="container mx-auto px-6">
-                <div class="featured-post bg-gradient-to-r from-primary/20 to-accent/20 dark:from-primary/10 dark:to-accent/10">
-                    <div class="h-full w-full flex items-center">
-                        <div class="p-12 md:p-16">
-                            <span class="featured-tag">FEATURED ARTICLE</span>
-                            <h2 class="text-3xl md:text-4xl font-bold text-dark dark:text-white mb-4">
-                                Bitcoin Halving 2024
-                            </h2>
-                            <p class="text-gray-600 dark:text-gray-300 text-lg mb-6 max-w-2xl">
-                                The next Bitcoin halving is expected in April 2024. We analyze historical patterns, 
-                                market sentiment, and potential price implications for long-term investors.
-                            </p>
-                            <div class="flex items-center">
-                                <div class="flex items-center mr-6">
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
-                                         alt="Author" class="author-avatar">
-                                    <div>
-                                        <div class="font-medium">Michael Chen</div>
-                                        <div class="text-sm text-gray-500 dark:text-gray-400">Senior Market Analyst</div>
-                                    </div>
-                                </div>
-                               
+      <!-- Featured Post - Centered -->
+<section class="py-12">
+    <div class="container mx-auto px-6">
+        <div class="featured-post bg-gradient-to-r from-primary/20 to-accent/20 dark:from-primary/10 dark:to-accent/10 rounded-2xl overflow-hidden">
+            <div class="h-full w-full flex items-center justify-center"> <!-- Added justify-center -->
+                <div class="p-12 md:p-16 text-center md:text-left"> <!-- Added text-center for mobile -->
+                    <span class="featured-tag">FEATURED ARTICLE</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-dark dark:text-white mb-4">
+                        Bitcoin Halving 2024
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg mb-6 max-w-2xl mx-auto md:mx-0"> <!-- Added mx-auto for mobile -->
+                        The next Bitcoin halving is expected in April 2024. We analyze historical patterns, 
+                        market sentiment, and potential price implications for long-term investors.
+                    </p>
+                    <div class="flex flex-col md:flex-row items-center justify-center md:justify-start"> <!-- Added flex-col for mobile -->
+                        <div class="flex items-center mb-4 md:mb-0 md:mr-6">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Author" class="author-avatar">
+                            <div class="ml-3">
+                                <div class="font-medium">Michael Chen</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Senior Market Analyst</div>
                             </div>
                         </div>
+                        <!-- Optional: Add buttons or other content here -->
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <!-- Blog Content -->
         <section class="py-16">
@@ -1415,106 +1459,105 @@
     </main>
 
     <!-- Footer (Same as Home Page) -->
-    <footer class="py-16 bg-gray-900 text-gray-400">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- Company Info -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-10 h-10 bg-primary rounded flex items-center justify-center">
-                            <i class="fas fa-coins text-white text-lg"></i>
-                        </div>
-                        <div>
-                         <span class="text-xl font-bold text-yellow-400">Crypto</span>
+  <footer class="py-16 bg-gray-900 text-gray-400">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Company Info - Fixed Logo -->
+            <div>
+                <!-- Logo fixed to match header -->
+                <a href="index.html" class="flex items-center mb-6 cursor-pointer">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-coins text-white"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-yellow-400">Crypto</span>
                         <span class="text-xl font-bold text-primary">Groww</span>
-                        </div>
                     </div>
-                    <p class="mb-6 opacity-80">
-                        The most secure cryptocurrency platform to buy, sell, trade, and earn digital assets.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="footer-social-icon facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="footer-social-icon twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="footer-social-icon instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="footer-social-icon linkedin">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        
-                    </div>
-                </div>
+                </a>
                 
-                <!-- Quick Links -->
-                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Quick Links</h3>
-                    <ul class="space-y-3">
-                        <li><a class='hover:text-primary transition' href='index.html'>Home</a></li>
-                        <li><a class='hover:text-primary transition' href='about.html'>About</a></li>
-                        <li><a class='hover:text-primary transition' href='market.html'>Markets</a></li>
-                        <li><a class='hover:text-primary transition' href='trade.html'>Trade</a></li>
-                        <li><a class='hover:text-primary transition' href='Blog.html'>Blog</a></li>
-                        <li><a class='hover:text-primary transition' href='contact.html'>Contact</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Services -->
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Services</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="hover:text-primary transition">Spot Trading</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Futures Trading</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Staking</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Crypto Lending</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Crypto Card</a></li>
-                        <li><a href="#" class="hover:text-primary transition">API Access</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Contact Info -->
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Contact Info</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
-                            <span>123 Crypto Street, Blockchain District, NY 10001</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-primary mr-3"></i>
-                            <span>+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-primary mr-3"></i>
-                            <span>help@cryptogroww.com</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-clock text-primary mr-3"></i>
-                            <span>24/7 Customer Support</span>
-                        </li>
-                    </ul>
-                    
-                   
+                <p class="mb-6 opacity-80">
+                    The most secure cryptocurrency platform to buy, sell, trade, and earn digital assets.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
             
-            <!-- Bottom Bar -->
-            <div class="mt-12 pt-8 border-t border-gray-800">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-sm opacity-75">&copy; 2026 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
-                    <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" class="text-sm hover:text-primary transition">Privacy Policy</a>
-                        <a href="#" class="text-sm hover:text-primary transition">Terms of Service</a>
-                        <a href="#" class="text-sm hover:text-primary transition">Cookie Policy</a>
-                        <a href="#" class="text-sm hover:text-primary transition">Sitemap</a>
-                    </div>
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-white text-xl font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-3">
+                    <li><a class='hover:text-primary transition' href='index.html'>Home</a></li>
+                    <li><a class='hover:text-primary transition' href='about.html'>About</a></li>
+                    <li><a class='hover:text-primary transition' href='market.html'>Markets</a></li>
+                    <li><a class='hover:text-primary transition' href='trade.html'>Trade</a></li>
+                    <li><a class='hover:text-primary transition' href='blog.html'>Blog</a></li>
+                    <li><a class='hover:text-primary transition' href='contact.html'>Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div>
+                <h3 class="text-white text-xl font-bold mb-6">Services</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="hover:text-primary transition">Spot Trading</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Futures Trading</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Staking</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Crypto Lending</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Crypto Card</a></li>
+                    <li><a href="#" class="hover:text-primary transition">API Access</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-white text-xl font-bold mb-6">Contact Info</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                        <span>123 Crypto Street, Blockchain District, NY 10001</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone text-primary mr-3"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope text-primary mr-3"></i>
+                        <span>help@cryptogroww.com</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-clock text-primary mr-3"></i>
+                        <span>24/7 Customer Support</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="mt-12 pt-8 border-t border-gray-800">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm opacity-75">&copy; 2026 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm hover:text-primary transition">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:text-primary transition">Terms of Service</a>
+                    <a href="#" class="text-sm hover:text-primary transition">Cookie Policy</a>
+                    <a href="#" class="text-sm hover:text-primary transition">Sitemap</a>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <!-- JavaScript (Same as Home Page) -->
     <script>

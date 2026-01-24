@@ -496,28 +496,64 @@
             transform: translateY(-5px) scale(1.1);
             box-shadow: 0 10px 20px rgba(178, 153, 234, 0.3);
         }
+
+        /* Responsive Hero Section */
+        .hero-cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-cta-buttons {
+                flex-direction: row !important;
+                justify-content: center;
+            }
+            
+            .hero-cta-buttons button {
+                flex: 1;
+                min-width: 140px;
+                max-width: 200px;
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-cta-buttons {
+                flex-direction: row !important;
+            }
+            
+            .hero-cta-buttons button {
+                flex: 1;
+                min-width: 120px;
+                padding: 0.625rem 0.75rem;
+                font-size: 0.875rem;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- Fixed Navigation Bar -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between h-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-16 md:h-20">
                 
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center cursor-pointer">
-                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-3">
-                        <i class="fas fa-coins text-white"></i>
+                    <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-lg flex items-center justify-center mr-2 md:mr-3">
+                        <i class="fas fa-coins text-white text-sm md:text-base"></i>
                     </div>
                     <div>
-                        <span class="text-xl font-bold text-yellow-400">Crypto</span>
-                        <span class="text-xl font-bold text-primary">Groww</span>
+                        <span class="text-lg md:text-xl font-bold text-yellow-400">Crypto</span>
+                        <span class="text-lg md:text-xl font-bold text-primary">Groww</span>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation - RIGHT SIDE NAVIGATION -->
-              <div class="hidden xl:flex items-center">
+                <div class="hidden xl:flex items-center">
                     
                     <!-- Navigation Links on RIGHT side -->
                     <div class="nav-links">
@@ -572,7 +608,7 @@
                         </a>
                         
                         <!-- Blog -->
-                        <a class="nav-item" href="Blog.html">
+                        <a class="nav-item" href="blog.html">
                             Blog
                         </a>
                         
@@ -623,7 +659,7 @@
                             <a class="btn-login" href="login.html">
                                 Login
                             </a>
-                            <a class="btn-signup" href="Signup.html">
+                            <a class="btn-signup" href="signup.html">
                                 Sign Up
                             </a>
                         </div>
@@ -631,14 +667,14 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-<button id="mobile-toggle" class="xl:hidden text-dark dark:text-gray-300">
+                <button id="mobile-toggle" class="xl:hidden text-dark dark:text-gray-300">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-            <div id="mobile-menu" class="xl:hidden">
+        <div id="mobile-menu" class="xl:hidden">
             <!-- Home -->
             <div class="mobile-dropdown">
                 <button class="mobile-dropdown-btn flex items-center justify-between w-full mobile-menu-item">
@@ -696,7 +732,7 @@
             </a>
 
             <!-- Blog -->
-            <a class="mobile-menu-item" href="Blog.html">
+            <a class="mobile-menu-item" href="blog.html">
                 <i class="fas fa-blog mr-2"></i>
                 Blog
             </a>
@@ -732,17 +768,17 @@
             </div>
             
             <!-- Mobile Auth Buttons -->
-            <div class="flex flex-col sm:flex-row gap-3 p-6">
+            <div class="flex flex-col sm:flex-row gap-3 p-4 sm:p-6">
                 <a class="mobile-auth-btn login flex-1 text-center" href="login.html">
                     Login
                 </a>
-                <a class="mobile-auth-btn signup flex-1 text-center" href="Signup.html">
+                <a class="mobile-auth-btn signup flex-1 text-center" href="signup.html">
                     Sign Up
                 </a>
             </div>
             
             <!-- Mobile Toggle Buttons -->
-            <div class="flex justify-center gap-3 p-6 border-t border-gray-200 dark:border-gray-800">
+            <div class="flex justify-center gap-3 p-4 sm:p-6 border-t border-gray-200 dark:border-gray-800">
                 <button id="theme-toggle-mobile" class="toggle-btn">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -754,68 +790,70 @@
     </nav>
 
     <!-- Main Content -->
-<main class="pt-20 pb-0">
-    <!-- Hero Section with Gradient - FIXED CARD LAYOUT -->
-    <section class="gradient-bg text-white py-20">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center justify-between">
-                <div class="lg:w-1/2 mb-10 lg:mb-0">
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium mb-4 inline-block">NEW: Crypto Savings Accounts</span>
-                    <h1 class="text-3xl md:text-5xl font-bold mb-4">
-                        The Future of <span class="text-yellow-300">Digital Finance</span> is Here
-                    </h1>
-                        <p class="text-xl opacity-90 mb-8">
+    <main class="pt-16 md:pt-20">
+        <!-- Hero Section with Gradient - FIXED CARD LAYOUT -->
+        <section class="gradient-bg text-white py-12 md:py-20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="flex flex-col lg:flex-row items-center justify-between">
+                    <div class="lg:w-1/2 mb-10 lg:mb-0">
+                        <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium mb-4 inline-block">NEW: Crypto Savings Accounts</span>
+                        <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold mb-4">
+                            The Future of <span class="text-yellow-300">Digital Finance</span> is Here
+                        </h1>
+                        <p class="text-lg sm:text-xl opacity-90 mb-6 md:mb-8">
                             Experience institutional-grade cryptocurrency trading with powerful tools, deep liquidity, and unmatched security.
                         </p>
-                        <div class="flex flex-wrap gap-4">
-                            <button class="bg-white text-primary px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition flex items-center">
-                                <i class="fas fa-play-circle mr-3"></i>
-                                Start Trading Now
+                        
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-row justify-center sm:justify-start gap-4 mb-8">
+                            <button class="bg-white text-primary px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold hover:bg-gray-100 transition flex items-center">
+                                <i class="fas fa-play-circle mr-2 md:mr-3"></i>
+                                <span class="text-sm md:text-base">Start Trading</span>
                             </button>
-                            <button class="border-2 border-white/50 text-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition">
-                                Watch Platform Tour
+                            <button class="border-2 border-white/50 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold hover:bg-white/10 transition flex items-center">
+                                <span class="text-sm md:text-base">Watch Demo</span>
                             </button>
                         </div>
                         
                         <!-- Stats Cards -->
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-12">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                                <div class="text-2xl font-bold">2M+</div>
-                                <div class="text-sm opacity-80">Active Traders</div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mt-8 md:mt-12">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 text-center">
+                                <div class="text-xl md:text-2xl font-bold">2M+</div>
+                                <div class="text-xs md:text-sm opacity-80">Active Traders</div>
                             </div>
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                                <div class="text-2xl font-bold">$150B+</div>
-                                <div class="text-sm opacity-80">Monthly Volume</div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 text-center">
+                                <div class="text-xl md:text-2xl font-bold">$150B+</div>
+                                <div class="text-xs md:text-sm opacity-80">Monthly Volume</div>
                             </div>
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                                <div class="text-2xl font-bold">99.9%</div>
-                                <div class="text-sm opacity-80">Uptime</div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 text-center">
+                                <div class="text-xl md:text-2xl font-bold">99.9%</div>
+                                <div class="text-xs md:text-sm opacity-80">Uptime</div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="lg:w-1/2 relative">
+                    <div class="lg:w-1/2 relative mt-8 lg:mt-0">
                         <!-- FIXED: EVENLY ALIGNED CRYPTO CARDS -->
-                        <div class="relative max-w-lg mx-auto">
-                            <div class="absolute -top-4 -left-4 w-64 h-64 bg-yellow-500/20 rounded-full blur-3xl"></div>
-                            <div class="absolute -bottom-4 -right-4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
+                        <div class="relative max-w-md sm:max-w-lg mx-auto">
+                            <div class="absolute -top-4 -left-4 w-40 h-40 sm:w-64 sm:h-64 bg-yellow-500/20 rounded-full blur-3xl"></div>
+                            <div class="absolute -bottom-4 -right-4 w-40 h-40 sm:w-64 sm:h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
                             
-                            <div class="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
+                            <div class="relative bg-white/10 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-white/20 shadow-2xl">
                                 <!-- Card 1 - Bitcoin (Fixed Alignment) -->
-                                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 mb-6 card-hover">
-                                    <div class="flex justify-between items-center mb-4">
+                                <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 card-hover">
+                                    <div class="flex justify-between items-center mb-3 sm:mb-4">
                                         <div class="flex items-center">
-                                            <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-4">
-                                                <i class="fab fa-bitcoin text-white text-xl"></i>
+                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                                                <i class="fab fa-bitcoin text-white text-sm sm:text-xl"></i>
                                             </div>
                                             <div>
-                                                <div class="font-bold text-lg text-dark dark:text-white">Bitcoin</div>
-                                                <div class="text-gray-500 dark:text-gray-400">BTC</div>
+                                                <div class="font-bold text-base sm:text-lg text-dark dark:text-white">Bitcoin</div>
+                                                <div class="text-gray-500 dark:text-gray-400 text-sm">BTC</div>
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <div class="text-2xl font-bold text-dark dark:text-white">$64,820</div>
-                                            <div class="text-green-500 font-medium">+2.4%</div>
+                                            <div class="text-lg sm:text-2xl font-bold text-dark dark:text-white">$64,820</div>
+                                            <div class="text-green-500 font-medium text-sm">+2.4%</div>
                                         </div>
                                     </div>
                                     <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
@@ -824,20 +862,20 @@
                                 </div>
                                 
                                 <!-- Card 2 - Ethereum (Fixed Alignment) -->
-                                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 mb-6 card-hover">
-                                    <div class="flex justify-between items-center mb-4">
+                                <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 card-hover">
+                                    <div class="flex justify-between items-center mb-3 sm:mb-4">
                                         <div class="flex items-center">
-                                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
-                                                <i class="fab fa-ethereum text-white text-xl"></i>
+                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                                                <i class="fab fa-ethereum text-white text-sm sm:text-xl"></i>
                                             </div>
                                             <div>
-                                                <div class="font-bold text-lg text-dark dark:text-white">Ethereum</div>
-                                                <div class="text-gray-500 dark:text-gray-400">ETH</div>
+                                                <div class="font-bold text-base sm:text-lg text-dark dark:text-white">Ethereum</div>
+                                                <div class="text-gray-500 dark:text-gray-400 text-sm">ETH</div>
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <div class="text-2xl font-bold text-dark dark:text-white">$3,450</div>
-                                            <div class="text-green-500 font-medium">+1.8%</div>
+                                            <div class="text-lg sm:text-2xl font-bold text-dark dark:text-white">$3,450</div>
+                                            <div class="text-green-500 font-medium text-sm">+1.8%</div>
                                         </div>
                                     </div>
                                     <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
@@ -846,20 +884,20 @@
                                 </div>
                                 
                                 <!-- Card 3 - Solana (Fixed Alignment) -->
-                                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 card-hover">
-                                    <div class="flex justify-between items-center mb-4">
+                                <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-4 sm:p-6 card-hover">
+                                    <div class="flex justify-between items-center mb-3 sm:mb-4">
                                         <div class="flex items-center">
-                                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                                                <i class="fas fa-gem text-white text-xl"></i>
+                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
+                                                <i class="fas fa-gem text-white text-sm sm:text-xl"></i>
                                             </div>
                                             <div>
-                                                <div class="font-bold text-lg text-dark dark:text-white">Solana</div>
-                                                <div class="text-gray-500 dark:text-gray-400">SOL</div>
+                                                <div class="font-bold text-base sm:text-lg text-dark dark:text-white">Solana</div>
+                                                <div class="text-gray-500 dark:text-gray-400 text-sm">SOL</div>
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <div class="text-2xl font-bold text-dark dark:text-white">$185</div>
-                                            <div class="text-green-500 font-medium">+5.2%</div>
+                                            <div class="text-lg sm:text-2xl font-bold text-dark dark:text-white">$185</div>
+                                            <div class="text-green-500 font-medium text-sm">+5.2%</div>
                                         </div>
                                     </div>
                                     <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
@@ -873,289 +911,263 @@
             </div>
         </section>
 
-       <!-- Featured Cryptocurrencies Section -->
-<section class="py-20">
-    <div class="container mx-auto px-4 sm:px-6">
-        <div class="text-center mb-12 sm:mb-16">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Top Cryptocurrencies</h2>
-            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">
-                Trade the most popular digital assets with competitive fees and deep liquidity.
-            </p>
-        </div>
-        
-        <!-- Tabs for different categories -->
-        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
-            <button class="px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium bg-primary text-white tab-active text-sm sm:text-base">All Assets</button>
-            <button class="px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-sm sm:text-base">Gainers</button>
-            <button class="px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-sm sm:text-base">Trending</button>
-            <button class="px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-sm sm:text-base">DeFi</button>
-            <button class="px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-sm sm:text-base">NFTs</button>
-        </div>
-        
-        <!-- Cryptocurrency Cards Grid - Fixed for 1024px -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
-            <!-- Card 1 - Bitcoin -->
-            <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover">
-                <div class="flex justify-between items-start mb-4 sm:mb-6">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                            <i class="fab fa-bitcoin text-white text-lg sm:text-xl"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold text-base sm:text-lg">Bitcoin</div>
-                            <div class="text-gray-500 dark:text-gray-400 text-sm">BTC</div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xl sm:text-2xl font-bold">$64,820</div>
-                        <div class="text-green-500 font-medium text-sm sm:text-base">+2.4%</div>
-                    </div>
+        <!-- Featured Cryptocurrencies Section -->
+        <section class="py-12 md:py-20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="text-center mb-8 md:mb-16">
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Top Cryptocurrencies</h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-xs sm:text-sm md:text-base">
+                        Trade the most popular digital assets with competitive fees and deep liquidity.
+                    </p>
                 </div>
-                <div class="mb-4 sm:mb-6">
-                    <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
-                        <span>Market Cap</span>
-                        <span>$1.27T</span>
-                    </div>
-                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-yellow-500 w-full"></div>
-                    </div>
+                
+                <!-- Tabs for different categories -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 md:mb-12 overflow-x-auto pb-2">
+                    <button class="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg font-medium bg-primary text-white tab-active text-xs sm:text-sm md:text-base whitespace-nowrap">All Assets</button>
+                    <button class="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-xs sm:text-sm md:text-base whitespace-nowrap">Gainers</button>
+                    <button class="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-xs sm:text-sm md:text-base whitespace-nowrap">Trending</button>
+                    <button class="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-xs sm:text-sm md:text-base whitespace-nowrap">DeFi</button>
+                    <button class="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition text-xs sm:text-sm md:text-base whitespace-nowrap">NFTs</button>
                 </div>
-                <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-sm sm:text-base">
-                    Trade Now
-                </button>
-            </div>
-            
-            <!-- Card 2 - Ethereum -->
-            <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover relative">
-                <div class="trending-badge text-xs">Trending</div>
-                <div class="flex justify-between items-start mb-4 sm:mb-6">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                            <i class="fab fa-ethereum text-white text-lg sm:text-xl"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold text-base sm:text-lg">Ethereum</div>
-                            <div class="text-gray-500 dark:text-gray-400 text-sm">ETH</div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xl sm:text-2xl font-bold">$3,450</div>
-                        <div class="text-green-500 font-medium text-sm sm:text-base">+1.8%</div>
-                    </div>
-                </div>
-                <div class="mb-4 sm:mb-6">
-                    <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
-                        <span>Market Cap</span>
-                        <span>$415B</span>
-                    </div>
-                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-purple-500 w-3/4"></div>
-                    </div>
-                </div>
-                <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-sm sm:text-base">
-                    Trade Now
-                </button>
-            </div>
-            
-            <!-- Card 3 - Solana -->
-            <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover">
-                <div class="flex justify-between items-start mb-4 sm:mb-6">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                            <i class="fas fa-gem text-white text-lg sm:text-xl"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold text-base sm:text-lg">Solana</div>
-                            <div class="text-gray-500 dark:text-gray-400 text-sm">SOL</div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xl sm:text-2xl font-bold">$185</div>
-                        <div class="text-green-500 font-medium text-sm sm:text-base">+5.2%</div>
-                    </div>
-                </div>
-                <div class="mb-4 sm:mb-6">
-                    <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
-                        <span>Market Cap</span>
-                        <span>$82B</span>
-                    </div>
-                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-blue-500 w-2/3"></div>
-                    </div>
-                </div>
-                <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-sm sm:text-base">
-                    Trade Now
-                </button>
-            </div>
-            
-            <!-- Card 4 - Cardano -->
-            <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover">
-                <div class="flex justify-between items-start mb-4 sm:mb-6">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
-                            <i class="fas fa-code text-white text-lg sm:text-xl"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold text-base sm:text-lg">Cardano</div>
-                            <div class="text-gray-500 dark:text-gray-400 text-sm">ADA</div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-xl sm:text-2xl font-bold">$0.68</div>
-                        <div class="text-red-500 font-medium text-sm sm:text-base">-0.5%</div>
-                    </div>
-                </div>
-                <div class="mb-4 sm:mb-6">
-                    <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
-                        <span>Market Cap</span>
-                        <span>$24B</span>
-                    </div>
-                    <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-red-500 w-1/3"></div>
-                    </div>
-                </div>
-                <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-sm sm:text-base">
-                    Trade Now
-                </button>
-            </div>
-        </div>
-               <!-- View All Button Section -->
-<div class="text-center mt-8">
-    <button class="inline-flex items-center text-primary font-bold hover:text-secondary transition">
-        <span>View All 150+ Cryptocurrencies</span>
-        <i class="fas fa-arrow-right ml-2"></i>
-    </button>
-</div>
-</div>
-</section>
-
-                <!-- Features Section with Cards -->
-                <section class="pt-5 pb-10 bg-gray-50 dark:bg-gray-900">
-                    <div class="container mx-auto px-6">
-                        
-                        <!-- Section Header -->
-                        <div class="text-center mb-10">
-                            <span class="text-primary font-semibold uppercase tracking-wider">
-                                Why Choose Crypto Groww
-                            </span>
-                            <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-3">
-                                A Complete Crypto Ecosystem
-                            </h2>
-                            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                                From beginner-friendly tools to advanced trading platforms, we have everything you need.
-                            </p>
-                        </div>
-
-                        <!-- Feature Cards (example layout) -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                                <h3 class="font-semibold text-lg mb-2">Secure Wallet</h3>
-                                <p class="text-sm text-gray-600 dark:text-gray-300">
-                                    Keep your assets safe with enterprise-grade security.
-                                </p>
+                
+                <!-- Cryptocurrency Cards Grid - Fixed for 1024px -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                    <!-- Card 1 - Bitcoin -->
+                    <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover">
+                        <div class="flex justify-between items-start mb-4 sm:mb-6">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 sm:w-10 md:w-12 sm:h-8 md:h-12 bg-yellow-500 rounded-full flex items-center justify-center mr-2 sm:mr-3 md:mr-4">
+                                    <i class="fab fa-bitcoin text-white text-sm sm:text-base md:text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm sm:text-base md:text-lg">Bitcoin</div>
+                                    <div class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">BTC</div>
+                                </div>
                             </div>
-
-                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                                <h3 class="font-semibold text-lg mb-2">Fast Trading</h3>
-                                <p class="text-sm text-gray-600 dark:text-gray-300">
-                                    Execute trades instantly with low latency systems.
-                                </p>
-                            </div>
-
-                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-                                <h3 class="font-semibold text-lg mb-2">Market Insights</h3>
-                                <p class="text-sm text-gray-600 dark:text-gray-300">
-                                    Make informed decisions using real-time data.
-                                </p>
+                            <div class="text-right">
+                                <div class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">$64,820</div>
+                                <div class="text-green-500 font-medium text-xs sm:text-sm md:text-base">+2.4%</div>
                             </div>
                         </div>
-
+                        <div class="mb-4 sm:mb-6">
+                            <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                <span>Market Cap</span>
+                                <span>$1.27T</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-yellow-500 w-full"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-xs sm:text-sm md:text-base">
+                            Trade Now
+                        </button>
                     </div>
-                </section>         
-                <!-- Feature Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 2 - Ethereum -->
+                    <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover relative">
+                        <div class="trending-badge text-xs">Trending</div>
+                        <div class="flex justify-between items-start mb-4 sm:mb-6">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 sm:w-10 md:w-12 sm:h-8 md:h-12 bg-purple-500 rounded-full flex items-center justify-center mr-2 sm:mr-3 md:mr-4">
+                                    <i class="fab fa-ethereum text-white text-sm sm:text-base md:text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm sm:text-base md:text-lg">Ethereum</div>
+                                    <div class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">ETH</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">$3,450</div>
+                                <div class="text-green-500 font-medium text-xs sm:text-sm md:text-base">+1.8%</div>
+                            </div>
+                        </div>
+                        <div class="mb-4 sm:mb-6">
+                            <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                <span>Market Cap</span>
+                                <span>$415B</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-purple-500 w-3/4"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-xs sm:text-sm md:text-base">
+                            Trade Now
+                        </button>
+                    </div>
+                    
+                    <!-- Card 3 - Solana -->
+                    <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover">
+                        <div class="flex justify-between items-start mb-4 sm:mb-6">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 sm:w-10 md:w-12 sm:h-8 md:h-12 bg-blue-500 rounded-full flex items-center justify-center mr-2 sm:mr-3 md:mr-4">
+                                    <i class="fas fa-gem text-white text-sm sm:text-base md:text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm sm:text-base md:text-lg">Solana</div>
+                                    <div class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">SOL</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">$185</div>
+                                <div class="text-green-500 font-medium text-xs sm:text-sm md:text-base">+5.2%</div>
+                            </div>
+                        </div>
+                        <div class="mb-4 sm:mb-6">
+                            <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                <span>Market Cap</span>
+                                <span>$82B</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-2/3"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-xs sm:text-sm md:text-base">
+                            Trade Now
+                        </button>
+                    </div>
+                    
+                    <!-- Card 4 - Cardano -->
+                    <div class="crypto-card bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 card-hover">
+                        <div class="flex justify-between items-start mb-4 sm:mb-6">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 sm:w-10 md:w-12 sm:h-8 md:h-12 bg-red-500 rounded-full flex items-center justify-center mr-2 sm:mr-3 md:mr-4">
+                                    <i class="fas fa-code text-white text-sm sm:text-base md:text-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm sm:text-base md:text-lg">Cardano</div>
+                                    <div class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">ADA</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">$0.68</div>
+                                <div class="text-red-500 font-medium text-xs sm:text-sm md:text-base">-0.5%</div>
+                            </div>
+                        </div>
+                        <div class="mb-4 sm:mb-6">
+                            <div class="flex justify-between text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                <span>Market Cap</span>
+                                <span>$24B</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-red-500 w-1/3"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-secondary text-white py-2 sm:py-3 rounded-lg font-medium transition text-xs sm:text-sm md:text-base">
+                            Trade Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- View All Button Section -->
+                <div class="text-center mt-6 md:mt-8">
+                    <button class="inline-flex items-center text-primary font-bold hover:text-secondary transition text-sm md:text-base">
+                        <span>View All 150+ Cryptocurrencies</span>
+                        <i class="fas fa-arrow-right ml-1 sm:ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-12 md:py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-8 md:mb-10">
+                    <span class="text-primary font-semibold uppercase tracking-wider text-sm md:text-base">
+                        Why Choose Crypto Groww
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-2 mb-3">
+                        A Complete Crypto Ecosystem
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-xs sm:text-sm md:text-base">
+                        From beginner-friendly tools to advanced trading platforms, we have everything you need.
+                    </p>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <!-- Card 1 - Trading -->
-                    <div class="feature-card bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-6">
-                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                    <div class="feature-card bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 card-hover">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary to-accent rounded-lg md:rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-chart-line text-white text-lg md:text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Advanced Trading</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4">Advanced Trading</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
                             Access spot, margin, and futures trading with advanced order types and real-time charts.
                         </p>
-                        <ul class="space-y-3 mb-8">
+                        <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Spot & Trade</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Spot & Trade</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Order Types</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Order Types</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Charts</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Charts</span>
                             </li>
                         </ul>
-                        <a href="#" class="text-primary font-medium hover:text-secondary transition flex items-center">
+                        <a href="#" class="text-primary font-medium hover:text-secondary transition flex items-center text-sm md:text-base">
                             Learn More
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                     
                     <!-- Card 2 - Staking -->
-                    <div class="feature-card bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
+                    <div class="feature-card bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 card-hover">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-lg md:rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-hand-holding-usd text-white text-lg md:text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Earn and Stake</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4">Earn and Stake</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
                             Earn up to 25% APY on your crypto with flexible staking, lending, and yield farming.
                         </p>
-                        <ul class="space-y-3 mb-8">
+                        <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Flexible Staking</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Flexible Staking</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Crypto Lending</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Crypto Lending</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Yield Farming</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Yield Farming</span>
                             </li>
                         </ul>
-                        <a href="#" class="text-primary font-medium hover:text-secondary transition flex items-center">
+                        <a href="#" class="text-primary font-medium hover:text-secondary transition flex items-center text-sm md:text-base">
                             Start Earning
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                     
                     <!-- Card 3 - Security -->
-                    <div class="feature-card bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
-                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    <div class="feature-card bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 card-hover">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg md:rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                            <i class="fas fa-shield-alt text-white text-lg md:text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Bank-Level Security</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 md:mb-4">Bank-Level Security</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
                             98% of assets stored offline in cold storage with insurance coverage and 2FA protection.
                         </p>
-                        <ul class="space-y-3 mb-8">
+                        <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Cold Storage</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Cold Storage</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>Insurance Fund</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">Insurance Fund</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
-                                <span>2FA-Biometrics</span>
+                                <i class="fas fa-check-circle text-green-500 mr-2 md:mr-3 text-sm md:text-base"></i>
+                                <span class="text-sm md:text-base">2FA-Biometrics</span>
                             </li>
                         </ul>
-                        <a href="#" class="text-primary font-medium hover:text-secondary transition flex items-center">
+                        <a href="#" class="text-primary font-medium hover:text-secondary transition flex items-center text-sm md:text-base">
                             Security Details
                             <i class="fas fa-arrow-right ml-2"></i>
                         </a>
@@ -1165,265 +1177,261 @@
         </section>
 
         <!-- Stats Section -->
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section class="py-12 md:py-20">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     <!-- Stat Card 1 -->
-                    <div class="stats-card rounded-2xl p-8 text-center">
-                        <div class="text-4xl md:text-5xl font-bold text-primary mb-4">150+</div>
-                        <h3 class="text-xl font-bold mb-2">Cryptocurrencies</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Trade the widest selection of digital assets</p>
+                    <div class="stats-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 md:mb-4">150+</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Cryptocurrencies</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Trade the widest selection of digital assets</p>
                     </div>
                     
                     <!-- Stat Card 2 -->
-                    <div class="stats-card rounded-2xl p-8 text-center">
-                        <div class="text-4xl md:text-5xl font-bold text-primary mb-4">24/7</div>
-                        <h3 class="text-xl font-bold mb-2">Customer Support</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Round-the-clock support in 15+ languages</p>
+                    <div class="stats-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 md:mb-4">24/7</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Customer Support</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Round-the-clock support in 15+ languages</p>
                     </div>
                     
                     <!-- Stat Card 3 -->
-                    <div class="stats-card rounded-2xl p-8 text-center">
-                        <div class="text-4xl md:text-5xl font-bold text-primary mb-4">0.1%</div>
-                        <h3 class="text-xl font-bold mb-2">Trading Fees</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Industry-low fees for all traders</p>
+                    <div class="stats-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 md:mb-4">0.1%</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Trading Fees</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Industry-low fees for all traders</p>
                     </div>
                     
                     <!-- Stat Card 4 -->
-                    <div class="stats-card rounded-2xl p-8 text-center">
-                        <div class="text-4xl md:text-5xl font-bold text-primary mb-4">99.9%</div>
-                        <h3 class="text-xl font-bold mb-2">Platform Uptime</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Reliable trading with maximum availability</p>
+                    <div class="stats-card rounded-xl md:rounded-2xl p-6 md:p-8 text-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 md:mb-4">99.9%</div>
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Platform Uptime</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Reliable trading with maximum availability</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section class="py-20 bg-gradient-to-r from-primary/10 to-accent/10">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <span class="text-primary font-semibold uppercase tracking-wider">Testimonials</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Trusted by Millions of Traders</h2>
-                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <section class="py-12 md:py-20 bg-gradient-to-r from-primary/10 to-accent/10">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="text-center mb-8 md:mb-16">
+                    <span class="text-primary font-semibold uppercase tracking-wider text-sm md:text-base">Testimonials</span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-2 mb-4">Trusted by Millions of Traders</h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-xs sm:text-sm md:text-base">
                         See what our community has to say about their experience with Crypto Groww.
                     </p>
                 </div>
                 
                 <!-- Testimonial Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     <!-- Testimonial 1 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 card-hover">
+                        <div class="flex items-center mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-base md:text-xl mr-3 md:mr-4">
                                 JS
                             </div>
                             <div>
-                                <div class="font-bold text-lg">James Sullivan</div>
-                                <div class="text-gray-500 dark:text-gray-400">Professional Trader</div>
+                                <div class="font-bold text-base md:text-lg">James Sullivan</div>
+                                <div class="text-gray-500 dark:text-gray-400 text-sm md:text-base">Professional Trader</div>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-300 italic mb-6">
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-4 md:mb-6 text-sm md:text-base">
                             "Crypto Groww has completely transformed my trading experience. The advanced charting tools and low fees are unmatched in the industry."
                         </p>
                         <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
                         </div>
                     </div>
                     
                     <!-- Testimonial 2 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 card-hover">
+                        <div class="flex items-center mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-base md:text-xl mr-3 md:mr-4">
                                 MS
                             </div>
                             <div>
-                                <div class="font-bold text-lg">Maria Santos</div>
-                                <div class="text-gray-500 dark:text-gray-400">Crypto Investor</div>
+                                <div class="font-bold text-base md:text-lg">Maria Santos</div>
+                                <div class="text-gray-500 dark:text-gray-400 text-sm md:text-base">Crypto Investor</div>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-300 italic mb-6">
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-4 md:mb-6 text-sm md:text-base">
                             "The staking options have allowed me to earn passive income on my crypto holdings. The platform is secure and user-friendly."
                         </p>
                         <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star-half-alt text-sm md:text-base"></i>
                         </div>
                     </div>
                     
                     <!-- Testimonial 3 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 card-hover">
+                        <div class="flex items-center mb-4 md:mb-6">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-base md:text-xl mr-3 md:mr-4">
                                 RK
                             </div>
                             <div>
-                                <div class="font-bold text-lg">Robert Kim</div>
-                                <div class="text-gray-500 dark:text-gray-400">Institutional Client</div>
+                                <div class="font-bold text-base md:text-lg">Robert Kim</div>
+                                <div class="text-gray-500 dark:text-gray-400 text-sm md:text-base">Institutional Client</div>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-300 italic mb-6">
+                        <p class="text-gray-600 dark:text-gray-300 italic mb-4 md:mb-6 text-sm md:text-base">
                             "As an institutional investor, I appreciate the deep liquidity and OTC desk. The team provides excellent support for large transactions."
                         </p>
                         <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
+                            <i class="fas fa-star text-sm md:text-base"></i>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Testimonial Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-8 md:mt-16">
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-primary mb-2">4.9/5</div>
-                        <div class="text-gray-600 dark:text-gray-300">Trustpilot Rating</div>
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">4.9/5</div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Trustpilot Rating</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-primary mb-2">2M+</div>
-                        <div class="text-gray-600 dark:text-gray-300">Happy Users</div>
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">2M+</div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Happy Users</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-primary mb-2">150+</div>
-                        <div class="text-gray-600 dark:text-gray-300">Countries</div>
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">150+</div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Countries</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl font-bold text-primary mb-2">24/7</div>
-                        <div class="text-gray-600 dark:text-gray-300">Support</div>
+                        <div class="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">24/7</div>
+                        <div class="text-gray-600 dark:text-gray-300 text-sm md:text-base">Support</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-       <!-- CTA Section - REDUCED PADDING -->
-<section class="py-12 cta-section">
-    <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-primary to-accent rounded-3xl p-8 text-center text-white">
-            <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Start Your Crypto Journey?</h2>
-            <p class="text-lg opacity-90 mb-6 max-w-2xl mx-auto">
-                Join millions of users who trust Crypto Groww for secure, fast, and reliable cryptocurrency trading.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                <button class="bg-white text-primary px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition flex items-center justify-center">
-                    <i class="fas fa-user-plus mr-2"></i>
-                    Create Free Account
-                </button>
-                <button class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10 transition">
-                    Schedule a Demo
-                </button>
+        <!-- CTA Section - REDUCED PADDING -->
+        <section class="py-8 md:py-12 cta-section">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-4xl mx-auto bg-gradient-to-r from-primary to-accent rounded-2xl md:rounded-3xl p-6 md:p-8 text-center text-white">
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4">Ready to Start Your Crypto Journey?</h2>
+                    <p class="text-sm md:text-lg opacity-90 mb-4 md:mb-6 max-w-2xl mx-auto">
+                        Join millions of users who trust Crypto Groww for secure, fast, and reliable cryptocurrency trading.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <button class="bg-white text-primary px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold hover:bg-gray-100 transition flex items-center justify-center text-sm md:text-base">
+                            <i class="fas fa-user-plus mr-2"></i>
+                            Create Free Account
+                        </button>
+                        <button class="bg-transparent border-2 border-white text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold hover:bg-white/10 transition text-sm md:text-base">
+                            Schedule a Demo
+                        </button>
+                    </div>
+                    <p class="mt-4 md:mt-6 text-xs md:text-sm opacity-80">No credit card required • Get started in minutes</p>
+                </div>
             </div>
-            <p class="mt-6 text-sm opacity-80">No credit card required • Get started in minutes</p>
-        </div>
-    </div>
-</section>
-</main>
+        </section>
+    </main>
 
-<!-- Footer -->
-<footer class="py-12 bg-gray-900 text-gray-400">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Company Info -->
-            <div>
-                <div class="flex items-center space-x-3 mb-4">
-                    <div class="w-10 h-10 bg-primary rounded flex items-center justify-center">
-                        <i class="fas fa-coins text-white text-sm"></i>
-                    </div>
-                    <div>
-                        <span class="text-xl font-bold text-yellow-400">Crypto</span>
-                        <span class="text-xl font-bold text-primary">Groww</span>
+    <!-- Footer -->
+    <footer class="py-8 md:py-12 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Company Info - Exact same logo styling as header -->
+                <div>
+                    <a href="index.html" class="flex items-center mb-4 md:mb-6 cursor-pointer">
+                        <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-lg flex items-center justify-center mr-2 md:mr-3">
+                            <i class="fas fa-coins text-white text-sm md:text-base"></i>
+                        </div>
+                        <div>
+                            <span class="text-lg md:text-xl font-bold text-yellow-400">Crypto</span>
+                            <span class="text-lg md:text-xl font-bold text-primary">Groww</span>
+                        </div>
+                    </a>
+                    <p class="mb-3 md:mb-4 opacity-80 text-xs sm:text-sm">
+                        The most secure cryptocurrency platform to buy, sell, trade, and earn digital assets.
+                    </p>
+                    <div class="flex space-x-2">
+                        <a href="#" class="footer-social-icon facebook" style="width: 32px; height: 32px;">
+                            <i class="fab fa-facebook-f text-xs"></i>
+                        </a>
+                        <a href="#" class="footer-social-icon twitter" style="width: 32px; height: 32px;">
+                            <i class="fab fa-twitter text-xs"></i>
+                        </a>
+                        <a href="#" class="footer-social-icon instagram" style="width: 32px; height: 32px;">
+                            <i class="fab fa-instagram text-xs"></i>
+                        </a>
+                        <a href="#" class="footer-social-icon linkedin" style="width: 32px; height: 32px;">
+                            <i class="fab fa-linkedin-in text-xs"></i>
+                        </a>
                     </div>
                 </div>
-                <p class="mb-4 opacity-80 text-sm">
-                    The most secure cryptocurrency platform to buy, sell, trade, and earn digital assets.
-                </p>
-                <div class="flex space-x-3">
-                    <a href="#" class="footer-social-icon facebook" style="width: 36px; height: 36px;">
-                        <i class="fab fa-facebook-f text-sm"></i>
-                    </a>
-                    <a href="#" class="footer-social-icon twitter" style="width: 36px; height: 36px;">
-                        <i class="fab fa-twitter text-sm"></i>
-                    </a>
-                    <a href="#" class="footer-social-icon instagram" style="width: 36px; height: 36px;">
-                        <i class="fab fa-instagram text-sm"></i>
-                    </a>
-                    <a href="#" class="footer-social-icon linkedin" style="width: 36px; height: 36px;">
-                        <i class="fab fa-linkedin-in text-sm"></i>
-                    </a>
-                    
-                </div>
-            </div>
                 
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Quick Links</h3>
-                    <ul class="space-y-3">
-                        <li><a class='hover:text-primary transition' href='index.html'>Home</a></li>
-                        <li><a class='hover:text-primary transition' href='about.html'>About</a></li>
-                        <li><a class='hover:text-primary transition' href='market.html'>Markets</a></li>
-                        <li><a class='hover:text-primary transition' href='trade.html'>Trade</a></li>
-                        <li><a class='hover:text-primary transition' href='Blog.html'>Blog</a></li>
-                        <li><a class='hover:text-primary transition' href='contact.html'>Contact</a></li>
+                    <h3 class="text-white text-lg md:text-xl font-bold mb-3 md:mb-6">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a class='hover:text-primary transition text-sm md:text-base' href='index.html'>Home</a></li>
+                        <li><a class='hover:text-primary transition text-sm md:text-base' href='about.html'>About</a></li>
+                        <li><a class='hover:text-primary transition text-sm md:text-base' href='market.html'>Markets</a></li>
+                        <li><a class='hover:text-primary transition text-sm md:text-base' href='trade.html'>Trade</a></li>
+                        <li><a class='hover:text-primary transition text-sm md:text-base' href='blog.html'>Blog</a></li>
+                        <li><a class='hover:text-primary transition text-sm md:text-base' href='contact.html'>Contact</a></li>
                     </ul>
                 </div>
                 
                 <!-- Services -->
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Services</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="hover:text-primary transition">Spot Trading</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Futures Trading</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Staking</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Crypto Lending</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Crypto Card</a></li>
-                        <li><a href="#" class="hover:text-primary transition">API Access</a></li>
+                    <h3 class="text-white text-lg md:text-xl font-bold mb-3 md:mb-6">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition text-sm md:text-base">Spot Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition text-sm md:text-base">Futures Trading</a></li>
+                        <li><a href="#" class="hover:text-primary transition text-sm md:text-base">Staking</a></li>
+                        <li><a href="#" class="hover:text-primary transition text-sm md:text-base">Crypto Lending</a></li>
+                        <li><a href="#" class="hover:text-primary transition text-sm md:text-base">Crypto Card</a></li>
+                        <li><a href="#" class="hover:text-primary transition text-sm md:text-base">API Access</a></li>
                     </ul>
                 </div>
                 
                 <!-- Contact Info -->
                 <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Contact Info</h3>
-                    <ul class="space-y-4">
+                    <h3 class="text-white text-lg md:text-xl font-bold mb-3 md:mb-6">Contact Info</h3>
+                    <ul class="space-y-3">
                         <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
-                            <span>123 Crypto Street, Blockchain District, NY 10001</span>
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-2 md:mr-3 text-sm"></i>
+                            <span class="text-sm md:text-base">123 Crypto Street, Blockchain District, NY 10001</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-phone text-primary mr-3"></i>
-                            <span>+1 (555) 123-4567</span>
+                            <i class="fas fa-phone text-primary mr-2 md:mr-3 text-sm"></i>
+                            <span class="text-sm md:text-base">+1 (555) 123-4567</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-envelope text-primary mr-3"></i>
-                            <span>help@cryptogroww.com</span>
+                            <i class="fas fa-envelope text-primary mr-2 md:mr-3 text-sm"></i>
+                            <span class="text-sm md:text-base">help@cryptogroww.com</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-clock text-primary mr-3"></i>
-                            <span>24/7 Customer Support</span>
+                            <i class="fas fa-clock text-primary mr-2 md:mr-3 text-sm"></i>
+                            <span class="text-sm md:text-base">24/7 Customer Support</span>
                         </li>
                     </ul>
-                    
-                   
                 </div>
             </div>
             
             <!-- Bottom Bar -->
-            <div class="mt-12 pt-8 border-t border-gray-800">
+            <div class="mt-6 md:mt-12 pt-4 md:pt-8 border-t border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-sm opacity-75">&copy; 2026 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
-                    <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" class="text-sm hover:text-primary transition">Privacy Policy</a>
-                        <a href="#" class="text-sm hover:text-primary transition">Terms of Service</a>
-                        <a href="#" class="text-sm hover:text-primary transition">Cookie Policy</a>
-                        <a href="#" class="text-sm hover:text-primary transition">Sitemap</a>
+                    <p class="text-xs md:text-sm opacity-75 text-center md:text-left">&copy; 2026 Crypto Groww. All rights reserved. Cryptocurrency trading involves risk.</p>
+                    <div class="flex flex-wrap justify-center space-x-3 md:space-x-6 mt-3 md:mt-0">
+                        <a href="#" class="text-xs md:text-sm hover:text-primary transition">Privacy Policy</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-primary transition">Terms of Service</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-primary transition">Cookie Policy</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-primary transition">Sitemap</a>
                     </div>
                 </div>
             </div>

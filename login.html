@@ -98,6 +98,7 @@ body.dark-mode .login-card{
     justify-content:center;
 }
 
+
 .logo-box i{
     font-size:1.3rem;
     color:#ffffff;        /* white icon = visible */
@@ -583,27 +584,21 @@ body.dark-mode .dark-mode-subtext{
     <div class="login-card">
         <!-- ✅ BRAND LOGO WITH ICON IN SAME LINE - NOW CLICKABLE -->
        <div class="card-brand-logo">
-    <a href="index.html">
-        
-        <!-- PURPLE BOX -->
-        <div class="logo-box">
-            <i class="fas fa-coins"></i>
+    <a href="index.html" class="flex items-center mb-6 cursor-pointer">
+        <!-- Use exact header classes -->
+        <div class="w-10 h-10 bg-[#9c7be5] rounded-lg flex items-center justify-center mr-3">
+            <i class="fas fa-coins text-white"></i>
         </div>
-
-        <h2>
-            <span class="text-yellow-400">Crypto</span>
-            <span class="brand-purple ml-1">Groww</span>
-        </h2>
-
+        
+        <!-- Text with header styling -->
+        <div>
+            <span class="text-xl font-bold text-yellow-400 dark:text-yellow-400">Crypto</span>
+            <span class="text-xl font-bold text-[#9c7be5] dark:text-[#b299ea]">Groww</span>
+        </div>
     </a>
 </div>
 
-
-
         <div class="header-section">
-            <div class="icon-circle">
-                <i class="fas fa-sign-in-alt"></i>
-            </div>
             <h1 class="header-title">
                 <span class="dark-mode-text">Welcome Back!</span>
             </h1>
